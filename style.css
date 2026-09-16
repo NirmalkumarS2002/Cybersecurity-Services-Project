@@ -16,7 +16,7 @@ body {
 }
 
 :root {
-    --pcolor: rgb(1, 94, 251)
+    --pcolor: #015EFB;
 }
 
 .header {
@@ -33,7 +33,7 @@ body {
     gap: 20px;
     backdrop-filter: blur(20px);
     background: rgba(99, 99, 99, 0.397);
-    z-index: 9999;
+    z-index: 99;
 }
 
 .company-logo img {
@@ -143,7 +143,7 @@ body {
 
     .sidebar {
         display: block;
-        position: absolute;
+        position: fixed;
         left: 0px;
         top: 0px;
         width: 320px;
@@ -152,6 +152,7 @@ body {
         padding: 20px 20px;
         transition: .5s ease;
         transform: translateX(-100%);
+        z-index: 9999;
     }
 
 
@@ -256,3 +257,118 @@ body {
         padding: 5px 20px;
     }
 }
+
+
+ /* footer */
+
+    .footer {
+        background: var(--pcolor);
+        padding-block: 100px;
+        padding-inline: 100px;
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
+        gap: 30px;
+        color: white;
+    }
+
+    .footer-brand h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+
+    .footer-brand p {
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .footer-form {
+        display: flex;
+        gap: 10px;
+    }
+
+    .footer-form input {
+        flex: 1;
+        padding: 10px 15px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        font-size: 13px;
+    }
+
+    .footer-form button {
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+        background: black;
+        color: white;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+    .footer h4 {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 12px;
+        margin-top: 5px;
+    }
+
+    .footer-social a {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+    .footer-contact p {
+        font-size: 14px;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+
+    @media (max-width:950px) {
+        .footer {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width:600px) {
+        .footer {
+            grid-template-columns: 1fr;
+            padding: 20px;
+            padding-block: 40px;
+        }
+
+        .footer-form {
+            flex-direction: column;
+        }
+    }
