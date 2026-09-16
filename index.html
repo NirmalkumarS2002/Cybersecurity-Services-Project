@@ -30,7 +30,7 @@
 
 
     :root {
-        --pcolor: rgb(1, 94, 251)
+        --pcolor: #015EFB
     }
 
     .hero-Section {
@@ -153,7 +153,7 @@
 
         .hero-description {
             max-width: 600px;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 30px;
         }
 
@@ -203,6 +203,258 @@
         }
 
     }
+
+
+    /* stat section */
+
+    .stats {
+        min-height: 80vh;
+        padding: 100px 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: black;
+        gap: 50px;
+        position: relative;
+    }
+
+    .stats::before {
+        content: "";
+        background: url("./src/s1.webp");
+        background-repeat: no-repeat;
+        background-position: center;
+        inset: 0;
+        max-width: 100%;
+        position: absolute;
+        z-index: 0;
+        opacity: 0.5;
+    }
+
+
+
+
+
+    .stats div {
+        display: flex;
+        justify-content: space-between;
+        z-index: 1;
+    }
+
+    .stats-head h2 {
+        font-size: 45px;
+        color: white;
+    }
+
+    .stats-head h2 span {
+        color: var(--pcolor);
+    }
+
+    .stats-head div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .stats-head div p {
+        color: white;
+    }
+
+    .stats-head div button {
+        width: fit-content;
+        padding: 15px 60px;
+        border-radius: 20px;
+        border: none;
+        background: var(--pcolor);
+        color: white;
+    }
+
+    .stat-block div {
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+    }
+
+    .stat-block div h1 {
+        font-size: 60px;
+        color: white;
+    }
+
+    .stat-block div p {
+        font-size: 16px;
+        color: white;
+    }
+
+    @media (max-width:950px) {
+        .stats-head h2 {
+            font-size: 35px;
+            line-height: 1.5;
+        }
+
+        .stats-head div p {
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width:800px) {
+        .stats-head {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stat-block div h1 {
+            font-size: 40px;
+        }
+
+        .stat-block div p {
+            font-size: 15px;
+        }
+    }
+
+    @media (max-width:550px) {
+
+        .stats-head h2 {
+            font-size: 30px;
+
+        }
+
+        .stats-head div p {
+            line-height: 1.5;
+        }
+
+        .stats-head {
+            text-align: center;
+        }
+
+        .stats-head div {
+            align-items: center;
+        }
+
+        .stats {
+            padding: 20px;
+            padding-bottom: 60px;
+        }
+
+        .stat-block div h1 {
+            font-size: 30px;
+        }
+
+        .stat-block div p {
+            font-size: 14px;
+        }
+    }
+
+
+    /*our Services */
+
+    .our-services {
+        padding-block: 60px;
+        padding-inline: 100px;
+        background: black;
+    }
+
+    .our-title {
+        font-size: 45px;
+        text-align: center;
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .our-title span {
+        color: var(--pcolor);
+    }
+
+    .our-des {
+        font-size: 16px;
+        max-width: 600px;
+        justify-self: center;
+        line-height: 1.5;
+        text-align: center;
+        margin-bottom: 40px;
+        color: white;
+    }
+
+    .network h2 {
+        font-size: 30px;
+        margin-bottom: 10px;
+        color: white;
+    }
+
+    .network h2 span {
+        color: var(--pcolor);
+    }
+
+    .network p {
+        max-width: 600px;
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .network p:last-child {
+        max-width: 100%;
+    }
+
+    .our-image-wrap {
+        width: 100%;
+        height: 60vh;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 30px;
+    }
+
+    .our-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+    }
+
+    @media (max-width:800px) {
+        .our-services{
+              padding-bottom: 60px;
+        padding: 20px;
+        }
+
+        .our-title{
+            font-size: 35px;
+        }
+
+        .our-des{
+            font-size: 15px;
+        }
+
+        .network h2{
+            font-size: 25px;
+        }
+
+         .network p{
+            font-size: 15px;
+        }
+    }
+
+    @media (max-width:500px) {
+    
+
+        .our-title{
+            font-size: 30px;
+        }
+
+        .our-des{
+            font-size: 14px;
+        }
+
+        .network h2{
+            font-size: 22px;
+        }
+
+         .network p{
+            font-size: 14px;
+        }
+    }
+
+
 </style>
 
 <body>
@@ -281,6 +533,70 @@
 
         <div class="hero-image">
             <img src="./src/s2.webp" alt="hero image">
+        </div>
+    </section>
+
+    <section class="stats">
+
+        <div class="stats-head">
+            <h2>We Have Impactful <br> <span>Results</span></h2>
+
+            <div>
+                <P>Join the hundreds of business protected by Cybersec</P>
+                <button>Get Started</button>
+            </div>
+        </div>
+
+        <div class="stat-block">
+            <div class="client-stat">
+                <h1>1200+</h1>
+                <p>Clients Protected</p>
+            </div>
+            <div class="client-stat">
+                <h1>250+</h1>
+                <p>Cyber Security Experts</p>
+            </div>
+        </div>
+
+        <div class="stat-block">
+            <div class="client-stat">
+                <h1>100%</h1>
+                <p>Global Reach</p>
+            </div>
+            <div class="client-stat">
+                <h1>15+</h1>
+                <p>Years of Experience</p>
+            </div>
+        </div>
+
+
+    </section>
+
+
+    <section class="our-services">
+
+        <h2 class="our-title">Our <span>Services</span></h2>
+
+        <p class="our-des">A Well-Organized Website witha professional Look. It offers detailed service descriptions,
+            case studies and easy navigation</p>
+
+        <div class="network">
+
+            <h2>Network Security</h2>
+
+            <p>Strengthen your network's defenses with ou r Comoprehensivee Network Fortification Service</p>
+
+            <div class="our-image-wrap">
+                <img src="./src/1.webp" alt="services image" class="our-image">
+            </div>
+
+            <h2>Over<span>view</span></h2>
+
+            <p> In today’s digital landscape, securing your network is paramount to protecting your business from cyber
+                threats. Our Network Fortification service is designed to offer a comprehensive shield against
+                unauthorized access, data breaches, and other malicious activities. We combine state-of-the-art
+                technology with industry best practices to create a robust defense mechanism tailored to your specific
+                network environment.</p>
         </div>
     </section>
 

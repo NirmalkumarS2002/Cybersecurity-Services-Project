@@ -33,6 +33,7 @@ body {
     gap: 20px;
     backdrop-filter: blur(20px);
     background: rgba(99, 99, 99, 0.397);
+    z-index: 9999;
 }
 
 .company-logo img {
