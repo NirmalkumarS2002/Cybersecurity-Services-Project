@@ -343,10 +343,16 @@ body {
 .hero-visual::before {
     content: "";
     position: absolute;
-    width: 360px;
-    height: 360px;
+    width: clamp(320px,45vw,520px);
+    height: clamp(320px,45vw,520px);
     background: radial-gradient(circle, rgba(1, 94, 251, 0.45), transparent 70%);
     filter: blur(10px);
+}
+
+.hero-visual img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
 .hv-phone {
@@ -545,12 +551,18 @@ body {
 }
 
 .mv-icon {
-    width: 120px;
-    height: 120px;
+    width: 220px;
+    height: 220px;
     display: flex;
     align-items: center;
     justify-content: center;
     filter: drop-shadow(0 0 18px rgba(76, 140, 255, 0.65));
+}
+
+.mv-icon img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
 @media (max-width: 900px) {
@@ -1276,22 +1288,7 @@ body {
 
         <div class="hero-visual">
 
-            <div class="hv-orbit hv-key"><span class="material-symbols-outlined">key</span></div>
-            <div class="hv-orbit hv-eye"><span class="material-symbols-outlined">visibility</span></div>
-            <div class="hv-star">
-                <span class="material-symbols-outlined">star</span>
-                <span class="material-symbols-outlined">star</span>
-                <span class="material-symbols-outlined">star</span>
-            </div>
-            <div class="hv-orbit hv-finger"><span class="material-symbols-outlined">fingerprint</span></div>
-
-            <div class="hv-phone">
-                <div class="hv-orbit hv-shield"><span class="material-symbols-outlined">check</span></div>
-                <span class="material-symbols-outlined">lock</span>
-            </div>
-
-            <div class="hv-stack hv-stack-left"><span class="material-symbols-outlined">database</span></div>
-            <div class="hv-stack hv-stack-right"><span class="material-symbols-outlined">database</span></div>
+          <img src="./src/a1.webp" alt="">
 
         </div>
 
@@ -1308,34 +1305,7 @@ body {
             </div>
 
             <div class="mv-icon">
-                <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
-                    <g fill="none" stroke="#4C8CFF" stroke-width="2.2" stroke-linecap="round">
-                        <line x1="60" y1="60" x2="60" y2="14" />
-                        <line x1="60" y1="60" x2="94" y2="30" />
-                        <line x1="60" y1="60" x2="106" y2="60" />
-                        <line x1="60" y1="60" x2="94" y2="90" />
-                        <line x1="60" y1="60" x2="60" y2="106" />
-                        <line x1="60" y1="60" x2="26" y2="90" />
-                        <line x1="60" y1="60" x2="14" y2="60" />
-                        <line x1="60" y1="60" x2="26" y2="30" />
-                    </g>
-                    <g fill="#0b0f1a" stroke="#4C8CFF" stroke-width="2">
-                        <circle cx="60" cy="14" r="4" />
-                        <circle cx="94" cy="30" r="4" />
-                        <circle cx="106" cy="60" r="4" />
-                        <circle cx="94" cy="90" r="4" />
-                        <circle cx="60" cy="106" r="4" />
-                        <circle cx="26" cy="90" r="4" />
-                        <circle cx="14" cy="60" r="4" />
-                        <circle cx="26" cy="30" r="4" />
-                    </g>
-                    <rect x="30" y="30" width="60" height="60" rx="16" fill="#0b0f1a" stroke="#4C8CFF"
-                        stroke-width="2.5" />
-                    <g fill="none" stroke="#4C8CFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="48" y="58" width="24" height="18" rx="3" />
-                        <path d="M52 58v-8a8 8 0 0 1 16 0v8" />
-                    </g>
-                </svg>
+                <img src="./src/a2.webp" alt="">
             </div>
 
             <div class="mv-block right">

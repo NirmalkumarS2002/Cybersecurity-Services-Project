@@ -330,7 +330,7 @@ body {
 
 .bh-visual {
     position: relative;
-    height: 340px;
+    height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -339,10 +339,16 @@ body {
 .bh-visual::before {
     content: "";
     position: absolute;
-    width: 320px;
-    height: 320px;
+    width: clamp(320px,45vw,520px);
+    height: clamp(320px,45vw,520px);
     background: radial-gradient(circle, rgba(1, 94, 251, 0.4), transparent 70%);
     filter: blur(10px);
+}
+
+.bh-visual img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
 .bh-laptop {
@@ -1052,19 +1058,7 @@ body {
 
         <div class="bh-visual">
 
-            <div class="bh-orbit bh-o1"><span class="material-symbols-outlined">chat_bubble</span></div>
-            <div class="bh-orbit bh-o2"><span class="material-symbols-outlined">lightbulb</span></div>
-            <div class="bh-orbit bh-o3"><span class="material-symbols-outlined">mail</span></div>
-            <div class="bh-orbit bh-o4"><span class="material-symbols-outlined">cloud</span></div>
-            <div class="bh-orbit bh-o5"><span class="material-symbols-outlined">public</span></div>
-            <div class="bh-orbit bh-o6"><span class="material-symbols-outlined">help</span></div>
-
-            <div class="bh-laptop">
-                <div class="bh-screen-line"></div>
-                <div class="bh-screen-line"></div>
-                <div class="bh-screen-line"></div>
-            </div>
-            <div class="bh-search"></div>
+                <img src="./src/b1.webp" alt="">
 
         </div>
 

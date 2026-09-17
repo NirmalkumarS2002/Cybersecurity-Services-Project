@@ -327,7 +327,7 @@ body {
 
 .ch-visual {
     position: relative;
-    height: 320px;
+    height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -336,10 +336,16 @@ body {
 .ch-visual::before {
     content: "";
     position: absolute;
-    width: 320px;
-    height: 320px;
+    width: clamp(320px,45vw,520px);
+    height: clamp(320px,45vw,520px);
     background: radial-gradient(circle, rgba(1, 94, 251, 0.4), transparent 70%);
     filter: blur(10px);
+}
+
+.ch-visual img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
 .ch-trunk {
@@ -503,87 +509,27 @@ body {
 
 .gt-visual {
     position: relative;
-    height: 320px;
+    height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.gt-globe {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #4c8cff, #0b2a7a 70%);
-    box-shadow: 0 0 60px rgba(1, 94, 251, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-}
-
-.gt-globe .material-symbols-outlined {
-    font-size: 60px;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.gt-orbit {
+.gt-visual::before {
+    content: "";
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: linear-gradient(160deg, #0a1638, #02061a);
-    border: 1px solid rgba(76, 140, 255, 0.5);
-    box-shadow: 0 0 18px rgba(1, 94, 251, 0.4);
-    z-index: 3;
+    width: clamp(320px,45vw,520px);
+    height: clamp(320px,45vw,520px);
+    background: radial-gradient(circle, rgba(1, 94, 251, 0.4), transparent 70%);
+    filter: blur(10px);
 }
 
-.gt-orbit .material-symbols-outlined {
-    color: var(--pcolor-light);
-    font-size: 18px;
-}
 
-.gt-o1 {
-    width: 40px;
-    height: 40px;
-    top: 10px;
-    left: 40px;
-}
-
-.gt-o2 {
-    width: 36px;
-    height: 36px;
-    top: 0;
-    right: 60px;
-}
-
-.gt-o3 {
-    width: 38px;
-    height: 38px;
-    top: 90px;
-    left: -10px;
-}
-
-.gt-o4 {
-    width: 36px;
-    height: 36px;
-    top: 100px;
-    right: 0;
-}
-
-.gt-o5 {
-    width: 34px;
-    height: 34px;
-    bottom: 40px;
-    left: 60px;
-}
-
-.gt-o6 {
-    width: 34px;
-    height: 34px;
-    bottom: 50px;
-    right: 70px;
-}
+.gt-visual img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}z
 
 .gt-form-card {
     background: #0b0c10;
@@ -979,24 +925,7 @@ body {
 
         <div class="ch-visual">
 
-            <div class="ch-trunk">
-                <span style="background:#ff5b7a;"></span>
-                <span style="background:#ffb020;"></span>
-                <span style="background:#2ec4c4;"></span>
-                <span style="background:#4c8cff;"></span>
-                <span style="background:#7ee08c;"></span>
-            </div>
-
-            <div class="ch-orbit ch-o1"><span class="material-symbols-outlined">chat_bubble</span></div>
-            <div class="ch-orbit ch-o2"><span class="material-symbols-outlined">lock</span></div>
-            <div class="ch-orbit ch-o3"><span class="material-symbols-outlined">smartphone</span></div>
-            <div class="ch-orbit ch-o4"><span class="material-symbols-outlined">mail</span></div>
-            <div class="ch-orbit ch-o5"><span class="material-symbols-outlined">cloud</span></div>
-            <div class="ch-orbit ch-o6"><span class="material-symbols-outlined">wifi</span></div>
-            <div class="ch-orbit ch-o7"><span class="material-symbols-outlined">search</span></div>
-            <div class="ch-orbit ch-o8"><span class="material-symbols-outlined">share</span></div>
-
-            <div class="ch-laptop"><span class="material-symbols-outlined">laptop_mac</span></div>
+            <img src="./src/c1.webp" alt="">
 
         </div>
 
@@ -1010,13 +939,7 @@ body {
         <div class="gt-grid">
 
             <div class="gt-visual">
-                <div class="gt-orbit gt-o1"><span class="material-symbols-outlined">chat_bubble</span></div>
-                <div class="gt-orbit gt-o2"><span class="material-symbols-outlined">mail</span></div>
-                <div class="gt-orbit gt-o3"><span class="material-symbols-outlined">smartphone</span></div>
-                <div class="gt-orbit gt-o4"><span class="material-symbols-outlined">laptop_mac</span></div>
-                <div class="gt-orbit gt-o5"><span class="material-symbols-outlined">wifi</span></div>
-                <div class="gt-orbit gt-o6"><span class="material-symbols-outlined">desktop_windows</span></div>
-                <div class="gt-globe"><span class="material-symbols-outlined">public</span></div>
+                <img src="./src/c2.webp" alt="">
             </div>
 
             <div class="gt-form-card">

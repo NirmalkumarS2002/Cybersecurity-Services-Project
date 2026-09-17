@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,345 +13,352 @@
 </head>
 
 <style>
- * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: "Google Sans", sans-serif;
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        font-family: "Google Sans", sans-serif;
 
-}
-
-html {
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-}
-
-body {
-    overflow-x: hidden;
-}
-
-:root {
-    --pcolor: #015EFB;
-}
-
-/* ===== Scroll-reveal animation system ===== */
-@media (prefers-reduced-motion: no-preference) {
-    .reveal {
-        opacity: 0;
-        transform: translateY(36px);
-        transition: opacity .8s cubic-bezier(.16,.8,.3,1), transform .8s cubic-bezier(.16,.8,.3,1);
-        transition-delay: calc(var(--i, 0) * 100ms);
     }
 
-    .reveal.is-visible {
-        opacity: 1;
-        transform: translateY(0);
+    html {
+        overflow-x: hidden;
+        scroll-behavior: smooth;
     }
 
-    .reveal-fade {
-        opacity: 0;
-        transition: opacity 1s ease;
-        transition-delay: calc(var(--i, 0) * 100ms);
+    body {
+        overflow-x: hidden;
     }
 
-    .reveal-fade.is-visible {
-        opacity: 1;
+    :root {
+        --pcolor: #015EFB;
     }
 
-    .reveal-scale {
-        opacity: 0;
-        transform: scale(0.94);
-        transition: opacity .8s cubic-bezier(.16,.8,.3,1), transform .8s cubic-bezier(.16,.8,.3,1);
-        transition-delay: calc(var(--i, 0) * 100ms);
-    }
+    /* ===== Scroll-reveal animation system ===== */
+    @media (prefers-reduced-motion: no-preference) {
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity .8s cubic-bezier(.16, .8, .3, 1), transform .8s cubic-bezier(.16, .8, .3, 1);
+            transition-delay: calc(var(--i, 0) * 100ms);
+        }
 
-    .reveal-scale.is-visible {
-        opacity: 1;
-        transform: scale(1);
-    }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    .hero-title {
-        opacity: 0;
-        transform: translateY(24px);
-        animation: heroIn .9s cubic-bezier(.16,.8,.3,1) .1s forwards;
-    }
+        .reveal-fade {
+            opacity: 0;
+            transition: opacity 1s ease;
+            transition-delay: calc(var(--i, 0) * 100ms);
+        }
 
-    .eyebrow {
-        opacity: 0;
-        animation: heroIn .7s cubic-bezier(.16,.8,.3,1) forwards;
-    }
+        .reveal-fade.is-visible {
+            opacity: 1;
+        }
 
-    .hero-description {
-        opacity: 0;
-        transform: translateY(24px);
-        animation: heroIn .9s cubic-bezier(.16,.8,.3,1) .25s forwards;
-    }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.94);
+            transition: opacity .8s cubic-bezier(.16, .8, .3, 1), transform .8s cubic-bezier(.16, .8, .3, 1);
+            transition-delay: calc(var(--i, 0) * 100ms);
+        }
 
-    .hero-buttions {
-        opacity: 0;
-        transform: translateY(24px);
-        animation: heroIn .9s cubic-bezier(.16,.8,.3,1) .4s forwards;
-    }
+        .reveal-scale.is-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
 
-    .hero-image {
-        opacity: 0;
-        transform: scale(0.92);
-        animation: heroImgIn 1.1s cubic-bezier(.16,.8,.3,1) .3s forwards;
-    }
+        .hero-title {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: heroIn .9s cubic-bezier(.16, .8, .3, 1) .1s forwards;
+        }
 
-    @keyframes heroIn {
-        to { opacity: 1; transform: translateY(0); }
-    }
+        .eyebrow {
+            opacity: 0;
+            animation: heroIn .7s cubic-bezier(.16, .8, .3, 1) forwards;
+        }
 
-    @keyframes heroImgIn {
-        to { opacity: 1; transform: scale(1); }
-    }
-}
+        .hero-description {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: heroIn .9s cubic-bezier(.16, .8, .3, 1) .25s forwards;
+        }
 
-.header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    position: fixed;
-    align-items: center;
-    margin: auto 50px;
-    margin-top: 20px;
-    width: calc(100% - 100px);
-    border: 2px solid rgba(146, 145, 145, 0.336);
-    padding: 7px 20px;
-    border-radius: 50px;
-    gap: 20px;
-    backdrop-filter: blur(20px);
-    background: rgba(99, 99, 99, 0.397);
-    z-index: 99;
-}
+        .hero-buttions {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: heroIn .9s cubic-bezier(.16, .8, .3, 1) .4s forwards;
+        }
 
-.company-logo img {
-    width: 150px;
-}
+        .hero-image {
+            opacity: 0;
+            transform: scale(0.92);
+            animation: heroImgIn 1.1s cubic-bezier(.16, .8, .3, 1) .3s forwards;
+        }
 
-.menus {
-    display: flex;
-    justify-content: space-around;
-    gap: 10px;
-}
+        @keyframes heroIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.menus li {
-    list-style: none;
-}
-
-
-.menus li a {
-    text-decoration: none;
-    font-size: 15px;
-    color: white;
-    padding: 5px 20px;
-    border-radius: 20px;
-    transition: background .3s ease;
-}
-
-.menus li a:hover {
-    background: var(--pcolor);
-}
-
-
-.menus li .active {
-    background: var(--pcolor);
-}
-
-.login-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    align-items: center;
-}
-
-.login-buttons a {
-    text-decoration: none;
-    color: white;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    transition: .5s ease;
-    font-size: 15px;
-}
-
-.loginBtn {
-    background: var(--pcolor);
-}
-
-.signupBtn:hover {
-    background: var(--pcolor);
-}
-
-.menuBtn {
-    display: none;
-}
-
-/* sidebar */
-
-.sidebar {
-    display: none;
-}
-
-
-@media (max-width:1060px) {
-
-    .menus {
-        display: none;
-    }
-
-    .login-buttons {
-        display: none;
+        @keyframes heroImgIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     }
 
     .header {
-        grid-template-columns: 1fr 1fr;
-        margin: auto 30px;
-        margin-top: 20px;
-        width: calc(100% - 60px);
-    }
-
-    .menuBtn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: fit-content;
-        justify-self: flex-end;
-        background: var(--pcolor);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        height: 30px;
-        width: 30px;
-        cursor: pointer;
-
-    }
-
-    .menuBtn span {
-        font-size: 20px;
-    }
-
-    .sidebar {
-        display: block;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         position: fixed;
-        left: 0px;
-        top: 0px;
-        width: 320px;
-        min-height: 100vh;
-        background: black;
-        padding: 20px 20px;
-        transition: .5s ease;
-        transform: translateX(-100%);
-        z-index: 9999;
+        align-items: center;
+        margin: auto 50px;
+        margin-top: 20px;
+        width: calc(100% - 100px);
+        border: 2px solid rgba(146, 145, 145, 0.336);
+        padding: 7px 20px;
+        border-radius: 50px;
+        gap: 20px;
+        backdrop-filter: blur(20px);
+        background: rgba(99, 99, 99, 0.397);
+        z-index: 99;
     }
 
-
-    .sidebar.active {
-        transform: translateX(0%);
-    }
-
-    .side-logo img {
+    .company-logo img {
         width: 150px;
     }
 
-
-    .closeBtn {
+    .menus {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        width: fit-content;
-        justify-self: flex-end;
-        background: var(--pcolor);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        height: 25px;
-        width: 25px;
-        cursor: pointer;
-    }
-
-    .closeBtn span {
-        font-size: 18px;
-    }
-
-    .side-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 30px;
-    }
-
-    .sideMenus {
-        display: flex;
-        flex-direction: column;
+        justify-content: space-around;
         gap: 10px;
-        margin-bottom: 40px;
     }
 
-    
-    .sideMenus a {
+    .menus li {
+        list-style: none;
+    }
+
+
+    .menus li a {
+        text-decoration: none;
+        font-size: 15px;
+        color: white;
+        padding: 5px 20px;
+        border-radius: 20px;
+        transition: background .3s ease;
+    }
+
+    .menus li a:hover {
+        background: var(--pcolor);
+    }
+
+
+    .menus li .active {
+        background: var(--pcolor);
+    }
+
+    .login-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .login-buttons a {
         text-decoration: none;
         color: white;
-           width: 100%;
-        padding-left: 10px;
-        padding-block: 10px;
-        transition: .5s ease;
-              font-size: 14px;
-    }
-
-    .sideMenus a:hover{
-        background: var(--pcolor);
-    }
-
-    .sideMenus .active {
-
-        background: var(--pcolor);
-    }
-
-    .side-login-buttons {
-        display: flex;
-        gap: 20px;
-    }
-
-    .side-login-buttons a {
-        text-decoration: none;
         color: white;
         padding: 10px 20px;
         border-radius: 30px;
         transition: .5s ease;
-        font-size: 14px;
+        font-size: 15px;
     }
 
-    .side-loginBtn {
+    .loginBtn {
         background: var(--pcolor);
     }
 
-    .side-signupBtn {
-        border: 1px solid var(--pcolor);
+    .signupBtn:hover {
+        background: var(--pcolor);
+    }
+
+    .menuBtn {
+        display: none;
+    }
+
+    /* sidebar */
+
+    .sidebar {
+        display: none;
     }
 
 
+    @media (max-width:1060px) {
+
+        .menus {
+            display: none;
+        }
+
+        .login-buttons {
+            display: none;
+        }
+
+        .header {
+            grid-template-columns: 1fr 1fr;
+            margin: auto 30px;
+            margin-top: 20px;
+            width: calc(100% - 60px);
+        }
+
+        .menuBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            justify-self: flex-end;
+            background: var(--pcolor);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+
+        }
+
+        .menuBtn span {
+            font-size: 20px;
+        }
+
+        .sidebar {
+            display: block;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 320px;
+            min-height: 100vh;
+            background: black;
+            padding: 20px 20px;
+            transition: .5s ease;
+            transform: translateX(-100%);
+            z-index: 9999;
+        }
+
+
+        .sidebar.active {
+            transform: translateX(0%);
+        }
+
+        .side-logo img {
+            width: 150px;
+        }
+
+
+        .closeBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            justify-self: flex-end;
+            background: var(--pcolor);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            height: 25px;
+            width: 25px;
+            cursor: pointer;
+        }
+
+        .closeBtn span {
+            font-size: 18px;
+        }
+
+        .side-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .sideMenus {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+
+        .sideMenus a {
+            text-decoration: none;
+            color: white;
+            width: 100%;
+            padding-left: 10px;
+            padding-block: 10px;
+            transition: .5s ease;
+            font-size: 14px;
+        }
+
+        .sideMenus a:hover {
+            background: var(--pcolor);
+        }
+
+        .sideMenus .active {
+
+            background: var(--pcolor);
+        }
+
+        .side-login-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .side-login-buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: .5s ease;
+            font-size: 14px;
+        }
+
+        .side-loginBtn {
+            background: var(--pcolor);
+        }
+
+        .side-signupBtn {
+            border: 1px solid var(--pcolor);
+        }
+
+
     }
 
 
 
-@media (max-width:500px) {
-    .company-logo img {
-        width: 130px;
-    }
+    @media (max-width:500px) {
+        .company-logo img {
+            width: 130px;
+        }
 
-    .header {
-        margin: auto 10px;
-        margin-top: 10px;
-        width: calc(100% - 20px);
-        padding: 5px 20px;
+        .header {
+            margin: auto 10px;
+            margin-top: 10px;
+            width: calc(100% - 20px);
+            padding: 5px 20px;
+        }
     }
-}
 
     /* hero section*/
     .hero-Section {
-        display: flex;
-
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
         padding-top: 110px;
         background: black;
         min-height: 100vh;
@@ -419,41 +425,46 @@ body {
     }
 
     .hero-image {
+        position: relative;
+        height: 400px;
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative;
-        flex: 1;
 
     }
 
     .hero-image::before {
         content: "";
         position: absolute;
-        width: 60%;
-        height: 60%;
-
-        background: #006eff;
-        border-radius: 50%;
-
-        filter: blur(80px);
+        width: clamp(320px, 45vw, 520px);
+        height: clamp(320px, 45vw, 520px);
+        background: radial-gradient(circle, rgba(1, 94, 251, 0.4), transparent 70%);
+        filter: blur(10px);
         opacity: 0.45;
 
-        z-index: 0;
         animation: pulseGlow 4s ease-in-out infinite;
     }
 
     @media (prefers-reduced-motion: no-preference) {
         @keyframes pulseGlow {
-            0%, 100% { opacity: 0.45; transform: scale(1); }
-            50% { opacity: 0.65; transform: scale(1.08); }
+
+            0%,
+            100% {
+                opacity: 0.45;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.65;
+                transform: scale(1.08);
+            }
         }
     }
 
     .hero-image img {
-        position: relative;
-        z-index: 1;
-        max-width: 100%;
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
     }
 
     @media (max-width:1060px) {
@@ -468,6 +479,11 @@ body {
             font-size: 16px;
             margin-bottom: 30px;
         }
+
+         .hero-image {
+        margin-top: 40px;
+        height: 280px;
+    }
 
 
 
@@ -489,9 +505,9 @@ body {
 
     }
 
-    @media (max-width:750px) {
+    @media (max-width:900px) {
         .hero-Section {
-            flex-direction: column;
+            grid-template-columns: 1fr;
             gap: 40px;
         }
 
@@ -811,15 +827,15 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius:  10px;
+        border-radius: 10px;
     }
 
-    .expertise-block h3{
+    .expertise-block h3 {
         font-size: 20px;
         margin-bottom: 5px;
     }
 
-     .expertise-block p{
+    .expertise-block p {
         font-size: 16px;
         line-height: 1.5;
     }
@@ -850,30 +866,30 @@ body {
             font-size: 25px;
         }
 
-         .exp-content h2 {
-        font-size: 25px;
-        margin-bottom: 20px;
-    }
+        .exp-content h2 {
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
 
         .network p {
             font-size: 15px;
         }
 
-        .exp-container{
+        .exp-container {
             gap: 25px;
         }
 
-        .expertise-block h3{
-        font-size: 18px;
-    }
+        .expertise-block h3 {
+            font-size: 18px;
+        }
 
-     .expertise-block p{
-        font-size: 15px;
-    }
+        .expertise-block p {
+            font-size: 15px;
+        }
     }
 
     @media (max-width:650px) {
-        .exp-container{
+        .exp-container {
             flex-direction: column;
         }
     }
@@ -893,22 +909,22 @@ body {
             font-size: 22px;
         }
 
-         .exp-content h2 {
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
+        .exp-content h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
 
         .network p {
             font-size: 14px;
         }
 
-           .expertise-block h3{
-        font-size: 17px;
-    }
+        .expertise-block h3 {
+            font-size: 17px;
+        }
 
-     .expertise-block p{
-        font-size: 14px;
-    }
+        .expertise-block p {
+            font-size: 14px;
+        }
     }
 
     /* why-choose / stay ahead section */
@@ -1386,7 +1402,7 @@ body {
     }
 
 
-     /* footer */
+    /* footer */
 
     .footer {
         background: var(--pcolor);
@@ -1587,7 +1603,7 @@ body {
         </div>
 
         <div class="hero-image">
-            <img src="./src/s2.webp" alt="hero image">
+            <img src="./src/h1.webp" alt="hero image">
         </div>
     </section>
 
@@ -1631,14 +1647,16 @@ body {
 
         <h2 class="our-title reveal">Our <span>Services</span></h2>
 
-        <p class="our-des reveal" style="--i:1">A Well-Organized Website witha professional Look. It offers detailed service descriptions,
+        <p class="our-des reveal" style="--i:1">A Well-Organized Website witha professional Look. It offers detailed
+            service descriptions,
             case studies and easy navigation</p>
 
         <div class="network">
 
             <h2 class="reveal">Network Security</h2>
 
-            <p class="reveal" style="--i:1">Strengthen your network's defenses with ou r Comoprehensivee Network Fortification Service</p>
+            <p class="reveal" style="--i:1">Strengthen your network's defenses with ou r Comoprehensivee Network
+                Fortification Service</p>
 
             <div class="our-image-wrap reveal-scale">
                 <img src="./src/1.webp" alt="services image" class="our-image">
@@ -1646,7 +1664,8 @@ body {
 
             <h2 class="reveal">Over<span>view</span></h2>
 
-            <p class="reveal" style="--i:1"> In today’s digital landscape, securing your network is paramount to protecting your business from cyber
+            <p class="reveal" style="--i:1"> In today’s digital landscape, securing your network is paramount to
+                protecting your business from cyber
                 threats. Our Network Fortification service is designed to offer a comprehensive shield against
                 unauthorized access, data breaches, and other malicious activities. We combine state-of-the-art
                 technology with industry best practices to create a robust defense mechanism tailored to your specific
@@ -1703,13 +1722,15 @@ body {
             <div class="why-card reveal" style="--i:0">
                 <span class="material-symbols-outlined">bar_chart</span>
                 <h3>Enhanced data protection</h3>
-                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am page means something happened.</p>
+                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am
+                    page means something happened.</p>
             </div>
 
             <div class="why-card reveal" style="--i:1">
                 <span class="material-symbols-outlined">shield</span>
                 <h3>Expert risk management</h3>
-                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am page means something happened.</p>
+                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am
+                    page means something happened.</p>
             </div>
 
             <div class="why-image-card reveal-scale" style="--i:2">
@@ -1719,13 +1740,15 @@ body {
             <div class="why-card reveal" style="--i:0">
                 <span class="material-symbols-outlined">search</span>
                 <h3>Proactive security measures</h3>
-                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am page means something happened.</p>
+                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am
+                    page means something happened.</p>
             </div>
 
             <div class="why-card reveal" style="--i:1">
                 <span class="material-symbols-outlined">emergency</span>
                 <h3>Reliable incident response</h3>
-                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am page means something happened.</p>
+                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am
+                    page means something happened.</p>
             </div>
 
         </div>
@@ -1809,7 +1832,7 @@ body {
                 <p>As a financial services company, security is our top priority, and CyberShield has exceeded our
                     expectations.</p>
                 <div class="testi-person">
-                   <img src="./src/avartar_1.webp" alt="" class="testi-image">
+                    <img src="./src/avartar_1.webp" alt="" class="testi-image">
                     <div>
                         <h4>Sarah Johnson</h4>
                         <span>Tech Innovators Inc.</span>
@@ -1822,7 +1845,7 @@ body {
                 <p>As a financial services company, security is our top priority, and CyberShield has exceeded our
                     expectations.</p>
                 <div class="testi-person">
-                     <img src="./src/avartar_2.webp" alt="" class="testi-image">
+                    <img src="./src/avartar_2.webp" alt="" class="testi-image">
                     <div>
                         <h4>Sarah Johnson</h4>
                         <span>Tech Innovators Inc.</span>
@@ -1835,7 +1858,7 @@ body {
                 <p>As a financial services company, security is our top priority, and CyberShield has exceeded our
                     expectations.</p>
                 <div class="testi-person">
-                     <img src="./src/avartar_3.webp" alt="" class="testi-image">
+                    <img src="./src/avartar_3.webp" alt="" class="testi-image">
                     <div>
                         <h4>Sarah Johnson</h4>
                         <span>Tech Innovators Inc.</span>
@@ -1866,15 +1889,16 @@ body {
     <section class="cta-section">
         <p class="cta-eyebrow reveal">Need Immediate Help?</p>
         <h2 class="cta-title reveal" style="--i:1">Stay ahead of cyber <span>threats</span></h2>
-        <p class="cta-des reveal" style="--i:2">Download our comprehensive guide for free and start securing your data today.</p>
+        <p class="cta-des reveal" style="--i:2">Download our comprehensive guide for free and start securing your data
+            today.</p>
         <button class="cta-btn reveal" style="--i:3">Get started</button>
     </section>
 
     <footer class="footer">
 
         <div class="footer-brand reveal" style="--i:0">
-              <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
-            <p>Got Event in Mind?  Let's collaborate.</p>
+            <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+            <p>Got Event in Mind? Let's collaborate.</p>
             <div class="footer-form">
                 <input type="email" placeholder="Enter your email">
                 <button>Submit</button>

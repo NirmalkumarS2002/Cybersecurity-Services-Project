@@ -353,7 +353,7 @@ body {
 
 .sh-visual {
     position: relative;
-    height: 340px;
+    height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -362,102 +362,18 @@ body {
 .sh-visual::before {
     content: "";
     position: absolute;
-    width: 320px;
-    height: 320px;
+    width: clamp(320px,45vw,520px);
+    height: clamp(320px,45vw,520px);
     background: radial-gradient(circle, rgba(1, 94, 251, 0.4), transparent 70%);
     filter: blur(10px);
 }
 
-.sh-laptop {
-    position: relative;
-    width: 260px;
-    height: 165px;
-    background: linear-gradient(160deg, #0a1638, #02061a);
-    border: 1px solid rgba(76, 140, 255, 0.5);
-    border-radius: 12px;
-    box-shadow: 0 0 60px rgba(1, 94, 251, 0.5), inset 0 0 30px rgba(1, 94, 251, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
+.sh-visual img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
-.sh-laptop::after {
-    content: "";
-    position: absolute;
-    bottom: -14px;
-    width: 300px;
-    height: 14px;
-    background: linear-gradient(160deg, #0a1638, #142352);
-    border-radius: 0 0 10px 10px;
-    border: 1px solid rgba(76, 140, 255, 0.35);
-    border-top: none;
-}
-
-.sh-laptop .material-symbols-outlined {
-    font-size: 76px;
-    color: var(--pcolor-light);
-    filter: drop-shadow(0 0 14px rgba(76, 140, 255, 0.6));
-}
-
-.sh-orbit {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: linear-gradient(160deg, #0a1638, #02061a);
-    border: 1px solid rgba(76, 140, 255, 0.55);
-    box-shadow: 0 0 22px rgba(1, 94, 251, 0.45);
-    z-index: 4;
-}
-
-.sh-orbit .material-symbols-outlined {
-    color: var(--pcolor-light);
-    font-size: 20px;
-}
-
-.sh-o1 {
-    width: 48px;
-    height: 48px;
-    top: 0;
-    left: 20px;
-}
-
-.sh-o2 {
-    width: 44px;
-    height: 44px;
-    top: 30px;
-    right: 0;
-}
-
-.sh-o3 {
-    width: 42px;
-    height: 42px;
-    bottom: 30px;
-    left: -10px;
-}
-
-.sh-o4 {
-    width: 46px;
-    height: 46px;
-    bottom: 0;
-    right: 30px;
-}
-
-.sh-o5 {
-    width: 38px;
-    height: 38px;
-    top: 90px;
-    left: -30px;
-}
-
-.sh-o6 {
-    width: 38px;
-    height: 38px;
-    top: 100px;
-    right: -30px;
-}
 
 @media (max-width: 1060px) {
     .services-hero {
@@ -1180,16 +1096,7 @@ body {
 
         <div class="sh-visual">
 
-            <div class="sh-orbit sh-o1"><span class="material-symbols-outlined">radar</span></div>
-            <div class="sh-orbit sh-o2"><span class="material-symbols-outlined">location_on</span></div>
-            <div class="sh-orbit sh-o3"><span class="material-symbols-outlined">settings</span></div>
-            <div class="sh-orbit sh-o4"><span class="material-symbols-outlined">smartphone</span></div>
-            <div class="sh-orbit sh-o5"><span class="material-symbols-outlined">cloud_queue</span></div>
-            <div class="sh-orbit sh-o6"><span class="material-symbols-outlined">memory</span></div>
-
-            <div class="sh-laptop">
-                <span class="material-symbols-outlined">cloud</span>
-            </div>
+            <img src="./src/s11.webp" alt="">
 
         </div>
 
