@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +33,80 @@ body {
 
 :root {
     --pcolor: #015EFB;
+}
+
+/* ===== Scroll-reveal animation system ===== */
+@media (prefers-reduced-motion: no-preference) {
+    .reveal {
+        opacity: 0;
+        transform: translateY(36px);
+        transition: opacity .8s cubic-bezier(.16,.8,.3,1), transform .8s cubic-bezier(.16,.8,.3,1);
+        transition-delay: calc(var(--i, 0) * 100ms);
+    }
+
+    .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .reveal-fade {
+        opacity: 0;
+        transition: opacity 1s ease;
+        transition-delay: calc(var(--i, 0) * 100ms);
+    }
+
+    .reveal-fade.is-visible {
+        opacity: 1;
+    }
+
+    .reveal-scale {
+        opacity: 0;
+        transform: scale(0.94);
+        transition: opacity .8s cubic-bezier(.16,.8,.3,1), transform .8s cubic-bezier(.16,.8,.3,1);
+        transition-delay: calc(var(--i, 0) * 100ms);
+    }
+
+    .reveal-scale.is-visible {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .hero-title {
+        opacity: 0;
+        transform: translateY(24px);
+        animation: heroIn .9s cubic-bezier(.16,.8,.3,1) .1s forwards;
+    }
+
+    .eyebrow {
+        opacity: 0;
+        animation: heroIn .7s cubic-bezier(.16,.8,.3,1) forwards;
+    }
+
+    .hero-description {
+        opacity: 0;
+        transform: translateY(24px);
+        animation: heroIn .9s cubic-bezier(.16,.8,.3,1) .25s forwards;
+    }
+
+    .hero-buttions {
+        opacity: 0;
+        transform: translateY(24px);
+        animation: heroIn .9s cubic-bezier(.16,.8,.3,1) .4s forwards;
+    }
+
+    .hero-image {
+        opacity: 0;
+        transform: scale(0.92);
+        animation: heroImgIn 1.1s cubic-bezier(.16,.8,.3,1) .3s forwards;
+    }
+
+    @keyframes heroIn {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heroImgIn {
+        to { opacity: 1; transform: scale(1); }
+    }
 }
 
 .header {
@@ -72,6 +147,7 @@ body {
     color: white;
     padding: 5px 20px;
     border-radius: 20px;
+    transition: background .3s ease;
 }
 
 .menus li a:hover {
@@ -327,6 +403,11 @@ body {
         border: 1px solid var(--pcolor);
         color: white;
         font-size: 14px;
+        transition: transform .3s ease, background .3s ease;
+    }
+
+    .hero-buttions button:hover {
+        transform: translateY(-3px);
     }
 
     .hero-fill {
@@ -359,6 +440,14 @@ body {
         opacity: 0.45;
 
         z-index: 0;
+        animation: pulseGlow 4s ease-in-out infinite;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.45; transform: scale(1); }
+            50% { opacity: 0.65; transform: scale(1.08); }
+        }
     }
 
     .hero-image img {
@@ -509,6 +598,11 @@ body {
         border: none;
         background: var(--pcolor);
         color: white;
+        transition: transform .3s ease;
+    }
+
+    .stats-head div button:hover {
+        transform: translateY(-3px);
     }
 
     .stat-block div {
@@ -652,6 +746,11 @@ body {
         object-fit: cover;
         object-position: center center;
         display: block;
+        transition: transform .6s ease;
+    }
+
+    .our-image-wrap:hover .our-image {
+        transform: scale(1.05);
     }
 
     .exp-container {
@@ -677,6 +776,11 @@ body {
         object-fit: cover;
         object-position: center center;
         display: block;
+        transition: transform .6s ease;
+    }
+
+    .exp-image-wrap:hover img {
+        transform: scale(1.05);
     }
 
     .exp-content {
@@ -806,6 +910,606 @@ body {
         font-size: 14px;
     }
     }
+
+    /* why-choose / stay ahead section */
+
+    .why-choose {
+        padding-block: 80px;
+        padding-inline: 100px;
+        background: black;
+    }
+
+    .why-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        gap: 20px;
+    }
+
+    .why-head h2 {
+        font-size: 38px;
+        color: white;
+        max-width: 600px;
+        line-height: 1.3;
+    }
+
+    .why-head h2 span {
+        color: var(--pcolor);
+    }
+
+    .why-btn {
+        padding: 14px 32px;
+        border-radius: 30px;
+        border: none;
+        background: var(--pcolor);
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: .5s ease;
+    }
+
+    .why-btn:hover {
+        opacity: 0.85;
+        transform: translateY(-3px);
+    }
+
+    .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .why-card {
+        background: #101010;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 30px 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        transition: transform .4s ease, border-color .4s ease;
+    }
+
+    .why-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--pcolor);
+    }
+
+    .why-card span.material-symbols-outlined {
+        height: 45px;
+        width: 45px;
+        min-width: 45px;
+        background: white;
+        color: black;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+    }
+
+    .why-card h3 {
+        font-size: 20px;
+        color: white;
+    }
+
+    .why-card p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .why-image-card {
+        grid-column: 3;
+        grid-row: 1 / 3;
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        min-height: 100%;
+    }
+
+    .why-image-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+        transition: transform .6s ease;
+    }
+
+    .why-image-card:hover img {
+        transform: scale(1.06);
+    }
+
+    @media (max-width:950px) {
+        .why-grid {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+        }
+
+        .why-image-card {
+            grid-column: 1 / 3;
+            grid-row: auto;
+            min-height: 300px;
+        }
+    }
+
+    @media (max-width:800px) {
+        .why-choose {
+            padding: 20px;
+            padding-block: 60px;
+        }
+
+        .why-head {
+            flex-direction: column;
+        }
+
+        .why-head h2 {
+            font-size: 28px;
+        }
+    }
+
+    @media (max-width:600px) {
+        .why-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .why-image-card {
+            grid-column: 1;
+        }
+    }
+
+    /* how it works section */
+
+    .how-it-works {
+        padding-block: 80px;
+        padding-inline: 100px;
+        background: black;
+        display: flex;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .how-image-wrap {
+        flex: 1;
+        height: 65vh;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 2px solid var(--pcolor);
+    }
+
+    .how-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+        transition: transform .6s ease;
+    }
+
+    .how-image-wrap:hover img {
+        transform: scale(1.05);
+    }
+
+    .how-content {
+        flex: 1;
+    }
+
+    .how-title {
+        font-size: 38px;
+        color: white;
+        margin-bottom: 30px;
+    }
+
+    .how-title span {
+        color: var(--pcolor);
+    }
+
+    .how-steps {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .how-step {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        padding-block: 25px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        transition: padding-left .4s ease;
+    }
+
+    .how-step:hover {
+        padding-left: 8px;
+    }
+
+    .how-steps .how-step:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .how-step-left {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .how-step-num {
+        font-size: 15px;
+        color: var(--pcolor);
+        min-width: 25px;
+        padding-top: 3px;
+    }
+
+    .how-step-text h3 {
+        font-size: 20px;
+        color: white;
+        margin-bottom: 8px;
+    }
+
+    .how-step-text p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 420px;
+    }
+
+    .how-step-icon {
+        height: 30px;
+        width: 30px;
+        min-width: 30px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        transition: transform .4s ease, background .4s ease;
+    }
+
+    .how-step:hover .how-step-icon {
+        transform: rotate(90deg);
+        background: var(--pcolor);
+    }
+
+    @media (max-width:1000px) {
+        .how-it-works {
+            gap: 35px;
+        }
+
+        .how-title {
+            font-size: 30px;
+        }
+    }
+
+    @media (max-width:850px) {
+        .how-it-works {
+            flex-direction: column;
+            padding: 20px;
+            padding-block: 60px;
+        }
+
+        .how-image-wrap {
+            width: 100%;
+            height: 40vh;
+        }
+
+        .how-content {
+            width: 100%;
+        }
+    }
+
+    @media (max-width:500px) {
+        .how-title {
+            font-size: 26px;
+        }
+
+        .how-step-text p {
+            max-width: 100%;
+        }
+    }
+
+    /* testimonials section */
+
+    .testimonials {
+        padding-block: 80px;
+        padding-inline: 100px;
+        background: black;
+    }
+
+    .testi-title {
+        text-align: center;
+        font-size: 30px;
+        color: white;
+        margin-bottom: 40px;
+    }
+
+    .testi-title span {
+        color: var(--pcolor);
+    }
+
+    .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .testi-card {
+        background: #111111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        padding: 25px;
+        transition: transform .4s ease, border-color .4s ease;
+    }
+
+    .testi-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--pcolor);
+    }
+
+    .testi-icon {
+        height: 40px;
+        width: 40px;
+        background: rgba(1, 94, 251, 0.15);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--pcolor);
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .testi-card p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.75);
+        margin-bottom: 25px;
+    }
+
+    .testi-person {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .testi-image {
+        height: 40px;
+        width: 40px;
+        min-width: 40px;
+        border-radius: 50%;
+    }
+
+    .testi-person h4 {
+        font-size: 14px;
+        color: white;
+    }
+
+    .testi-person span {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .testi-see-more {
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .testi-rating {
+        text-align: center;
+        color: #ffb400;
+        font-size: 14px;
+    }
+
+    .testi-rating span {
+        color: rgba(255, 255, 255, 0.5);
+        margin-left: 5px;
+    }
+
+    @media (max-width:800px) {
+        .testimonials {
+            padding: 20px;
+            padding-block: 60px;
+        }
+    }
+
+    @media (max-width:600px) {
+        .testi-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* cta section */
+
+    .cta-section {
+        background: #161616;
+        padding-block: 80px;
+        padding-inline: 100px;
+        text-align: center;
+    }
+
+    .cta-eyebrow {
+        color: var(--pcolor);
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .cta-title {
+        font-size: 32px;
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    .cta-title span {
+        color: var(--pcolor);
+    }
+
+    .cta-des {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 30px;
+    }
+
+    .cta-btn {
+        padding: 14px 40px;
+        border-radius: 30px;
+        border: none;
+        background: var(--pcolor);
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        transition: .5s ease;
+    }
+
+    .cta-btn:hover {
+        opacity: 0.85;
+        transform: translateY(-3px);
+    }
+
+    @media (max-width:800px) {
+        .cta-section {
+            padding: 20px;
+            padding-block: 60px;
+        }
+
+        .cta-title {
+            font-size: 26px;
+        }
+    }
+
+
+     /* footer */
+
+    .footer {
+        background: var(--pcolor);
+        padding-block: 100px;
+        padding-inline: 100px;
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
+        gap: 30px;
+        color: white;
+    }
+
+    .footer-brand h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+
+    .footer-brand p {
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .footer-form {
+        display: flex;
+        gap: 10px;
+    }
+
+    .footer-form input {
+        flex: 1;
+        padding: 10px 15px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        font-size: 13px;
+    }
+
+    .footer-form button {
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+        background: black;
+        color: white;
+        font-size: 13px;
+        cursor: pointer;
+        transition: transform .3s ease;
+    }
+
+    .footer-form button:hover {
+        transform: translateY(-3px);
+    }
+
+    .footer h4 {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 12px;
+        margin-top: 5px;
+    }
+
+    .footer-social a {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 15px;
+        transition: transform .3s ease, background .3s ease;
+    }
+
+    .footer-social a:hover {
+        transform: translateY(-4px);
+        background: black;
+    }
+
+    .footer-contact p {
+        font-size: 14px;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+
+    @media (max-width:950px) {
+        .footer {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width:600px) {
+        .footer {
+            grid-template-columns: 1fr;
+            padding: 20px;
+            padding-block: 40px;
+        }
+
+        .footer-form {
+            flex-direction: column;
+        }
+    }
 </style>
 
 <body>
@@ -890,31 +1594,31 @@ body {
     <section class="stats">
 
         <div class="stats-head">
-            <h2>We Have Impactful <br> <span>Results</span></h2>
+            <h2 class="reveal">We Have Impactful <br> <span>Results</span></h2>
 
-            <div>
+            <div class="reveal" style="--i:1">
                 <P>Join the hundreds of business protected by Cybersec</P>
                 <button>Get Started</button>
             </div>
         </div>
 
         <div class="stat-block">
-            <div class="client-stat">
+            <div class="client-stat reveal" style="--i:0">
                 <h1>1200+</h1>
                 <p>Clients Protected</p>
             </div>
-            <div class="client-stat">
+            <div class="client-stat reveal" style="--i:1">
                 <h1>250+</h1>
                 <p>Cyber Security Experts</p>
             </div>
         </div>
 
         <div class="stat-block">
-            <div class="client-stat">
+            <div class="client-stat reveal" style="--i:0">
                 <h1>100%</h1>
                 <p>Global Reach</p>
             </div>
-            <div class="client-stat">
+            <div class="client-stat reveal" style="--i:1">
                 <h1>15+</h1>
                 <p>Years of Experience</p>
             </div>
@@ -925,24 +1629,24 @@ body {
 
     <section class="our-services">
 
-        <h2 class="our-title">Our <span>Services</span></h2>
+        <h2 class="our-title reveal">Our <span>Services</span></h2>
 
-        <p class="our-des">A Well-Organized Website witha professional Look. It offers detailed service descriptions,
+        <p class="our-des reveal" style="--i:1">A Well-Organized Website witha professional Look. It offers detailed service descriptions,
             case studies and easy navigation</p>
 
         <div class="network">
 
-            <h2>Network Security</h2>
+            <h2 class="reveal">Network Security</h2>
 
-            <p>Strengthen your network's defenses with ou r Comoprehensivee Network Fortification Service</p>
+            <p class="reveal" style="--i:1">Strengthen your network's defenses with ou r Comoprehensivee Network Fortification Service</p>
 
-            <div class="our-image-wrap">
+            <div class="our-image-wrap reveal-scale">
                 <img src="./src/1.webp" alt="services image" class="our-image">
             </div>
 
-            <h2>Over<span>view</span></h2>
+            <h2 class="reveal">Over<span>view</span></h2>
 
-            <p> In today’s digital landscape, securing your network is paramount to protecting your business from cyber
+            <p class="reveal" style="--i:1"> In today’s digital landscape, securing your network is paramount to protecting your business from cyber
                 threats. Our Network Fortification service is designed to offer a comprehensive shield against
                 unauthorized access, data breaches, and other malicious activities. We combine state-of-the-art
                 technology with industry best practices to create a robust defense mechanism tailored to your specific
@@ -950,11 +1654,11 @@ body {
         </div>
 
         <div class="exp-container">
-            <div class="exp-image-wrap">
+            <div class="exp-image-wrap reveal">
                 <img src="./src/3.webp" alt="expertise">
             </div>
 
-            <div class="exp-content">
+            <div class="exp-content reveal" style="--i:1">
                 <h2>With Year Expertisee in <br> <span>Cybersecurity</span></h2>
 
                 <div class="expertise-block">
@@ -987,9 +1691,249 @@ body {
         </div>
     </section>
 
+    <section class="why-choose">
+
+        <div class="why-head">
+            <h2 class="reveal">Stay ahead with our <span>cybersecurity</span> expertise</h2>
+            <button class="why-btn reveal" style="--i:1">Get started</button>
+        </div>
+
+        <div class="why-grid">
+
+            <div class="why-card reveal" style="--i:0">
+                <span class="material-symbols-outlined">bar_chart</span>
+                <h3>Enhanced data protection</h3>
+                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am page means something happened.</p>
+            </div>
+
+            <div class="why-card reveal" style="--i:1">
+                <span class="material-symbols-outlined">shield</span>
+                <h3>Expert risk management</h3>
+                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am page means something happened.</p>
+            </div>
+
+            <div class="why-image-card reveal-scale" style="--i:2">
+                <img src="./src/2.webp" alt="cybersecurity expert">
+            </div>
+
+            <div class="why-card reveal" style="--i:0">
+                <span class="material-symbols-outlined">search</span>
+                <h3>Proactive security measures</h3>
+                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am page means something happened.</p>
+            </div>
+
+            <div class="why-card reveal" style="--i:1">
+                <span class="material-symbols-outlined">emergency</span>
+                <h3>Reliable incident response</h3>
+                <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am page means something happened.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="how-it-works">
+
+        <div class="how-image-wrap reveal">
+            <img src="./src/4.webp" alt="team working together">
+        </div>
+
+        <div class="how-content reveal" style="--i:1">
+
+            <h2 class="how-title">How it <span>work</span></h2>
+
+            <div class="how-steps">
+
+                <div class="how-step">
+                    <div class="how-step-left">
+                        <p class="how-step-num">01</p>
+                        <div class="how-step-text">
+                            <h3>Understand your needs</h3>
+                            <p>We begin with a detailed consultation to understand your business, assess your current
+                                security posture, and identify potential vulnerabilities.</p>
+                        </div>
+                    </div>
+                    <span class="how-step-icon material-symbols-outlined">add</span>
+                </div>
+
+                <div class="how-step">
+                    <div class="how-step-left">
+                        <p class="how-step-num">02</p>
+                        <div class="how-step-text">
+                            <h3>Understand your needs</h3>
+                            <p>Based on our assessment, we design a comprehensive cybersecurity strategy tailored to
+                                your specific needs.</p>
+                        </div>
+                    </div>
+                    <span class="how-step-icon material-symbols-outlined">add</span>
+                </div>
+
+                <div class="how-step">
+                    <div class="how-step-left">
+                        <p class="how-step-num">03</p>
+                        <div class="how-step-text">
+                            <h3>Deploy and monitor</h3>
+                            <p>Our team implements the security plan, ensuring that all systems are fully integrated
+                                and operational.</p>
+                        </div>
+                    </div>
+                    <span class="how-step-icon material-symbols-outlined">add</span>
+                </div>
+
+                <div class="how-step">
+                    <div class="how-step-left">
+                        <p class="how-step-num">04</p>
+                        <div class="how-step-text">
+                            <h3>Review and optimize</h3>
+                            <p>Cybersecurity is an ongoing process. We regularly review and refine your security
+                                measures to adapt to new threats and technological advancement.</p>
+                        </div>
+                    </div>
+                    <span class="how-step-icon material-symbols-outlined">add</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="testimonials">
+
+        <h2 class="testi-title reveal">What our <span>clients</span> say</h2>
+
+        <div class="testi-grid">
+
+            <div class="testi-card reveal" style="--i:0">
+                <div class="testi-icon"><span class="material-symbols-outlined">apps</span></div>
+                <p>As a financial services company, security is our top priority, and CyberShield has exceeded our
+                    expectations.</p>
+                <div class="testi-person">
+                   <img src="./src/avartar_1.webp" alt="" class="testi-image">
+                    <div>
+                        <h4>Sarah Johnson</h4>
+                        <span>Tech Innovators Inc.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testi-card reveal" style="--i:1">
+                <div class="testi-icon"><span class="material-symbols-outlined">shield_lock</span></div>
+                <p>As a financial services company, security is our top priority, and CyberShield has exceeded our
+                    expectations.</p>
+                <div class="testi-person">
+                     <img src="./src/avartar_2.webp" alt="" class="testi-image">
+                    <div>
+                        <h4>Sarah Johnson</h4>
+                        <span>Tech Innovators Inc.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testi-card reveal" style="--i:2">
+                <div class="testi-icon"><span class="material-symbols-outlined">verified_user</span></div>
+                <p>As a financial services company, security is our top priority, and CyberShield has exceeded our
+                    expectations.</p>
+                <div class="testi-person">
+                     <img src="./src/avartar_3.webp" alt="" class="testi-image">
+                    <div>
+                        <h4>Sarah Johnson</h4>
+                        <span>Tech Innovators Inc.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testi-card reveal" style="--i:3">
+                <div class="testi-icon"><span class="material-symbols-outlined">security</span></div>
+                <p>As a financial services company, security is our top priority, and CyberShield has exceeded our
+                    expectations.</p>
+                <div class="testi-person">
+                    <img src="./src/avartar_4.webp" alt="" class="testi-image">
+                    <div>
+                        <h4>Sarah Johnson</h4>
+                        <span>Tech Innovators Inc.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="testi-see-more">See what other people are saying</p>
+        <p class="testi-rating">★★★★★ <span>4.8 (13,612,394)</span></p>
+
+    </section>
+
+    <section class="cta-section">
+        <p class="cta-eyebrow reveal">Need Immediate Help?</p>
+        <h2 class="cta-title reveal" style="--i:1">Stay ahead of cyber <span>threats</span></h2>
+        <p class="cta-des reveal" style="--i:2">Download our comprehensive guide for free and start securing your data today.</p>
+        <button class="cta-btn reveal" style="--i:3">Get started</button>
+    </section>
+
+    <footer class="footer">
+
+        <div class="footer-brand reveal" style="--i:0">
+              <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+            <p>Got Event in Mind?  Let's collaborate.</p>
+            <div class="footer-form">
+                <input type="email" placeholder="Enter your email">
+                <button>Submit</button>
+            </div>
+        </div>
+
+        <div class="footer-links-wrap reveal" style="--i:1">
+            <h4>Links</h4>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="service.html">Services</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+
+        <div class="footer-follow reveal" style="--i:2">
+            <h4>Follow us</h4>
+            <div class="footer-social">
+                <a href="#"><span class="material-symbols-outlined">photo_camera</span></a>
+                <a href="#">X</a>
+                <a href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+                <a href="#"><span class="material-symbols-outlined">smart_display</span></a>
+            </div>
+        </div>
+
+        <div class="footer-contact reveal" style="--i:3">
+            <h4>Contact us</h4>
+            <p>Evolve Studio, 4th Floor, Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha Nagar,
+                Yelenahalli, Begur, Bengaluru, Karnataka -560068</p>
+            <p>info@stackly.com</p>
+            <p>+91 98765 43210</p>
+        </div>
+
+    </footer>
+
 
 
     <script src="script.js"></script>
+    <script>
+        // Scroll-reveal: fires each .reveal / .reveal-scale / .reveal-fade element into view once
+        (function () {
+            var els = document.querySelectorAll('.reveal, .reveal-scale, .reveal-fade');
+            if (!('IntersectionObserver' in window)) {
+                els.forEach(function (el) { el.classList.add('is-visible'); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+            els.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
 </body>
 
 </html>

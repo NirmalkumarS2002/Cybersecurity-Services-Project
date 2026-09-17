@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Services - Contact page</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+
+<style>
+ * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Google Sans", sans-serif;
+
+}
+
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    background: #030507;
+}
+
+:root {
+    --pcolor: #015EFB;
+    --pcolor-light: #4C8CFF;
+    --ink: #05070c;
+    --muted: rgba(255, 255, 255, 0.65);
+}
+
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: fixed;
+    align-items: center;
+    margin: auto 50px;
+    margin-top: 20px;
+    width: calc(100% - 100px);
+    border: 2px solid rgba(146, 145, 145, 0.336);
+    padding: 7px 20px;
+    border-radius: 50px;
+    gap: 20px;
+    backdrop-filter: blur(20px);
+    background: rgba(99, 99, 99, 0.397);
+    z-index: 99;
+}
+
+.company-logo img {
+    width: 150px;
+}
+
+.menus {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.menus li {
+    list-style: none;
+}
+
+
+.menus li a {
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    transition: background .3s ease;
+}
+
+.menus li a:hover {
+    background: var(--pcolor);
+}
+
+
+.menus li .active {
+    background: var(--pcolor);
+}
+
+.login-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+}
+
+.login-buttons a {
+    text-decoration: none;
+    color: white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: .5s ease;
+    font-size: 15px;
+}
+
+.loginBtn {
+    background: var(--pcolor);
+}
+
+.signupBtn:hover {
+    background: var(--pcolor);
+}
+
+.menuBtn {
+    display: none;
+}
+
+/* sidebar */
+
+.sidebar {
+    display: none;
+}
+
+
+@media (max-width:1060px) {
+
+    .menus {
+        display: none;
+    }
+
+    .login-buttons {
+        display: none;
+    }
+
+    .header {
+        grid-template-columns: 1fr 1fr;
+        margin: auto 30px;
+        margin-top: 20px;
+        width: calc(100% - 60px);
+    }
+
+    .menuBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        justify-self: flex-end;
+        background: var(--pcolor);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+
+    }
+
+    .menuBtn span {
+        font-size: 20px;
+    }
+
+    .sidebar {
+        display: block;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 320px;
+        min-height: 100vh;
+        background: black;
+        padding: 20px 20px;
+        transition: .5s ease;
+        transform: translateX(-100%);
+        z-index: 9999;
+    }
+
+
+    .sidebar.active {
+        transform: translateX(0%);
+    }
+
+    .side-logo img {
+        width: 150px;
+    }
+
+
+    .closeBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        justify-self: flex-end;
+        background: var(--pcolor);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        cursor: pointer;
+    }
+
+    .closeBtn span {
+        font-size: 18px;
+    }
+
+    .side-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    .sideMenus {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 40px;
+    }
+
+    
+    .sideMenus a {
+        text-decoration: none;
+        color: white;
+           width: 100%;
+        padding-left: 10px;
+        padding-block: 10px;
+        transition: .5s ease;
+              font-size: 14px;
+    }
+
+    .sideMenus a:hover{
+        background: var(--pcolor);
+    }
+
+    .sideMenus .active {
+
+        background: var(--pcolor);
+    }
+
+    .side-login-buttons {
+        display: flex;
+        gap: 20px;
+    }
+
+    .side-login-buttons a {
+        text-decoration: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        transition: .5s ease;
+        font-size: 14px;
+    }
+
+    .side-loginBtn {
+        background: var(--pcolor);
+    }
+
+    .side-signupBtn {
+        border: 1px solid var(--pcolor);
+    }
+
+
+    }
+
+
+
+@media (max-width:500px) {
+    .company-logo img {
+        width: 130px;
+    }
+
+    .header {
+        margin: auto 10px;
+        margin-top: 10px;
+        width: calc(100% - 20px);
+        padding: 5px 20px;
+    }
+}
+
+/* ============ contact hero ============ */
+
+.contact-hero {
+    padding: 190px 100px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+    color: white;
+}
+
+.contact-hero h1 {
+    font-size: 40px;
+    line-height: 1.25;
+    font-weight: 500;
+}
+
+.contact-hero h1 span {
+    color: var(--pcolor-light);
+}
+
+.contact-hero p {
+    max-width: 460px;
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.contact-hero a {
+    display: inline-block;
+    margin-top: 32px;
+    text-decoration: none;
+    color: white;
+    background: var(--pcolor);
+    padding: 13px 28px;
+    border-radius: 30px;
+    font-size: 14px;
+    transition: transform .3s ease, background .3s ease;
+}
+
+.contact-hero a:hover {
+    background: var(--pcolor-light);
+    transform: translateY(-3px);
+}
+
+.ch-visual {
+    position: relative;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ch-visual::before {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(1, 94, 251, 0.4), transparent 70%);
+    filter: blur(10px);
+}
+
+.ch-trunk {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 6px;
+    z-index: 1;
+}
+
+.ch-trunk span {
+    width: 6px;
+    height: 90px;
+    border-radius: 4px;
+}
+
+.ch-laptop {
+    position: relative;
+    width: 150px;
+    height: 96px;
+    background: linear-gradient(160deg, #0a1638, #02061a);
+    border: 1px solid rgba(255, 200, 60, 0.6);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 40px rgba(255, 200, 60, 0.35);
+    z-index: 3;
+}
+
+.ch-laptop .material-symbols-outlined {
+    font-size: 40px;
+    color: #ffcf40;
+}
+
+.ch-orbit {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(160deg, #0a1638, #02061a);
+    border: 1px solid rgba(76, 140, 255, 0.5);
+    box-shadow: 0 0 18px rgba(1, 94, 251, 0.4);
+    z-index: 2;
+}
+
+.ch-orbit .material-symbols-outlined {
+    color: var(--pcolor-light);
+    font-size: 18px;
+}
+
+.ch-o1 {
+    width: 36px;
+    height: 36px;
+    top: 0;
+    left: 60px;
+}
+
+.ch-o2 {
+    width: 34px;
+    height: 34px;
+    top: 20px;
+    right: 40px;
+}
+
+.ch-o3 {
+    width: 32px;
+    height: 32px;
+    top: 70px;
+    left: 10px;
+}
+
+.ch-o4 {
+    width: 36px;
+    height: 36px;
+    top: 60px;
+    right: -10px;
+}
+
+.ch-o5 {
+    width: 30px;
+    height: 30px;
+    top: 120px;
+    left: -20px;
+}
+
+.ch-o6 {
+    width: 32px;
+    height: 32px;
+    top: 110px;
+    right: 30px;
+}
+
+.ch-o7 {
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    left: 130px;
+}
+
+.ch-o8 {
+    width: 28px;
+    height: 28px;
+    top: 150px;
+    right: -40px;
+}
+
+@media (max-width: 1060px) {
+    .contact-hero {
+        grid-template-columns: 1fr;
+        padding: 170px 30px 60px;
+    }
+
+    .ch-visual {
+        margin-top: 30px;
+        height: 260px;
+    }
+}
+
+@media (max-width: 500px) {
+    .contact-hero {
+        padding: 150px 15px 40px;
+    }
+
+    .contact-hero h1 {
+        font-size: 28px;
+    }
+}
+
+/* ============ get in touch ============ */
+
+.gt-section {
+    margin: 0 100px 130px;
+    color: white;
+}
+
+.gt-eyebrow {
+    font-size: 11px;
+    letter-spacing: .8px;
+    color: var(--muted);
+    margin-bottom: 10px;
+}
+
+.gt-heading {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+.gt-heading span {
+    color: var(--pcolor-light);
+}
+
+.gt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.gt-visual {
+    position: relative;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gt-globe {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #4c8cff, #0b2a7a 70%);
+    box-shadow: 0 0 60px rgba(1, 94, 251, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.gt-globe .material-symbols-outlined {
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.gt-orbit {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #0a1638, #02061a);
+    border: 1px solid rgba(76, 140, 255, 0.5);
+    box-shadow: 0 0 18px rgba(1, 94, 251, 0.4);
+    z-index: 3;
+}
+
+.gt-orbit .material-symbols-outlined {
+    color: var(--pcolor-light);
+    font-size: 18px;
+}
+
+.gt-o1 {
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    left: 40px;
+}
+
+.gt-o2 {
+    width: 36px;
+    height: 36px;
+    top: 0;
+    right: 60px;
+}
+
+.gt-o3 {
+    width: 38px;
+    height: 38px;
+    top: 90px;
+    left: -10px;
+}
+
+.gt-o4 {
+    width: 36px;
+    height: 36px;
+    top: 100px;
+    right: 0;
+}
+
+.gt-o5 {
+    width: 34px;
+    height: 34px;
+    bottom: 40px;
+    left: 60px;
+}
+
+.gt-o6 {
+    width: 34px;
+    height: 34px;
+    bottom: 50px;
+    right: 70px;
+}
+
+.gt-form-card {
+    background: #0b0c10;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.gt-form-card h4 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.gt-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.gt-form-card input,
+.gt-form-card textarea {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: white;
+    font-size: 13px;
+    outline: none;
+    font-family: inherit;
+}
+
+.gt-form-card input::placeholder,
+.gt-form-card textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.gt-form-card textarea {
+    min-height: 110px;
+    resize: vertical;
+    margin-bottom: 20px;
+}
+
+.gt-consent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 26px;
+}
+
+.gt-consent input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--pcolor);
+}
+
+.gt-form-card button {
+    width: 100%;
+    padding: 13px;
+    border-radius: 30px;
+    border: none;
+    background: var(--pcolor);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform .3s ease, background .3s ease;
+}
+
+.gt-form-card button:hover {
+    background: var(--pcolor-light);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 1060px) {
+    .gt-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gt-visual {
+        height: 260px;
+    }
+}
+
+@media (max-width: 900px) {
+    .gt-section {
+        margin: 0 30px 90px;
+    }
+
+    .gt-form-card {
+        padding: 26px 20px;
+    }
+}
+
+@media (max-width: 560px) {
+    .gt-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============ contact info + map ============ */
+
+.info-section {
+    margin: 0 100px 130px;
+    color: white;
+}
+
+.info-card {
+    background: #0b0c10;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 46px 50px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.info-card h4 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.info-card > p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 260px;
+}
+
+.info-item {
+    text-align: center;
+}
+
+.info-item .material-symbols-outlined {
+    color: var(--pcolor-light);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.info-item h6 {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.info-item p {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.map-heading {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.map-heading span {
+    color: var(--pcolor-light);
+}
+
+.map-frame {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 380px;
+}
+
+.map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .info-section {
+        margin: 0 30px 90px;
+    }
+
+    .info-card {
+        grid-template-columns: 1fr;
+        padding: 34px 26px;
+        text-align: left;
+    }
+
+    .info-item {
+        text-align: left;
+    }
+
+    .map-frame {
+        height: 300px;
+    }
+}
+
+
+     /* footer */
+
+    .footer {
+        background: var(--pcolor);
+        padding-block: 100px;
+        padding-inline: 100px;
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
+        gap: 30px;
+        color: white;
+    }
+
+    .footer-brand h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+
+    .footer-brand p {
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .footer-form {
+        display: flex;
+        gap: 10px;
+    }
+
+    .footer-form input {
+        flex: 1;
+        padding: 10px 15px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        font-size: 13px;
+    }
+
+    .footer-form button {
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+        background: black;
+        color: white;
+        font-size: 13px;
+        cursor: pointer;
+        transition: transform .3s ease;
+    }
+
+    .footer-form button:hover {
+        transform: translateY(-3px);
+    }
+
+    .footer h4 {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 12px;
+        margin-top: 5px;
+    }
+
+    .footer-social a {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 15px;
+        transition: transform .3s ease, background .3s ease;
+    }
+
+    .footer-social a:hover {
+        transform: translateY(-4px);
+        background: black;
+    }
+
+    .footer-contact p {
+        font-size: 14px;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+
+    @media (max-width:950px) {
+        .footer {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width:600px) {
+        .footer {
+            grid-template-columns: 1fr;
+            padding: 20px;
+            padding-block: 40px;
+        }
+
+        .footer-form {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<body>
+
+    <header class="header">
+
+        <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+
+        <ul class="menus">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+
+
+        <div class="login-buttons">
+
+            <a href="login.html" class="loginBtn">Login</a>
+            <a href="signup.html" class="signupBtn">Sign Up</a>
+
+        </div>
+
+
+
+        <button class="menuBtn"><span class="material-symbols-outlined">menu</span></button>
+
+
+
+    </header>
+
+    <div class="sidebar">
+
+        <div class="side-header">
+            <a href="index.html" class="side-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+            <button class="closeBtn"><span class="material-symbols-outlined">close</span></button>
+        </div>
+
+        <div class="sideMenus">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html">Services</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+
+
+        <div class="side-login-buttons">
+
+            <a href="login.html" class="side-loginBtn">Login</a>
+            <a href="signup.html" class="side-signupBtn">Sign Up</a>
+
+        </div>
+
+    </div>
+
+    <!-- ============ contact hero ============ -->
+    <section class="contact-hero">
+
+        <div class="contact-hero-content">
+            <h1>We are always open <span>24/7</span> for you.</h1>
+            <p>Reach out to us using the contact information below or fill out the contact form, and we will get
+                back to you as soon as possible.</p>
+            <a href="#get-in-touch">Contact us</a>
+        </div>
+
+        <div class="ch-visual">
+
+            <div class="ch-trunk">
+                <span style="background:#ff5b7a;"></span>
+                <span style="background:#ffb020;"></span>
+                <span style="background:#2ec4c4;"></span>
+                <span style="background:#4c8cff;"></span>
+                <span style="background:#7ee08c;"></span>
+            </div>
+
+            <div class="ch-orbit ch-o1"><span class="material-symbols-outlined">chat_bubble</span></div>
+            <div class="ch-orbit ch-o2"><span class="material-symbols-outlined">lock</span></div>
+            <div class="ch-orbit ch-o3"><span class="material-symbols-outlined">smartphone</span></div>
+            <div class="ch-orbit ch-o4"><span class="material-symbols-outlined">mail</span></div>
+            <div class="ch-orbit ch-o5"><span class="material-symbols-outlined">cloud</span></div>
+            <div class="ch-orbit ch-o6"><span class="material-symbols-outlined">wifi</span></div>
+            <div class="ch-orbit ch-o7"><span class="material-symbols-outlined">search</span></div>
+            <div class="ch-orbit ch-o8"><span class="material-symbols-outlined">share</span></div>
+
+            <div class="ch-laptop"><span class="material-symbols-outlined">laptop_mac</span></div>
+
+        </div>
+
+    </section>
+
+    <!-- ============ get in touch ============ -->
+    <section class="gt-section" id="get-in-touch">
+        <span class="gt-eyebrow">GET IN TOUCH</span>
+        <h2 class="gt-heading">Send us the <span>details</span></h2>
+
+        <div class="gt-grid">
+
+            <div class="gt-visual">
+                <div class="gt-orbit gt-o1"><span class="material-symbols-outlined">chat_bubble</span></div>
+                <div class="gt-orbit gt-o2"><span class="material-symbols-outlined">mail</span></div>
+                <div class="gt-orbit gt-o3"><span class="material-symbols-outlined">smartphone</span></div>
+                <div class="gt-orbit gt-o4"><span class="material-symbols-outlined">laptop_mac</span></div>
+                <div class="gt-orbit gt-o5"><span class="material-symbols-outlined">wifi</span></div>
+                <div class="gt-orbit gt-o6"><span class="material-symbols-outlined">desktop_windows</span></div>
+                <div class="gt-globe"><span class="material-symbols-outlined">public</span></div>
+            </div>
+
+            <div class="gt-form-card">
+                <h4>Fill The Form Below</h4>
+
+                <div class="gt-row">
+                    <input type="text" placeholder="Your name">
+                    <input type="email" placeholder="Your Email">
+                </div>
+                <div class="gt-row">
+                    <input type="tel" placeholder="Phone">
+                    <input type="text" placeholder="Business Type">
+                </div>
+                <div class="gt-row">
+                    <input type="text" placeholder="Company">
+                    <input type="text" placeholder="Location">
+                </div>
+
+                <textarea placeholder="Type your message"></textarea>
+
+                <label class="gt-consent">
+                    <input type="checkbox">
+                    I agree to the privacy policy
+                </label>
+
+                <button>Submit</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============ contact info + map ============ -->
+    <section class="info-section">
+
+        <div class="info-card">
+            <div>
+                <h4>Contact Us</h4>
+                <p>Get expert support whenever you need it, ensuring quick solutions, personalized guidance, and
+                    peace of mind for all your challenges.</p>
+            </div>
+
+            <div class="info-item">
+                <span class="material-symbols-outlined">mail</span>
+                <h6>Send us email</h6>
+                <p>company@gmail.com</p>
+            </div>
+
+            <div class="info-item">
+                <span class="material-symbols-outlined">call</span>
+                <h6>Give as a call</h6>
+                <p>+91 9876543210</p>
+            </div>
+
+            <div class="info-item">
+                <span class="material-symbols-outlined">location_on</span>
+                <h6>Our office</h6>
+                <p>Evolve Studio, 4th Floor, Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha
+                    Nagar, Yelenahalli, Begur, Bengaluru, Karnataka -560068</p>
+            </div>
+        </div>
+
+        <h3 class="map-heading">Stackly <span>map</span></h3>
+
+        <div class="map-frame">
+            <iframe
+                src="https://www.google.com/maps?q=Begur,+Bengaluru,+Karnataka+560068&output=embed"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                title="Stackly office location map"></iframe>
+        </div>
+
+    </section>
+
+    <footer class="footer">
+
+        <div class="footer-brand reveal" style="--i:0">
+              <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+            <p>Got Event in Mind?  Let's collaborate.</p>
+            <div class="footer-form">
+                <input type="email" placeholder="Enter your email">
+                <button>Submit</button>
+            </div>
+        </div>
+
+        <div class="footer-links-wrap reveal" style="--i:1">
+            <h4>Links</h4>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="service.html">Services</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+
+        <div class="footer-follow reveal" style="--i:2">
+            <h4>Follow us</h4>
+            <div class="footer-social">
+                <a href="#"><span class="material-symbols-outlined">photo_camera</span></a>
+                <a href="#">X</a>
+                <a href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+                <a href="#"><span class="material-symbols-outlined">smart_display</span></a>
+            </div>
+        </div>
+
+        <div class="footer-contact reveal" style="--i:3">
+            <h4>Contact us</h4>
+            <p>Evolve Studio, 4th Floor, Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha Nagar,
+                Yelenahalli, Begur, Bengaluru, Karnataka -560068</p>
+            <p>info@stackly.com</p>
+            <p>+91 98765 43210</p>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

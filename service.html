@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Services - Services page</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+
+<style>
+ * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Google Sans", sans-serif;
+
+}
+
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    background: #030507;
+}
+
+:root {
+    --pcolor: #015EFB;
+    --pcolor-light: #4C8CFF;
+    --ink: #05070c;
+    --muted: rgba(255, 255, 255, 0.65);
+}
+
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: fixed;
+    align-items: center;
+    margin: auto 50px;
+    margin-top: 20px;
+    width: calc(100% - 100px);
+    border: 2px solid rgba(146, 145, 145, 0.336);
+    padding: 7px 20px;
+    border-radius: 50px;
+    gap: 20px;
+    backdrop-filter: blur(20px);
+    background: rgba(99, 99, 99, 0.397);
+    z-index: 99;
+}
+
+.company-logo img {
+    width: 150px;
+}
+
+.menus {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.menus li {
+    list-style: none;
+}
+
+
+.menus li a {
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    transition: background .3s ease;
+}
+
+.menus li a:hover {
+    background: var(--pcolor);
+}
+
+
+.menus li .active {
+    background: var(--pcolor);
+}
+
+.login-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+}
+
+.login-buttons a {
+    text-decoration: none;
+    color: white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: .5s ease;
+    font-size: 15px;
+}
+
+.loginBtn {
+    background: var(--pcolor);
+}
+
+.signupBtn:hover {
+    background: var(--pcolor);
+}
+
+.menuBtn {
+    display: none;
+}
+
+/* sidebar */
+
+.sidebar {
+    display: none;
+}
+
+
+@media (max-width:1060px) {
+
+    .menus {
+        display: none;
+    }
+
+    .login-buttons {
+        display: none;
+    }
+
+    .header {
+        grid-template-columns: 1fr 1fr;
+        margin: auto 30px;
+        margin-top: 20px;
+        width: calc(100% - 60px);
+    }
+
+    .menuBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        justify-self: flex-end;
+        background: var(--pcolor);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+
+    }
+
+    .menuBtn span {
+        font-size: 20px;
+    }
+
+    .sidebar {
+        display: block;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 320px;
+        min-height: 100vh;
+        background: black;
+        padding: 20px 20px;
+        transition: .5s ease;
+        transform: translateX(-100%);
+        z-index: 9999;
+    }
+
+
+    .sidebar.active {
+        transform: translateX(0%);
+    }
+
+    .side-logo img {
+        width: 150px;
+    }
+
+
+    .closeBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        justify-self: flex-end;
+        background: var(--pcolor);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        cursor: pointer;
+    }
+
+    .closeBtn span {
+        font-size: 18px;
+    }
+
+    .side-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    .sideMenus {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 40px;
+    }
+
+    
+    .sideMenus a {
+        text-decoration: none;
+        color: white;
+           width: 100%;
+        padding-left: 10px;
+        padding-block: 10px;
+        transition: .5s ease;
+              font-size: 14px;
+    }
+
+    .sideMenus a:hover{
+        background: var(--pcolor);
+    }
+
+    .sideMenus .active {
+
+        background: var(--pcolor);
+    }
+
+    .side-login-buttons {
+        display: flex;
+        gap: 20px;
+    }
+
+    .side-login-buttons a {
+        text-decoration: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        transition: .5s ease;
+        font-size: 14px;
+    }
+
+    .side-loginBtn {
+        background: var(--pcolor);
+    }
+
+    .side-signupBtn {
+        border: 1px solid var(--pcolor);
+    }
+
+
+    }
+
+
+
+@media (max-width:500px) {
+    .company-logo img {
+        width: 130px;
+    }
+
+    .header {
+        margin: auto 10px;
+        margin-top: 10px;
+        width: calc(100% - 20px);
+        padding: 5px 20px;
+    }
+}
+
+/* ============ services hero ============ */
+
+.services-hero {
+    padding: 190px 100px 100px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 50px;
+    color: white;
+}
+
+.services-hero h1 {
+    font-size: 42px;
+    line-height: 1.25;
+    font-weight: 500;
+    max-width: 540px;
+}
+
+.services-hero h1 span {
+    color: var(--pcolor-light);
+}
+
+.services-hero p {
+    max-width: 480px;
+    margin-top: 22px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.services-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 34px;
+}
+
+.services-hero-actions a {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sh-book {
+    color: white;
+    background: var(--pcolor);
+    padding: 13px 26px;
+    border-radius: 30px;
+    transition: transform .3s ease, background .3s ease;
+}
+
+.sh-book:hover {
+    background: var(--pcolor-light);
+    transform: translateY(-3px);
+}
+
+.sh-see {
+    color: var(--pcolor-light);
+    position: relative;
+}
+
+.sh-see::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 1px;
+    background: var(--pcolor-light);
+}
+
+/* hero illustration */
+
+.sh-visual {
+    position: relative;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sh-visual::before {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(1, 94, 251, 0.4), transparent 70%);
+    filter: blur(10px);
+}
+
+.sh-laptop {
+    position: relative;
+    width: 260px;
+    height: 165px;
+    background: linear-gradient(160deg, #0a1638, #02061a);
+    border: 1px solid rgba(76, 140, 255, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 0 60px rgba(1, 94, 251, 0.5), inset 0 0 30px rgba(1, 94, 251, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.sh-laptop::after {
+    content: "";
+    position: absolute;
+    bottom: -14px;
+    width: 300px;
+    height: 14px;
+    background: linear-gradient(160deg, #0a1638, #142352);
+    border-radius: 0 0 10px 10px;
+    border: 1px solid rgba(76, 140, 255, 0.35);
+    border-top: none;
+}
+
+.sh-laptop .material-symbols-outlined {
+    font-size: 76px;
+    color: var(--pcolor-light);
+    filter: drop-shadow(0 0 14px rgba(76, 140, 255, 0.6));
+}
+
+.sh-orbit {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #0a1638, #02061a);
+    border: 1px solid rgba(76, 140, 255, 0.55);
+    box-shadow: 0 0 22px rgba(1, 94, 251, 0.45);
+    z-index: 4;
+}
+
+.sh-orbit .material-symbols-outlined {
+    color: var(--pcolor-light);
+    font-size: 20px;
+}
+
+.sh-o1 {
+    width: 48px;
+    height: 48px;
+    top: 0;
+    left: 20px;
+}
+
+.sh-o2 {
+    width: 44px;
+    height: 44px;
+    top: 30px;
+    right: 0;
+}
+
+.sh-o3 {
+    width: 42px;
+    height: 42px;
+    bottom: 30px;
+    left: -10px;
+}
+
+.sh-o4 {
+    width: 46px;
+    height: 46px;
+    bottom: 0;
+    right: 30px;
+}
+
+.sh-o5 {
+    width: 38px;
+    height: 38px;
+    top: 90px;
+    left: -30px;
+}
+
+.sh-o6 {
+    width: 38px;
+    height: 38px;
+    top: 100px;
+    right: -30px;
+}
+
+@media (max-width: 1060px) {
+    .services-hero {
+        grid-template-columns: 1fr;
+        padding: 170px 30px 60px;
+    }
+
+    .sh-visual {
+        margin-top: 30px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 500px) {
+    .services-hero {
+        padding: 150px 15px 40px;
+    }
+
+    .services-hero h1 {
+        font-size: 30px;
+    }
+
+    .services-hero-actions {
+        flex-wrap: wrap;
+        row-gap: 14px;
+    }
+}
+
+/* ============ our services ============ */
+
+.our-services {
+    margin: 0 100px 130px;
+    color: white;
+}
+
+.os-heading {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 14px;
+}
+
+.os-heading span {
+    color: var(--pcolor-light);
+}
+
+.our-services > p {
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 46px;
+}
+
+.os-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.os-card {
+    background: linear-gradient(160deg, #16181d, #0b0c10);
+    border: 1px solid rgba(76, 140, 255, 0.35);
+    border-radius: 18px;
+    padding: 34px 26px;
+    min-height: 210px;
+    display: flex;
+    flex-direction: column;
+}
+
+.os-icon {
+    margin-bottom: 30px;
+}
+
+.os-icon .material-symbols-outlined {
+    color: var(--pcolor-light);
+    font-size: 30px;
+}
+
+.os-card h4 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.35;
+}
+
+.os-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .our-services {
+        margin: 0 30px 90px;
+    }
+
+    .os-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .os-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .os-heading {
+        font-size: 26px;
+    }
+}
+
+/* how it works */
+
+/* how it works section */
+
+    .how-it-works {
+        padding-block: 80px;
+        padding-inline: 100px;
+        background: black;
+        display: flex;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .how-image-wrap {
+        flex: 1;
+        height: 65vh;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 2px solid var(--pcolor);
+    }
+
+    .how-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+        transition: transform .6s ease;
+    }
+
+    .how-image-wrap:hover img {
+        transform: scale(1.05);
+    }
+
+    .how-content {
+        flex: 1;
+    }
+
+    .how-title {
+        font-size: 38px;
+        color: white;
+        margin-bottom: 30px;
+    }
+
+    .how-title span {
+        color: var(--pcolor);
+    }
+
+    .how-steps {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .how-step {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        padding-block: 25px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        transition: padding-left .4s ease;
+    }
+
+    .how-step:hover {
+        padding-left: 8px;
+    }
+
+    .how-steps .how-step:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .how-step-left {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .how-step-num {
+        font-size: 15px;
+        color: var(--pcolor);
+        min-width: 25px;
+        padding-top: 3px;
+    }
+
+    .how-step-text h3 {
+        font-size: 20px;
+        color: white;
+        margin-bottom: 8px;
+    }
+
+    .how-step-text p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 420px;
+    }
+
+    .how-step-icon {
+        height: 30px;
+        width: 30px;
+        min-width: 30px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        transition: transform .4s ease, background .4s ease;
+    }
+
+    .how-step:hover .how-step-icon {
+        transform: rotate(90deg);
+        background: var(--pcolor);
+    }
+
+    @media (max-width:1000px) {
+        .how-it-works {
+            gap: 35px;
+        }
+
+        .how-title {
+            font-size: 30px;
+        }
+    }
+
+    @media (max-width:850px) {
+        .how-it-works {
+            flex-direction: column;
+            padding: 20px;
+            padding-block: 60px;
+        }
+
+        .how-image-wrap {
+            width: 100%;
+            height: 40vh;
+        }
+
+        .how-content {
+            width: 100%;
+        }
+    }
+
+    @media (max-width:500px) {
+        .how-title {
+            font-size: 26px;
+        }
+
+        .how-step-text p {
+            max-width: 100%;
+        }
+    }
+
+/* ============ feature panels ============ */
+
+.features-section {
+    margin: 0 100px 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+}
+
+.feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    color: white;
+}
+
+.feature-row.reverse .feature-text {
+    order: 2;
+}
+
+.feature-row.reverse .feature-media {
+    order: 1;
+}
+
+.feature-text h3 {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.35;
+    max-width: 440px;
+    margin-bottom: 18px;
+}
+
+.feature-text > p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+    max-width: 460px;
+    margin-bottom: 24px;
+}
+
+.feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.feature-list li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+}
+
+.feature-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--pcolor-light);
+}
+
+.feature-media {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(76, 140, 255, 0.35);
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 0 40px rgba(1, 94, 251, 0.15);
+}
+
+.feature-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* collage-style media for the middle panel */
+
+.feature-media.collage {
+    background: repeating-linear-gradient(135deg, #0f5c52, #0f5c52 26px, #ffffff 26px, #ffffff 52px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.collage-word {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    max-width: 320px;
+}
+
+.collage-word span {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 30px;
+    padding: 4px 8px;
+    border-radius: 3px;
+    transform: rotate(var(--r, 0deg));
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 900px) {
+    .features-section {
+        margin: 0 30px 90px;
+        gap: 60px;
+    }
+
+    .feature-row,
+    .feature-row.reverse .feature-text,
+    .feature-row.reverse .feature-media {
+        grid-template-columns: 1fr;
+        order: initial;
+    }
+
+    .feature-row {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* ============ pricing ============ */
+
+.pricing-section {
+    margin: 0 100px 140px;
+    color: white;
+}
+
+.pricing-heading {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.35;
+    margin-bottom: 50px;
+    max-width: 460px;
+}
+
+.pricing-heading span {
+    color: var(--pcolor-light);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    align-items: stretch;
+}
+
+.pricing-card {
+    background: linear-gradient(160deg, #16181d, #0b0c10);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 36px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-card.featured {
+    border: 1px solid var(--pcolor-light);
+    box-shadow: 0 0 40px rgba(1, 94, 251, 0.3);
+}
+
+.pricing-tag {
+    display: inline-block;
+    width: fit-content;
+    font-size: 12px;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 26px;
+}
+
+.pricing-price {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.pricing-price span {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+}
+
+.pricing-audience {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 26px;
+}
+
+.pricing-card h5 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.pricing-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 36px;
+    flex-grow: 1;
+}
+
+.pricing-features li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.pricing-features li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--pcolor-light);
+}
+
+.pricing-card a {
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background: var(--pcolor);
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    transition: transform .3s ease, background .3s ease;
+}
+
+.pricing-card a:hover {
+    background: var(--pcolor-light);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 900px) {
+    .pricing-section {
+        margin: 0 30px 90px;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+     /* footer */
+
+    .footer {
+        background: var(--pcolor);
+        padding-block: 100px;
+        padding-inline: 100px;
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
+        gap: 30px;
+        color: white;
+    }
+
+    .footer-brand h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+
+    .footer-brand p {
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .footer-form {
+        display: flex;
+        gap: 10px;
+    }
+
+    .footer-form input {
+        flex: 1;
+        padding: 10px 15px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        font-size: 13px;
+    }
+
+    .footer-form button {
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+        background: black;
+        color: white;
+        font-size: 13px;
+        cursor: pointer;
+        transition: transform .3s ease;
+    }
+
+    .footer-form button:hover {
+        transform: translateY(-3px);
+    }
+
+    .footer h4 {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 12px;
+        margin-top: 5px;
+    }
+
+    .footer-social a {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 15px;
+        transition: transform .3s ease, background .3s ease;
+    }
+
+    .footer-social a:hover {
+        transform: translateY(-4px);
+        background: black;
+    }
+
+    .footer-contact p {
+        font-size: 14px;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+
+    @media (max-width:950px) {
+        .footer {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width:600px) {
+        .footer {
+            grid-template-columns: 1fr;
+            padding: 20px;
+            padding-block: 40px;
+        }
+
+        .footer-form {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<body>
+
+    <header class="header">
+
+        <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+
+        <ul class="menus">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="service.html" class="active">Services</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+
+        <div class="login-buttons">
+
+            <a href="login.html" class="loginBtn">Login</a>
+            <a href="signup.html" class="signupBtn">Sign Up</a>
+
+        </div>
+
+
+
+        <button class="menuBtn"><span class="material-symbols-outlined">menu</span></button>
+
+
+
+    </header>
+
+    <div class="sidebar">
+
+        <div class="side-header">
+            <a href="index.html" class="side-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+            <button class="closeBtn"><span class="material-symbols-outlined">close</span></button>
+        </div>
+
+        <div class="sideMenus">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html" class="active">Services</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+
+        <div class="side-login-buttons">
+
+            <a href="login.html" class="side-loginBtn">Login</a>
+            <a href="signup.html" class="side-signupBtn">Sign Up</a>
+
+        </div>
+
+    </div>
+
+    <!-- ============ services hero ============ -->
+    <section class="services-hero">
+
+        <div class="services-hero-content">
+            <h1>Four services. One team that <span>actually answers.</span></h1>
+            <p>Most vendors sell you a dashboard and leave you to watch it. We sell coverage — the assessment, the
+                monitoring, the response, and the paperwork that proves it, handled by the same people every time.
+            </p>
+
+            <div class="services-hero-actions">
+                <a href="contact.html" class="sh-book">Book a appoinment</a>
+                <a href="#our-services" class="sh-see">See what we run</a>
+            </div>
+        </div>
+
+        <div class="sh-visual">
+
+            <div class="sh-orbit sh-o1"><span class="material-symbols-outlined">radar</span></div>
+            <div class="sh-orbit sh-o2"><span class="material-symbols-outlined">location_on</span></div>
+            <div class="sh-orbit sh-o3"><span class="material-symbols-outlined">settings</span></div>
+            <div class="sh-orbit sh-o4"><span class="material-symbols-outlined">smartphone</span></div>
+            <div class="sh-orbit sh-o5"><span class="material-symbols-outlined">cloud_queue</span></div>
+            <div class="sh-orbit sh-o6"><span class="material-symbols-outlined">memory</span></div>
+
+            <div class="sh-laptop">
+                <span class="material-symbols-outlined">cloud</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ============ our services ============ -->
+    <section class="our-services" id="our-services">
+        <h2 class="os-heading">Our <span>services</span></h2>
+        <p>A well-organized website with a professional look. It offers detailed service descriptions, case studies,
+            and easy navigation.</p>
+
+        <div class="os-grid">
+
+            <div class="os-card">
+                <div class="os-icon"><span class="material-symbols-outlined">lock</span></div>
+                <h4>Network security</h4>
+                <p>Comprehensive solutions to protect your network infrastructure.</p>
+            </div>
+
+            <div class="os-card">
+                <div class="os-icon"><span class="material-symbols-outlined">extension</span></div>
+                <h4>Penetration testing</h4>
+                <p>Identify vulnerabilities before hackers do.</p>
+            </div>
+
+            <div class="os-card">
+                <div class="os-icon"><span class="material-symbols-outlined">sync</span></div>
+                <h4>Incident response</h4>
+                <p>Rapid response to contain and mitigate cyber incidents.</p>
+            </div>
+
+            <div class="os-card">
+                <div class="os-icon"><span class="material-symbols-outlined">gpp_maybe</span></div>
+                <h4>Vulnerability assessment</h4>
+                <p>Identify and evaluate security weaknesses in your systems to prevent potential exploitation by
+                    attackers.</p>
+            </div>
+
+            <div class="os-card">
+                <div class="os-icon"><span class="material-symbols-outlined">security</span></div>
+                <h4>Threat detection and response</h4>
+                <p>Monitor and respond to security threats in real-time to protect your breaches.</p>
+            </div>
+
+            <div class="os-card">
+                <div class="os-icon"><span class="material-symbols-outlined">location_on</span></div>
+                <h4>Compliance and risk management</h4>
+                <p>Ensure your organization meets industry standards and regulatory requirements.</p>
+            </div>
+
+        </div>
+    </section>
+
+      <section class="how-it-works">
+
+        <div class="how-image-wrap reveal">
+            <img src="./src/4.webp" alt="team working together">
+        </div>
+
+        <div class="how-content reveal" style="--i:1">
+
+            <h2 class="how-title">How it <span>work</span></h2>
+
+            <div class="how-steps">
+
+                <div class="how-step">
+                    <div class="how-step-left">
+                        <p class="how-step-num">01</p>
+                        <div class="how-step-text">
+                            <h3>Understand your needs</h3>
+                            <p>We begin with a detailed consultation to understand your business, assess your current
+                                security posture, and identify potential vulnerabilities.</p>
+                        </div>
+                    </div>
+                    <span class="how-step-icon material-symbols-outlined">add</span>
+                </div>
+
+                <div class="how-step">
+                    <div class="how-step-left">
+                        <p class="how-step-num">02</p>
+                        <div class="how-step-text">
+                            <h3>Understand your needs</h3>
+                            <p>Based on our assessment, we design a comprehensive cybersecurity strategy tailored to
+                                your specific needs.</p>
+                        </div>
+                    </div>
+                    <span class="how-step-icon material-symbols-outlined">add</span>
+                </div>
+
+                <div class="how-step">
+                    <div class="how-step-left">
+                        <p class="how-step-num">03</p>
+                        <div class="how-step-text">
+                            <h3>Deploy and monitor</h3>
+                            <p>Our team implements the security plan, ensuring that all systems are fully integrated
+                                and operational.</p>
+                        </div>
+                    </div>
+                    <span class="how-step-icon material-symbols-outlined">add</span>
+                </div>
+
+                <div class="how-step">
+                    <div class="how-step-left">
+                        <p class="how-step-num">04</p>
+                        <div class="how-step-text">
+                            <h3>Review and optimize</h3>
+                            <p>Cybersecurity is an ongoing process. We regularly review and refine your security
+                                measures to adapt to new threats and technological advancement.</p>
+                        </div>
+                    </div>
+                    <span class="how-step-icon material-symbols-outlined">add</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============ feature panels ============ -->
+    <section class="features-section">
+
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Coverage that doesn't sleep when your team does</h3>
+                <p>We deploy sensors across your endpoints, network and cloud accounts, then staff a rotating team of
+                    analysts who watch what they catch — every hour, every day, including the 2am false alarm that
+                    turns out to be false.</p>
+                <ul class="feature-list">
+                    <li>Endpoint, network and cloud telemetry in one view</li>
+                    <li>Every alert reviewed by a person before it reaches you</li>
+                    <li>Monthly tuning so alert volume drops as coverage improves</li>
+                    <li>Direct line to the analyst on shift, not a ticket queue</li>
+                </ul>
+            </div>
+            <div class="feature-media">
+                <img src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&w=1260&h=750&dpr=1"
+                    alt="Analyst monitoring security dashboards">
+            </div>
+        </div>
+
+        <div class="feature-row reverse">
+            <div class="feature-text">
+                <h3>The team that already knows your network shows up</h3>
+                <p>When something's actively wrong, the last thing you need is to explain your architecture to
+                    someone new. Our response team is the same team monitoring you day to day — they're already
+                    inside your environment when the call comes in.</p>
+                <ul class="feature-list">
+                    <li>Retained response with a guaranteed join time, not best-effort</li>
+                    <li>Containment, forensic review and recovery under one engagement</li>
+                    <li>Runbooks built and tested with your team before you need them</li>
+                    <li>A written post-incident report your board can actually read</li>
+                </ul>
+            </div>
+            <div class="feature-media collage">
+                <div class="collage-word">
+                    <span style="background:#e4d9c4; color:#1a1a1a; --r:-4deg;">C</span>
+                    <span style="background:#c94a3b; color:#fdf6ec; --r:3deg;">Y</span>
+                    <span style="background:#f2ece0; color:#111; --r:-2deg;">B</span>
+                    <span style="background:#1a1a1a; color:#f2ece0; --r:5deg;">E</span>
+                    <span style="background:#c94a3b; color:#fdf6ec; --r:-3deg;">R</span>
+                    <span style="background:#f2ece0; color:#111; --r:2deg;">S</span>
+                    <span style="background:#1a1a1a; color:#f2ece0; --r:-5deg;">E</span>
+                    <span style="background:#e4d9c4; color:#1a1a1a; --r:4deg;">C</span>
+                    <span style="background:#c94a3b; color:#fdf6ec; --r:-2deg;">U</span>
+                    <span style="background:#f2ece0; color:#111; --r:3deg;">R</span>
+                    <span style="background:#1a1a1a; color:#f2ece0; --r:-4deg;">I</span>
+                    <span style="background:#e4d9c4; color:#1a1a1a; --r:2deg;">T</span>
+                    <span style="background:#c94a3b; color:#fdf6ec; --r:-3deg;">Y</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>We test the doors an attacker would actually try</h3>
+                <p>Automated scanners flag what's already documented. Our assessments go further — manual
+                    penetration testing and architecture review aimed at the specific paths a real attacker would
+                    take through your environment.</p>
+                <ul class="feature-list">
+                    <li>External and internal penetration testing</li>
+                    <li>Cloud configuration and identity review</li>
+                    <li>Social engineering testing, with your consent and scope</li>
+                    <li>A prioritized findings report, ranked by real exploitability</li>
+                </ul>
+            </div>
+            <div class="feature-media">
+                <img src="https://images.pexels.com/photos/5380792/pexels-photo-5380792.jpeg?auto=compress&w=1260&h=750&dpr=1"
+                    alt="Dual monitors with security code in a dark room">
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ============ pricing ============ -->
+    <section class="pricing-section">
+        <h2 class="pricing-heading">Choose the right plan for <span>your business</span></h2>
+
+        <div class="pricing-grid">
+
+            <div class="pricing-card">
+                <span class="pricing-tag">5 Hours</span>
+                <div class="pricing-price">$299 <span>/per website</span></div>
+                <p class="pricing-audience">Small Businesses, Basic Security Needs</p>
+                <h5>Features</h5>
+                <ul class="pricing-features">
+                    <li>Threat monitoring</li>
+                    <li>Security updates</li>
+                    <li>Vulnerability check</li>
+                    <li>Firewall management</li>
+                    <li>SSL management</li>
+                    <li>Monthly report</li>
+                    <li>24/7 email support</li>
+                </ul>
+                <a href="contact.html">Get started</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <span class="pricing-tag">10 Hours</span>
+                <div class="pricing-price">$599 <span>/per website</span></div>
+                <p class="pricing-audience">Medium-Sized Businesses, Enhanced Security Needs</p>
+                <h5>All Basic features</h5>
+                <ul class="pricing-features">
+                    <li>Incident response</li>
+                    <li>Comprehensive assessment</li>
+                    <li>Intrusion prevention</li>
+                    <li>Bi-weekly report</li>
+                </ul>
+                <a href="contact.html">Get started</a>
+            </div>
+
+            <div class="pricing-card">
+                <span class="pricing-tag">30 Hours</span>
+                <div class="pricing-price">$1,499 <span>/per website</span></div>
+                <p class="pricing-audience">Large Enterprises, High-Security Demands</p>
+                <h5>All Advanced features</h5>
+                <ul class="pricing-features">
+                    <li>Proactive monitoring</li>
+                    <li>Custom security strategy</li>
+                    <li>Penetration testing</li>
+                    <li>Weekly report</li>
+                    <li>Dedicated support</li>
+                </ul>
+                <a href="contact.html">Get started</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+
+        <div class="footer-brand reveal" style="--i:0">
+              <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+            <p>Got Event in Mind?  Let's collaborate.</p>
+            <div class="footer-form">
+                <input type="email" placeholder="Enter your email">
+                <button>Submit</button>
+            </div>
+        </div>
+
+        <div class="footer-links-wrap reveal" style="--i:1">
+            <h4>Links</h4>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="service.html">Services</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+
+        <div class="footer-follow reveal" style="--i:2">
+            <h4>Follow us</h4>
+            <div class="footer-social">
+                <a href="#"><span class="material-symbols-outlined">photo_camera</span></a>
+                <a href="#">X</a>
+                <a href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+                <a href="#"><span class="material-symbols-outlined">smart_display</span></a>
+            </div>
+        </div>
+
+        <div class="footer-contact reveal" style="--i:3">
+            <h4>Contact us</h4>
+            <p>Evolve Studio, 4th Floor, Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha Nagar,
+                Yelenahalli, Begur, Bengaluru, Karnataka -560068</p>
+            <p>info@stackly.com</p>
+            <p>+91 98765 43210</p>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
