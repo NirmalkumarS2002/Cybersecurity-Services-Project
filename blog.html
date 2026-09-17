@@ -795,8 +795,7 @@
         margin-bottom: 14px;
     }
 
-    .briefing-card>div>p {
-        color: var(--muted);
+    .briefing-card>div .briefing-para {
         font-size: 13px;
         line-height: 1.7;
         max-width: 420px;
@@ -986,6 +985,17 @@
             flex-direction: column;
         }
     }
+
+    .ferror{
+    color: red;
+    margin-top: 10px;
+}
+
+.Berror{
+     color: red;
+    margin-top: 15px;
+    font-size: 12px;
+}
 </style>
 
 <body>
@@ -1214,16 +1224,17 @@
             <div>
                 <span class="briefing-eyebrow">WEEKLY BRIEFING</span>
                 <h3>One email, every Friday</h3>
-                <p>The week's notable incidents, one pattern worth watching, and nothing you need to unsubscribe
+                <p class="briefing-para">The week's notable incidents, one pattern worth watching, and nothing you need to unsubscribe
                     from later.</p>
             </div>
 
             <div>
                 <div class="briefing-form">
-                    <input type="email" placeholder="You@gmail.com">
-                    <button>Subscribe</button>
+                    <input type="email" placeholder="You@gmail.com" id="bemail">
+                    <button class="bsumBtn">Subscribe</button>
                 </div>
-                <p class="briefing-note">Sent weekly. Unsubscribe anytime.</p>
+                <p class="Berror"></p>
+                <p class="briefing-note briefing-para">Sent weekly. Unsubscribe anytime.</p>
             </div>
         </div>
     </section>
@@ -1233,10 +1244,11 @@
         <div class="footer-brand reveal" style="--i:0">
             <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
             <p>Got Event in Mind? Let's collaborate.</p>
-            <div class="footer-form">
-                <input type="email" placeholder="Enter your email">
-                <button>Submit</button>
+           <div class="footer-form">
+                <input type="email" placeholder="Enter your email" id="femail">
+                <button class="foot-subBtn">Submit</button>
             </div>
+            <p class="ferror"></p>
         </div>
 
         <div class="footer-links-wrap reveal" style="--i:1">
@@ -1367,6 +1379,47 @@
 
             ScrollTrigger.refresh();
         })();
+
+        //
+
+        const bemail = document.querySelector("#bemail");
+const bsumBtn = document.querySelector(".bsumBtn");
+const Berror = document.querySelector(".Berror");
+
+bsumBtn.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    const email = bemail.value.trim();
+
+    // Email regex
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Empty validation
+    if (email === "") {
+        Berror.textContent = "Please enter your email address";
+        Berror.style.color = "red";
+        return;
+    }
+
+    // Email format validation
+    if (!emailPattern.test(email)) {
+        Berror.textContent = "Please enter a valid email address";
+        Berror.style.color = "red";
+        return;
+    }
+
+    // Success
+    Berror.textContent = "Subscribed successfully!";
+
+    setTimeout(()=>{
+Berror.textContent = "";
+    },3000)
+    Berror.style.color = "green";
+
+    // Clear input
+    bemail.value = "";
+});
     </script>
 </body>
 

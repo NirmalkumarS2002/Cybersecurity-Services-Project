@@ -1247,6 +1247,11 @@ body {
             flex-direction: column;
         }
     }
+
+    .ferror{
+    color: red;
+    margin-top: 10px;
+}
 </style>
 
 <body>
@@ -1385,7 +1390,7 @@ body {
 
         <div class="why-head">
             <h2 class="reveal">Stay ahead with our <span>cybersecurity</span> expertise</h2>
-            <button class="why-btn reveal" style="--i:1">Get started</button>
+            <button class="why-btn reveal errorpage" style="--i:1">Get started</button>
         </div>
 
         <div class="why-grid">
@@ -1448,7 +1453,7 @@ body {
 
             <div class="benefits-cta">
                 <h4>Ready to experience the difference?</h4>
-                <a href="contact.html">Get started</a>
+                <a href="404.html">Get started</a>
             </div>
 
         </div>
@@ -1493,9 +1498,10 @@ body {
               <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
             <p>Got Event in Mind?  Let's collaborate.</p>
             <div class="footer-form">
-                <input type="email" placeholder="Enter your email">
-                <button>Submit</button>
+                <input type="email" placeholder="Enter your email" id="femail">
+                <button class="foot-subBtn">Submit</button>
             </div>
+            <p class="ferror"></p>
         </div>
 
         <div class="footer-links-wrap reveal" style="--i:1">

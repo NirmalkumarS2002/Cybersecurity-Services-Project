@@ -1407,7 +1407,7 @@
         margin-bottom: 25px;
     }
 
-    .footer-brand p {
+    .footer-brand .footer-des {
         font-size: 14px;
         margin-bottom: 15px;
         line-height: 1.5;
@@ -1511,6 +1511,32 @@
             flex-direction: column;
         }
     }
+
+    .how-step-text p {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.how-step.active .how-step-text p {
+    max-height: 150px;
+    opacity: 1;
+}
+
+.how-step-icon {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.how-step.active .how-step-icon {
+    transform: rotate(180deg);
+}
+
+.ferror{
+    color: red;
+    margin-top: 10px;
+}
 </style>
 
 <body>
@@ -1581,8 +1607,8 @@
 
             <div class="hero-buttions">
 
-                <button class="hero-fill">Book a Appoinment</button>
-                <button class="hero-outline">See What we Run</button>
+                <button class="hero-fill errorpage">Book a Appoinment</button>
+                <button class="hero-outline errorpage">See What we Run</button>
 
             </div>
         </div>
@@ -1599,7 +1625,7 @@
 
             <div class="reveal" style="--i:1">
                 <P>Join the hundreds of business protected by Cybersec</P>
-                <button>Get Started</button>
+                <button class="errorpage">Get Started</button>
             </div>
         </div>
 
@@ -1702,7 +1728,7 @@
 
         <div class="why-head">
             <h2 class="reveal">Stay ahead with our <span>cybersecurity</span> expertise</h2>
-            <button class="why-btn reveal" style="--i:1">Get started</button>
+            <button class="why-btn reveal errorpage" style="--i:1">Get started</button>
         </div>
 
         <div class="why-grid">
@@ -1879,7 +1905,7 @@
         <h2 class="cta-title reveal" style="--i:1">Stay ahead of cyber <span>threats</span></h2>
         <p class="cta-des reveal" style="--i:2">Download our comprehensive guide for free and start securing your data
             today.</p>
-        <button class="cta-btn reveal" style="--i:3">Get started</button>
+        <button class="cta-btn reveal errorpage" style="--i:3">Get started</button>
     </section>
 
     <footer class="footer">
@@ -1888,9 +1914,10 @@
             <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
             <p>Got Event in Mind? Let's collaborate.</p>
             <div class="footer-form">
-                <input type="email" placeholder="Enter your email">
-                <button>Submit</button>
+                <input type="email" placeholder="Enter your email" id="femail">
+                <button class="foot-subBtn">Submit</button>
             </div>
+            <p class="ferror"></p>
         </div>
 
         <div class="footer-links-wrap reveal" style="--i:1">
@@ -2151,6 +2178,39 @@
 
             ScrollTrigger.refresh();
         })();
+
+
+        //
+
+        const howSteps = document.querySelectorAll(".how-step");
+
+howSteps.forEach(step => {
+
+    const icon = step.querySelector(".how-step-icon");
+
+    icon.addEventListener("click", () => {
+
+        // மற்ற steps எல்லாம் close
+        howSteps.forEach(item => {
+            if (item !== step) {
+                item.classList.remove("active");
+                item.querySelector(".how-step-icon").textContent = "add";
+            }
+        });
+
+        // current step toggle
+        step.classList.toggle("active");
+
+        // icon change
+        if (step.classList.contains("active")) {
+            icon.textContent = "remove";
+        } else {
+            icon.textContent = "add";
+        }
+
+    });
+
+});
     </script>
 </body>
 

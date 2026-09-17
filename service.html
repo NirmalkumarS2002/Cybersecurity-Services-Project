@@ -1025,6 +1025,32 @@
             flex-direction: column;
         }
     }
+
+    .how-step-text p {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.how-step.active .how-step-text p {
+    max-height: 150px;
+    opacity: 1;
+}
+
+.how-step-icon {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.how-step.active .how-step-icon {
+    transform: rotate(180deg);
+}
+
+.ferror{
+    color: red;
+    margin-top: 10px;
+}
 </style>
 
 <body>
@@ -1092,8 +1118,8 @@
             </p>
 
             <div class="services-hero-actions">
-                <a href="contact.html" class="sh-book">Book a appoinment</a>
-                <a href="#our-services" class="sh-see">See what we run</a>
+                <a href="404.html" class="sh-book">Book a appoinment</a>
+                <a href="404.html" class="sh-see">See what we run</a>
             </div>
         </div>
 
@@ -1315,7 +1341,7 @@
                     <li>Monthly report</li>
                     <li>24/7 email support</li>
                 </ul>
-                <a href="contact.html">Get started</a>
+                <a href="404.html">Get started</a>
             </div>
 
             <div class="pricing-card featured">
@@ -1329,7 +1355,7 @@
                     <li>Intrusion prevention</li>
                     <li>Bi-weekly report</li>
                 </ul>
-                <a href="contact.html">Get started</a>
+                <a href="404.html">Get started</a>
             </div>
 
             <div class="pricing-card">
@@ -1344,7 +1370,7 @@
                     <li>Weekly report</li>
                     <li>Dedicated support</li>
                 </ul>
-                <a href="contact.html">Get started</a>
+                <a href="404.html">Get started</a>
             </div>
 
         </div>
@@ -1355,10 +1381,11 @@
         <div class="footer-brand reveal" style="--i:0">
             <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
             <p>Got Event in Mind? Let's collaborate.</p>
-            <div class="footer-form">
-                <input type="email" placeholder="Enter your email">
-                <button>Submit</button>
+      <div class="footer-form">
+                <input type="email" placeholder="Enter your email" id="femail">
+                <button class="foot-subBtn">Submit</button>
             </div>
+            <p class="ferror"></p>
         </div>
 
         <div class="footer-links-wrap reveal" style="--i:1">
@@ -1513,6 +1540,39 @@
 
             ScrollTrigger.refresh();
         })();
+
+
+        //
+
+        const howSteps = document.querySelectorAll(".how-step");
+
+howSteps.forEach(step => {
+
+    const icon = step.querySelector(".how-step-icon");
+
+    icon.addEventListener("click", () => {
+
+        // மற்ற steps எல்லாம் close
+        howSteps.forEach(item => {
+            if (item !== step) {
+                item.classList.remove("active");
+                item.querySelector(".how-step-icon").textContent = "add";
+            }
+        });
+
+        // current step toggle
+        step.classList.toggle("active");
+
+        // icon change
+        if (step.classList.contains("active")) {
+            icon.textContent = "remove";
+        } else {
+            icon.textContent = "add";
+        }
+
+    });
+
+});
     </script>
 </body>
 
