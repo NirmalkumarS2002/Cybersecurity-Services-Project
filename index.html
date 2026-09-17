@@ -438,9 +438,9 @@
         position: absolute;
         width: clamp(320px, 45vw, 520px);
         height: clamp(320px, 45vw, 520px);
-        background: radial-gradient(circle, rgba(1, 94, 251, 0.4), transparent 70%);
+        background: radial-gradient(circle, rgba(1, 93, 251, 0.932), transparent 70%);
         filter: blur(10px);
-        opacity: 0.45;
+        z-index: -1;
 
         animation: pulseGlow 4s ease-in-out infinite;
     }
@@ -480,10 +480,10 @@
             margin-bottom: 30px;
         }
 
-         .hero-image {
-        margin-top: 40px;
-        height: 280px;
-    }
+        .hero-image {
+            margin-top: 40px;
+            height: 280px;
+        }
 
 
 
@@ -564,26 +564,46 @@
         position: relative;
     }
 
-    .stats::before {
-        content: "";
-        background: url("./src/s1.webp");
-        background-repeat: no-repeat;
-        background-position: center;
-        inset: 0;
-        max-width: 100%;
+
+    .stat-image {
         position: absolute;
-        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto 0px;
+        height: 400px;
+
         opacity: 0.5;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0 !important;
     }
 
+    .stat-image::before {
+        content: "";
+        position: absolute;
+        width: clamp(320px, 45vw, 520px);
+        height: clamp(320px, 45vw, 520px);
+        background: radial-gradient(circle, rgba(1, 93, 251, 0.808), transparent 70%);
+        filter: blur(10px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
 
-
+    .stat-image img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
 
 
     .stats div {
         display: flex;
         justify-content: space-between;
-        z-index: 1;
+        z-index: 2;
     }
 
     .stats-head h2 {
@@ -646,6 +666,8 @@
         .stats-head div p {
             font-size: 14px;
         }
+
+
     }
 
     @media (max-width:800px) {
@@ -661,6 +683,8 @@
         .stat-block div p {
             font-size: 15px;
         }
+
+
     }
 
     @media (max-width:550px) {
@@ -668,6 +692,12 @@
         .stats-head h2 {
             font-size: 30px;
 
+        }
+
+        .stat-image {
+            margin-top: 150px;
+            height: 80%;
+            width: 80%;
         }
 
         .stats-head div p {
@@ -1640,6 +1670,9 @@
             </div>
         </div>
 
+        <div class="stat-image">
+            <img src="./src/s1.webp" alt="">
+        </div>
 
     </section>
 
