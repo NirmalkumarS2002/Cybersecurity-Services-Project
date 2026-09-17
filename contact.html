@@ -10,6 +10,8 @@
         href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 
 <style>
@@ -949,6 +951,90 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        (function () {
+            var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (reduceMotion || typeof gsap === 'undefined') {
+                return;
+            }
+
+            gsap.registerPlugin(ScrollTrigger);
+            var EASE = 'power3.out';
+            var trig = function (el, start) {
+                return { trigger: el, start: start || 'top 82%', toggleActions: 'play none none reverse' };
+            };
+
+            /* ================= HEADER ================= */
+            gsap.from('.header', { y: -40, opacity: 0, duration: 0.9, ease: EASE, delay: 0.1 });
+
+            /* ================= CONTACT HERO — staggered build-up ================= */
+            gsap.set('.contact-hero-content h1, .contact-hero-content p, .contact-hero-content a', { opacity: 0, y: 26 });
+            gsap.set('.ch-visual', { opacity: 0, scale: 0.9 });
+
+            var heroTl = gsap.timeline({ defaults: { ease: EASE } });
+            heroTl
+                .to('.contact-hero-content h1', { opacity: 1, y: 0, duration: 0.9 }, 0.2)
+                .to('.contact-hero-content p', { opacity: 1, y: 0, duration: 0.8 }, 0.45)
+                .to('.contact-hero-content a', { opacity: 1, y: 0, duration: 0.7 }, 0.65)
+                .to('.ch-visual', { opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.4)' }, 0.35)
+                .eventCallback('onComplete', function () {
+                    gsap.to('.ch-visual', { y: -12, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+                });
+
+            /* ================= GET IN TOUCH — visual slide + form card rise ================= */
+            gsap.set('.gt-eyebrow, .gt-heading', { opacity: 0, y: 24 });
+            gsap.to('.gt-eyebrow', { opacity: 1, y: 0, duration: 0.6, ease: EASE, scrollTrigger: trig('.gt-section') });
+            gsap.to('.gt-heading', { opacity: 1, y: 0, duration: 0.7, ease: EASE, delay: 0.1, scrollTrigger: trig('.gt-section') });
+
+            gsap.set('.gt-visual', { opacity: 0, x: -60, scale: 0.94 });
+            gsap.set('.gt-form-card', { opacity: 0, x: 60 });
+            gsap.to('.gt-visual', { opacity: 1, x: 0, scale: 1, duration: 0.9, ease: EASE, scrollTrigger: trig('.gt-grid') });
+            gsap.to('.gt-form-card', { opacity: 1, x: 0, duration: 0.9, ease: EASE, scrollTrigger: trig('.gt-grid') });
+
+            gsap.set('.gt-row, .gt-form-card textarea, .gt-consent, .gt-form-card button', { opacity: 0, y: 16 });
+            gsap.to('.gt-row, .gt-form-card textarea, .gt-consent, .gt-form-card button', {
+                opacity: 1, y: 0, duration: 0.5, ease: EASE, stagger: 0.08,
+                scrollTrigger: trig('.gt-form-card', 'top 75%')
+            });
+
+            /* ================= CONTACT INFO — card fade + items pop, map rise ================= */
+            gsap.set('.info-card > div:first-child', { opacity: 0, x: -40 });
+            gsap.to('.info-card > div:first-child', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.info-card') });
+
+            gsap.set('.info-item', { opacity: 0, y: 30, scale: 0.92 });
+            gsap.to('.info-item', {
+                opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'back.out(1.6)', stagger: 0.12,
+                scrollTrigger: trig('.info-card')
+            });
+            gsap.utils.toArray('.info-item .material-symbols-outlined').forEach(function (icon) {
+                gsap.from(icon, {
+                    rotate: -180, scale: 0.3, duration: 0.7, ease: 'back.out(2)',
+                    scrollTrigger: trig(icon, 'top 90%')
+                });
+            });
+
+            gsap.set('.map-heading', { opacity: 0, y: 24 });
+            gsap.to('.map-heading', { opacity: 1, y: 0, duration: 0.7, ease: EASE, scrollTrigger: trig('.map-heading') });
+
+            gsap.set('.map-frame', { opacity: 0, y: 40, scale: 0.97 });
+            gsap.to('.map-frame', { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: EASE, scrollTrigger: trig('.map-frame') });
+
+            /* ================= FOOTER — bookend slide with center fade-up ================= */
+            gsap.set('.footer-brand', { opacity: 0, x: -60 });
+            gsap.set('.footer-contact', { opacity: 0, x: 60 });
+            gsap.set('.footer-links-wrap, .footer-follow', { opacity: 0, y: 40 });
+
+            gsap.to('.footer-brand', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.footer', 'top 90%') });
+            gsap.to('.footer-contact', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.footer', 'top 90%') });
+            gsap.to('.footer-links-wrap, .footer-follow', {
+                opacity: 1, y: 0, duration: 0.7, ease: EASE, stagger: 0.15,
+                scrollTrigger: trig('.footer', 'top 90%')
+            });
+
+            ScrollTrigger.refresh();
+        })();
+    </script>
 </body>
 
 </html>

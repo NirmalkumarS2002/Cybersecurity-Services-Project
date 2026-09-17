@@ -10,6 +10,8 @@
         href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 
 <style>
@@ -34,83 +36,36 @@
         --pcolor: #015EFB;
     }
 
-    /* ===== Scroll-reveal animation system ===== */
+    /* ===== GSAP-driven animation system =====
+       Base "hidden" states only — GSAP (ScrollTrigger for sections,
+       a page-load timeline for the hero) does all the tweening below. */
     @media (prefers-reduced-motion: no-preference) {
-        .reveal {
-            opacity: 0;
-            transform: translateY(36px);
-            transition: opacity .8s cubic-bezier(.16, .8, .3, 1), transform .8s cubic-bezier(.16, .8, .3, 1);
-            transition-delay: calc(var(--i, 0) * 100ms);
-        }
-
-        .reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-fade {
-            opacity: 0;
-            transition: opacity 1s ease;
-            transition-delay: calc(var(--i, 0) * 100ms);
-        }
-
-        .reveal-fade.is-visible {
-            opacity: 1;
-        }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.94);
-            transition: opacity .8s cubic-bezier(.16, .8, .3, 1), transform .8s cubic-bezier(.16, .8, .3, 1);
-            transition-delay: calc(var(--i, 0) * 100ms);
-        }
-
-        .reveal-scale.is-visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .hero-title {
-            opacity: 0;
-            transform: translateY(24px);
-            animation: heroIn .9s cubic-bezier(.16, .8, .3, 1) .1s forwards;
-        }
-
-        .eyebrow {
-            opacity: 0;
-            animation: heroIn .7s cubic-bezier(.16, .8, .3, 1) forwards;
-        }
-
-        .hero-description {
-            opacity: 0;
-            transform: translateY(24px);
-            animation: heroIn .9s cubic-bezier(.16, .8, .3, 1) .25s forwards;
-        }
-
-        .hero-buttions {
-            opacity: 0;
-            transform: translateY(24px);
-            animation: heroIn .9s cubic-bezier(.16, .8, .3, 1) .4s forwards;
-        }
-
+        .reveal,
+        .reveal-scale,
+        .reveal-fade,
+        .eyebrow,
+        .hero-title,
+        .hero-description,
+        .hero-buttions,
         .hero-image {
             opacity: 0;
-            transform: scale(0.92);
-            animation: heroImgIn 1.1s cubic-bezier(.16, .8, .3, 1) .3s forwards;
         }
 
-        @keyframes heroIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Slider-style wipe reveals for the big image blocks */
+        .wipe-reveal[data-wipe="ltr"] {
+            clip-path: inset(0 100% 0 0);
         }
 
-        @keyframes heroImgIn {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        .wipe-reveal[data-wipe="rtl"] {
+            clip-path: inset(0 0 0 100%);
+        }
+
+        .wipe-reveal[data-wipe="ttb"] {
+            clip-path: inset(0 0 100% 0);
+        }
+
+        .wipe-reveal[data-wipe="btt"] {
+            clip-path: inset(100% 0 0 0);
         }
     }
 
@@ -1691,7 +1646,7 @@
             <p class="reveal" style="--i:1">Strengthen your network's defenses with ou r Comoprehensivee Network
                 Fortification Service</p>
 
-            <div class="our-image-wrap reveal-scale">
+            <div class="our-image-wrap wipe-reveal" data-wipe="ltr">
                 <img src="./src/1.webp" alt="services image" class="our-image">
             </div>
 
@@ -1706,7 +1661,7 @@
         </div>
 
         <div class="exp-container">
-            <div class="exp-image-wrap reveal">
+            <div class="exp-image-wrap wipe-reveal" data-wipe="btt">
                 <img src="./src/3.webp" alt="expertise">
             </div>
 
@@ -1766,7 +1721,7 @@
                     page means something happened.</p>
             </div>
 
-            <div class="why-image-card reveal-scale" style="--i:2">
+            <div class="why-image-card wipe-reveal" data-wipe="ttb">
                 <img src="./src/2.webp" alt="cybersecurity expert">
             </div>
 
@@ -1790,7 +1745,7 @@
 
     <section class="how-it-works">
 
-        <div class="how-image-wrap reveal">
+        <div class="how-image-wrap wipe-reveal" data-wipe="rtl">
             <img src="./src/4.webp" alt="team working together">
         </div>
 
@@ -1973,22 +1928,228 @@
 
     <script src="script.js"></script>
     <script>
-        // Scroll-reveal: fires each .reveal / .reveal-scale / .reveal-fade element into view once
         (function () {
-            var els = document.querySelectorAll('.reveal, .reveal-scale, .reveal-fade');
-            if (!('IntersectionObserver' in window)) {
-                els.forEach(function (el) { el.classList.add('is-visible'); });
+            var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // Fallback: no GSAP loaded, or user prefers reduced motion -> just show everything, no clipping.
+            if (reduceMotion || typeof gsap === 'undefined') {
+                document.querySelectorAll('.reveal, .reveal-scale, .reveal-fade, .eyebrow, .hero-title, .hero-description, .hero-buttions, .hero-image')
+                    .forEach(function (el) { el.style.opacity = 1; });
+                document.querySelectorAll('.wipe-reveal').forEach(function (el) { el.style.clipPath = 'inset(0 0 0 0)'; });
                 return;
             }
-            var io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        io.unobserve(entry.target);
+
+            gsap.registerPlugin(ScrollTrigger);
+            var EASE = 'power3.out';
+            var trig = function (el, start) {
+                return { trigger: el, start: start || 'top 82%', toggleActions: 'play none none reverse' };
+            };
+
+            /* ================= HEADER ================= */
+            gsap.from('.header', { y: -40, opacity: 0, duration: 0.9, ease: EASE, delay: 0.1 });
+
+            /* ================= HERO — staggered build-up + idle float ================= */
+            gsap.set('.eyebrow, .hero-title, .hero-description, .hero-buttions', { y: 26 });
+            gsap.set('.hero-image', { scale: 0.9 });
+
+            var heroTl = gsap.timeline({ defaults: { ease: EASE } });
+            heroTl
+                .to('.eyebrow', { opacity: 1, y: 0, duration: 0.6 }, 0.15)
+                .to('.hero-title', { opacity: 1, y: 0, duration: 0.9 }, 0.3)
+                .to('.hero-description', { opacity: 1, y: 0, duration: 0.9 }, 0.55)
+                .to('.hero-buttions', { opacity: 1, y: 0, duration: 0.8 }, 0.75)
+                .to('.hero-image', { opacity: 1, scale: 1, duration: 1.1, ease: 'back.out(1.4)' }, 0.4)
+                .eventCallback('onComplete', function () {
+                    gsap.to('.hero-image', { y: -14, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+                });
+
+            /* ================= STATS — bookend slide-in + alternating card cascade + spinning glow ================= */
+            gsap.set('.stats-head h2', { x: -90 });
+            gsap.set('.stats-head > div', { x: 90 });
+            gsap.to('.stats-head h2', { opacity: 1, x: 0, duration: 0.9, ease: EASE, scrollTrigger: trig('.stats') });
+            gsap.to('.stats-head > div', { opacity: 1, x: 0, duration: 0.9, ease: EASE, scrollTrigger: trig('.stats') });
+
+            gsap.utils.toArray('.client-stat').forEach(function (card, i) {
+                var fromLeft = i % 2 === 0;
+                gsap.set(card, { x: fromLeft ? -70 : 70, rotate: fromLeft ? -4 : 4 });
+                gsap.to(card, {
+                    opacity: 1, x: 0, rotate: 0, duration: 0.8, ease: 'back.out(1.6)',
+                    scrollTrigger: trig(card, 'top 88%')
+                });
+            });
+
+            gsap.set('.stat-image', { scale: 0.6, rotate: -25 });
+            gsap.to('.stat-image', {
+                opacity: 0.5, scale: 1, rotate: 0, duration: 1.3, ease: EASE,
+                scrollTrigger: trig('.stats'),
+                onComplete: function () { gsap.to('.stat-image', { rotate: 360, duration: 40, ease: 'none', repeat: -1 }); }
+            });
+
+            /* ================= OUR SERVICES — left/right slides + curtain-wipe images ================= */
+            gsap.set('.network h2:nth-of-type(1), .network > p:nth-of-type(1)', { x: -60 });
+            gsap.set('.network h2:nth-of-type(2), .network > p:nth-of-type(2)', { x: 60 });
+
+            gsap.to('.network h2:nth-of-type(1)', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.network h2:nth-of-type(1)', 'top 85%') });
+            gsap.to('.network > p:nth-of-type(1)', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.network > p:nth-of-type(1)', 'top 85%') });
+            gsap.to('.network h2:nth-of-type(2)', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.network h2:nth-of-type(2)', 'top 85%') });
+            gsap.to('.network > p:nth-of-type(2)', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.network > p:nth-of-type(2)', 'top 85%') });
+
+            gsap.utils.toArray('.our-des').forEach(function (el) {
+                gsap.set(el, { y: 30 });
+                gsap.to(el, { opacity: 1, y: 0, duration: 0.8, ease: EASE, scrollTrigger: trig(el) });
+            });
+            gsap.utils.toArray('.our-title').forEach(function (el) {
+                gsap.set(el, { y: 30 });
+                gsap.to(el, { opacity: 1, y: 0, duration: 0.8, ease: EASE, scrollTrigger: trig(el) });
+            });
+
+            gsap.set('.exp-content', { opacity: 1 });
+            gsap.set('.exp-content h2', { y: 30 });
+            gsap.to('.exp-content h2', { opacity: 1, y: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.exp-content') });
+
+            gsap.set('.expertise-block', { x: 60 });
+            gsap.to('.expertise-block', {
+                opacity: 1, x: 0, duration: 0.7, ease: EASE, stagger: 0.15,
+                scrollTrigger: trig('.exp-content')
+            });
+            gsap.utils.toArray('.expertise-block span.material-symbols-outlined').forEach(function (icon) {
+                gsap.from(icon, {
+                    rotate: -180, scale: 0.3, duration: 0.7, ease: 'back.out(2)',
+                    scrollTrigger: trig(icon, 'top 90%')
+                });
+            });
+
+            /* ================= WIPE-REVEAL IMAGES — slider curtain transitions ================= */
+            var wipeTo = {
+                ltr: { clipPath: 'inset(0 0% 0 0)' },
+                rtl: { clipPath: 'inset(0 0 0 0%)' },
+                ttb: { clipPath: 'inset(0 0 0% 0)' },
+                btt: { clipPath: 'inset(0% 0 0 0)' }
+            };
+            gsap.utils.toArray('.wipe-reveal').forEach(function (el) {
+                var dir = el.getAttribute('data-wipe');
+                gsap.to(el, {
+                    clipPath: wipeTo[dir].clipPath,
+                    duration: 1.1,
+                    ease: 'power4.inOut',
+                    scrollTrigger: trig(el, 'top 85%')
+                });
+                var img = el.querySelector('img');
+                if (img) {
+                    gsap.fromTo(img, { scale: 1.25 }, { scale: 1, duration: 1.4, ease: 'power2.out', scrollTrigger: trig(el, 'top 85%') });
+                }
+            });
+
+            /* ================= WHY-CHOOSE — bookend heading + 3D flip-in cards ================= */
+            gsap.set('.why-head h2', { x: -70 });
+            gsap.set('.why-btn', { x: 70 });
+            gsap.to('.why-head h2', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.why-head') });
+            gsap.to('.why-btn', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.why-head') });
+
+            gsap.set('.why-card', { rotateY: -85, transformPerspective: 800, transformOrigin: 'left center' });
+            gsap.to('.why-card', {
+                opacity: 1, rotateY: 0, duration: 0.8, ease: EASE, stagger: 0.15,
+                scrollTrigger: trig('.why-grid')
+            });
+
+            /* ================= HOW IT WORKS — steps swap sides like a slider ================= */
+            gsap.set('.how-content', { opacity: 1 });
+            gsap.set('.how-title', { y: -30 });
+            gsap.to('.how-title', { opacity: 1, y: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.how-content') });
+
+            gsap.utils.toArray('.how-step').forEach(function (step, i) {
+                var fromLeft = i % 2 === 0;
+                gsap.set(step, { x: fromLeft ? -60 : 60 });
+                gsap.to(step, {
+                    opacity: 1, x: 0, duration: 0.7, ease: EASE,
+                    scrollTrigger: trig(step, 'top 88%')
+                });
+                var icon = step.querySelector('.how-step-icon');
+                if (icon) {
+                    gsap.from(icon, {
+                        scale: 0, rotate: fromLeft ? -90 : 90, duration: 0.6, ease: 'back.out(2.5)',
+                        scrollTrigger: trig(step, 'top 88%')
+                    });
+                }
+            });
+
+            /* ================= TESTIMONIALS — carousel-style cascade from the right ================= */
+            gsap.set('.testi-title', { y: -30 });
+            gsap.to('.testi-title', { opacity: 1, y: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.testimonials') });
+
+            gsap.set('.testi-card', { x: 130 });
+            gsap.to('.testi-card', {
+                opacity: 1, x: 0, duration: 0.8, ease: EASE, stagger: 0.18,
+                scrollTrigger: trig('.testi-grid')
+            });
+
+            gsap.from('.testi-rating', {
+                opacity: 0, scale: 0.7, duration: 0.6, ease: 'back.out(2)',
+                scrollTrigger: trig('.testi-rating', 'top 92%')
+            });
+
+            /* ================= CTA — zoom-in punch ================= */
+            gsap.set('.cta-eyebrow, .cta-title, .cta-des', { scale: 0.85 });
+            gsap.to('.cta-eyebrow', { opacity: 1, scale: 1, duration: 0.5, ease: EASE, scrollTrigger: trig('.cta-section', 'top 78%') });
+            gsap.to('.cta-title', { opacity: 1, scale: 1, duration: 0.6, ease: EASE, delay: 0.1, scrollTrigger: trig('.cta-section', 'top 78%') });
+            gsap.to('.cta-des', { opacity: 1, scale: 1, duration: 0.6, ease: EASE, delay: 0.2, scrollTrigger: trig('.cta-section', 'top 78%') });
+            gsap.set('.cta-btn', { scale: 0.6 });
+            gsap.to('.cta-btn', {
+                opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(2.2)', delay: 0.3,
+                scrollTrigger: trig('.cta-section', 'top 78%')
+            });
+
+            /* ================= FOOTER — bookend slide with center fade-up ================= */
+            gsap.set('.footer-brand', { x: -60 });
+            gsap.set('.footer-contact', { x: 60 });
+            gsap.set('.footer-links-wrap, .footer-follow', { y: 40 });
+
+            gsap.to('.footer-brand', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.footer', 'top 90%') });
+            gsap.to('.footer-contact', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.footer', 'top 90%') });
+            gsap.to('.footer-links-wrap, .footer-follow', {
+                opacity: 1, y: 0, duration: 0.7, ease: EASE, stagger: 0.15,
+                scrollTrigger: trig('.footer', 'top 90%')
+            });
+
+            /* ================= Catch-all: any leftover generic .reveal/.reveal-fade not covered above ================= */
+            document.querySelectorAll('section, footer').forEach(function (section) {
+                var leftovers = section.querySelectorAll('.reveal:not([style*="--i"]), .reveal-fade');
+                // fallback only fires for anything not already animated (safety net, harmless if empty)
+                var fades = section.querySelectorAll('.reveal-fade');
+                if (fades.length) {
+                    gsap.to(fades, { opacity: 1, duration: 1, stagger: 0.12, scrollTrigger: trig(section) });
+                }
+            });
+
+            /* ================= Stat numbers count up ================= */
+            document.querySelectorAll('.stat-block h1').forEach(function (el) {
+                var raw = el.textContent.trim();
+                var match = raw.match(/[\d.]+/);
+                if (!match) return;
+                var target = parseFloat(match[0]);
+                var suffix = raw.slice(match.index + match[0].length);
+                var isDecimal = match[0].indexOf('.') !== -1;
+                var counter = { val: 0 };
+
+                ScrollTrigger.create({
+                    trigger: el,
+                    start: 'top 88%',
+                    once: true,
+                    onEnter: function () {
+                        gsap.to(counter, {
+                            val: target,
+                            duration: 1.8,
+                            ease: 'power2.out',
+                            onUpdate: function () {
+                                var shown = isDecimal ? counter.val.toFixed(1) : Math.round(counter.val);
+                                el.textContent = shown + suffix;
+                            }
+                        });
                     }
                 });
-            }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-            els.forEach(function (el) { io.observe(el); });
+            });
+
+            ScrollTrigger.refresh();
         })();
     </script>
 </body>
