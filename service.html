@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <style>
@@ -40,246 +43,6 @@
         --muted: rgba(255, 255, 255, 0.65);
     }
 
-
-    .header {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        position: fixed;
-        align-items: center;
-        margin: auto 50px;
-        margin-top: 20px;
-        width: calc(100% - 100px);
-        border: 2px solid rgba(146, 145, 145, 0.336);
-        padding: 7px 20px;
-        border-radius: 50px;
-        gap: 20px;
-        backdrop-filter: blur(20px);
-        background: rgba(99, 99, 99, 0.397);
-        z-index: 99;
-    }
-
-    .company-logo img {
-        width: 150px;
-    }
-
-    .menus {
-        display: flex;
-        justify-content: space-around;
-        gap: 10px;
-    }
-
-    .menus li {
-        list-style: none;
-    }
-
-
-    .menus li a {
-        text-decoration: none;
-        font-size: 15px;
-        color: white;
-        padding: 5px 20px;
-        border-radius: 20px;
-        transition: background .3s ease;
-    }
-
-    .menus li a:hover {
-        background: var(--pcolor);
-    }
-
-
-    .menus li .active {
-        background: var(--pcolor);
-    }
-
-    .login-buttons {
-        display: flex;
-        justify-content: flex-end;
-        gap: 20px;
-        align-items: center;
-    }
-
-    .login-buttons a {
-        text-decoration: none;
-        color: white;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 30px;
-        transition: .5s ease;
-        font-size: 15px;
-    }
-
-    .loginBtn {
-        background: var(--pcolor);
-    }
-
-    .signupBtn:hover {
-        background: var(--pcolor);
-    }
-
-    .menuBtn {
-        display: none;
-    }
-
-    /* sidebar */
-
-    .sidebar {
-        display: none;
-    }
-
-
-    @media (max-width:1060px) {
-
-        .menus {
-            display: none;
-        }
-
-        .login-buttons {
-            display: none;
-        }
-
-        .header {
-            grid-template-columns: 1fr 1fr;
-            margin: auto 30px;
-            margin-top: 20px;
-            width: calc(100% - 60px);
-        }
-
-        .menuBtn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: fit-content;
-            justify-self: flex-end;
-            background: var(--pcolor);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            height: 30px;
-            width: 30px;
-            cursor: pointer;
-
-        }
-
-        .menuBtn span {
-            font-size: 20px;
-        }
-
-        .sidebar {
-            display: block;
-            position: fixed;
-            left: 0px;
-            top: 0px;
-            width: 320px;
-            min-height: 100vh;
-            background: black;
-            padding: 20px 20px;
-            transition: .5s ease;
-            transform: translateX(-100%);
-            z-index: 9999;
-        }
-
-
-        .sidebar.active {
-            transform: translateX(0%);
-        }
-
-        .side-logo img {
-            width: 150px;
-        }
-
-
-        .closeBtn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: fit-content;
-            justify-self: flex-end;
-            background: var(--pcolor);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            height: 25px;
-            width: 25px;
-            cursor: pointer;
-        }
-
-        .closeBtn span {
-            font-size: 18px;
-        }
-
-        .side-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-
-        .sideMenus {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 40px;
-        }
-
-
-        .sideMenus a {
-            text-decoration: none;
-            color: white;
-            width: 100%;
-            padding-left: 10px;
-            padding-block: 10px;
-            transition: .5s ease;
-            font-size: 14px;
-        }
-
-        .sideMenus a:hover {
-            background: var(--pcolor);
-        }
-
-        .sideMenus .active {
-
-            background: var(--pcolor);
-        }
-
-        .side-login-buttons {
-            display: flex;
-            gap: 20px;
-        }
-
-        .side-login-buttons a {
-            text-decoration: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: .5s ease;
-            font-size: 14px;
-        }
-
-        .side-loginBtn {
-            background: var(--pcolor);
-        }
-
-        .side-signupBtn {
-            border: 1px solid var(--pcolor);
-        }
-
-
-    }
-
-
-
-    @media (max-width:500px) {
-        .company-logo img {
-            width: 130px;
-        }
-
-        .header {
-            margin: auto 10px;
-            margin-top: 10px;
-            width: calc(100% - 20px);
-            padding: 5px 20px;
-        }
-    }
 
     /* ============ services hero ============ */
 
@@ -724,33 +487,8 @@
         display: block;
     }
 
-    /* collage-style media for the middle panel */
 
-    .feature-media.collage {
-        background: repeating-linear-gradient(135deg, #0f5c52, #0f5c52 26px, #ffffff 26px, #ffffff 52px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
 
-    .collage-word {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 6px;
-        max-width: 320px;
-    }
-
-    .collage-word span {
-        font-family: Georgia, "Times New Roman", serif;
-        font-weight: 700;
-        font-size: 30px;
-        padding: 4px 8px;
-        border-radius: 3px;
-        transform: rotate(var(--r, 0deg));
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
-    }
 
     @media (max-width: 900px) {
         .features-section {
@@ -901,130 +639,6 @@
     }
 
 
-    /* footer */
-
-    .footer {
-        background: var(--pcolor);
-        padding-block: 100px;
-        padding-inline: 100px;
-        display: grid;
-        grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
-        gap: 30px;
-        color: white;
-    }
-
-    .footer-brand h3 {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 20px;
-        margin-bottom: 25px;
-    }
-
-    .footer-brand p {
-        font-size: 14px;
-        margin-bottom: 15px;
-        line-height: 1.5;
-    }
-
-    .footer-form {
-        display: flex;
-        gap: 10px;
-    }
-
-    .footer-form input {
-        flex: 1;
-        padding: 10px 15px;
-        border-radius: 20px;
-        border: none;
-        outline: none;
-        font-size: 13px;
-    }
-
-    .footer-form button {
-        padding: 10px 20px;
-        border-radius: 20px;
-        border: none;
-        background: black;
-        color: white;
-        font-size: 13px;
-        cursor: pointer;
-        transition: transform .3s ease;
-    }
-
-    .footer-form button:hover {
-        transform: translateY(-3px);
-    }
-
-    .footer h4 {
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
-    .footer-links {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .footer-links a {
-        color: rgba(255, 255, 255, 0.85);
-        text-decoration: none;
-        font-size: 14px;
-    }
-
-    .footer-links a:hover {
-        text-decoration: underline;
-    }
-
-    .footer-social {
-        display: flex;
-        gap: 12px;
-        margin-top: 5px;
-    }
-
-    .footer-social a {
-        height: 32px;
-        width: 32px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.15);
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        font-size: 15px;
-        transition: transform .3s ease, background .3s ease;
-    }
-
-    .footer-social a:hover {
-        transform: translateY(-4px);
-        background: black;
-    }
-
-    .footer-contact p {
-        font-size: 14px;
-        margin-bottom: 12px;
-        line-height: 1.5;
-    }
-
-    @media (max-width:950px) {
-        .footer {
-            grid-template-columns: 1fr 1fr;
-        }
-    }
-
-    @media (max-width:600px) {
-        .footer {
-            grid-template-columns: 1fr;
-            padding: 20px;
-            padding-block: 40px;
-        }
-
-        .footer-form {
-            flex-direction: column;
-        }
-    }
 
     .how-step-text p {
     max-height: 0;
@@ -1047,13 +661,20 @@
     transform: rotate(180deg);
 }
 
-.ferror{
-    color: red;
-    margin-top: 10px;
-}
+
 </style>
 
 <body>
+
+        <div id="preloader">
+
+         <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+    <div class="pre-ring">
+        <span class="material-symbols-outlined">shield_lock</span>
+    </div>
+    <div class="pre-bar"><i></i></div>
+    <p class="pre-text">SECURING <b><span id="preCount">0</span>%</b></p>
+</div>
 
     <header class="header">
 
@@ -1182,7 +803,7 @@
     <section class="how-it-works">
 
         <div class="how-image-wrap reveal">
-            <img src="./src/4.webp" alt="team working together">
+            <img src="./src/s5.webp" alt="team working together">
         </div>
 
         <div class="how-content reveal" style="--i:1">
@@ -1263,7 +884,7 @@
                 </ul>
             </div>
             <div class="feature-media">
-                <img src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&w=1260&h=750&dpr=1"
+                <img src="./src/s2.webp"
                     alt="Analyst monitoring security dashboards">
             </div>
         </div>
@@ -1281,22 +902,9 @@
                     <li>A written post-incident report your board can actually read</li>
                 </ul>
             </div>
-            <div class="feature-media collage">
-                <div class="collage-word">
-                    <span style="background:#e4d9c4; color:#1a1a1a; --r:-4deg;">C</span>
-                    <span style="background:#c94a3b; color:#fdf6ec; --r:3deg;">Y</span>
-                    <span style="background:#f2ece0; color:#111; --r:-2deg;">B</span>
-                    <span style="background:#1a1a1a; color:#f2ece0; --r:5deg;">E</span>
-                    <span style="background:#c94a3b; color:#fdf6ec; --r:-3deg;">R</span>
-                    <span style="background:#f2ece0; color:#111; --r:2deg;">S</span>
-                    <span style="background:#1a1a1a; color:#f2ece0; --r:-5deg;">E</span>
-                    <span style="background:#e4d9c4; color:#1a1a1a; --r:4deg;">C</span>
-                    <span style="background:#c94a3b; color:#fdf6ec; --r:-2deg;">U</span>
-                    <span style="background:#f2ece0; color:#111; --r:3deg;">R</span>
-                    <span style="background:#1a1a1a; color:#f2ece0; --r:-4deg;">I</span>
-                    <span style="background:#e4d9c4; color:#1a1a1a; --r:2deg;">T</span>
-                    <span style="background:#c94a3b; color:#fdf6ec; --r:-3deg;">Y</span>
-                </div>
+            <div class="feature-media">
+              <img src="./src/s3.webp"
+                    alt="Analyst monitoring security dashboards">
             </div>
         </div>
 
@@ -1314,7 +922,7 @@
                 </ul>
             </div>
             <div class="feature-media">
-                <img src="https://images.pexels.com/photos/5380792/pexels-photo-5380792.jpeg?auto=compress&w=1260&h=750&dpr=1"
+                <img src="./src/s4.webp"
                     alt="Dual monitors with security code in a dark room">
             </div>
         </div>
@@ -1376,12 +984,12 @@
         </div>
     </section>
 
-    <footer class="footer">
+        <footer class="footer">
 
         <div class="footer-brand reveal" style="--i:0">
-            <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+            <a href="index.html" class="company-logo"><img src="./src/logo1.webp" alt="company Logo"></a>
             <p>Got Event in Mind? Let's collaborate.</p>
-      <div class="footer-form">
+            <div class="footer-form">
                 <input type="email" placeholder="Enter your email" id="femail">
                 <button class="foot-subBtn">Submit</button>
             </div>
@@ -1402,23 +1010,22 @@
         <div class="footer-follow reveal" style="--i:2">
             <h4>Follow us</h4>
             <div class="footer-social">
-                <a href="#"><span class="material-symbols-outlined">photo_camera</span></a>
-                <a href="#">X</a>
-                <a href="#"><span class="material-symbols-outlined">alternate_email</span></a>
-                <a href="#"><span class="material-symbols-outlined">smart_display</span></a>
+                <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
 
         <div class="footer-contact reveal" style="--i:3">
             <h4>Contact us</h4>
-            <p>Evolve Studio, 4th Floor, Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha Nagar,
-                Yelenahalli, Begur, Bengaluru, Karnataka -560068</p>
-            <p>info@stackly.com</p>
-            <p>+91 98765 43210</p>
+            <p><span class="material-symbols-outlined">location_on</span><a href="404.html">Evolve Studio, 4th Floor, Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha Nagar,
+                Yelenahalli, Begur, Bengaluru, Karnataka -560068</a></p>
+            <p><span class="material-symbols-outlined">mail</span><a href="404.html">info@stackly.com</a></p>
+            <p><span class="material-symbols-outlined">call</span><a href="404.html">+91 98765 43210</a></p>
         </div>
 
     </footer>
-
     <script src="script.js"></script>
     <script>
         (function () {

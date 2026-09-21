@@ -1,0 +1,3410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly Cybersecurity - Client Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pcolor: #015EFB;
+            --pcolor-light: #4C8CFF;
+            --pcolor-dim: rgba(1, 94, 251, .18);
+            --dark: #000000;
+            --panel-dark: #0b0c10;
+            --ink: #f4f6fb;
+            --sub: rgba(255, 255, 255, .62);
+            --line: rgba(255, 255, 255, .09);
+            --bg: #030507;
+            --card: #101319;
+            --good: #2ec46f;
+            --warn: #ffb020;
+            --tomato: #ff5b4d;
+            --r: 3px;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            overflow-x: hidden;
+            min-height: 100vh;
+            color: var(--ink);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* ================= SIDEBAR ================= */
+        .sidebar {
+            width: 252px;
+            flex-shrink: 0;
+            background: var(--dark);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            transition: width .3s ease;
+            border-right: 1px solid #1c1f26;
+        }
+
+        .sidebar.collapsed {
+            width: 78px;
+        }
+
+        .sidebar.collapsed .nav-group-label,
+        .sidebar.collapsed .side-nav button span.label,
+        .sidebar.collapsed .side-nav button .badge-count,
+        .sidebar.collapsed .sidebar-footer .who,
+        .sidebar.collapsed .sidebar-logo img {
+            display: none;
+        }
+
+        .sidebar.collapsed .sidebar-footer {
+            justify-content: center;
+        }
+
+        .sidebar.collapsed .side-nav button {
+            justify-content: center;
+        }
+
+        .sidebar-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 18px;
+            border-bottom: 1px solid #1c1f26;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-logo img {
+            width: clamp(110px, 12vw, 138px);
+        }
+
+        .rail-toggle {
+            background: #1c1f26;
+            border: none;
+            color: #8892a6;
+            width: 30px;
+            height: 30px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .rail-toggle:hover {
+            color: var(--pcolor-light);
+        }
+
+        .sidebar-logo .adminclose {
+            color: white;
+            display: none;
+            cursor: pointer;
+        }
+
+        .sidebar-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 14px;
+        }
+
+        .nav-group-label {
+            display: block;
+            font-size: 10.5px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #5c6478;
+            padding: 0 10px;
+            margin: 18px 0 10px;
+            font-weight: 700;
+        }
+
+        .nav-group-label:first-child {
+            margin-top: 0;
+        }
+
+        .side-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .side-nav button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 11px 12px 11px 13px;
+            border: none;
+            border-left: 2px solid transparent;
+            background: transparent;
+            color: #97a0b5;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13.5px;
+            font-weight: 600;
+            letter-spacing: .2px;
+            border-radius: 0;
+            cursor: pointer;
+            text-align: left;
+            transition: .3s ease;
+            position: relative;
+        }
+
+        .side-nav button .material-symbols-outlined {
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .side-nav button .badge-count {
+            margin-left: auto;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #d6dbe6;
+            background: #1c1f26;
+            padding: 2px 7px;
+            border-radius: 20px;
+        }
+
+        .side-nav button.active .badge-count {
+            color: var(--pcolor-light);
+            background: rgba(1, 94, 251, .18);
+        }
+
+        .side-nav button:hover {
+            color: #fff;
+            border-left-color: #3a4050;
+        }
+
+        .side-nav button.active {
+            background: transparent;
+            color: var(--pcolor-light);
+            border-left-color: var(--pcolor);
+        }
+
+        .sidebar-footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-top: 1px solid #1c1f26;
+        }
+
+        .sidebar-footer img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer h4 {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .sidebar-footer span {
+            color: #838ba0;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ================= MAIN AREA ================= */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .topbar {
+            background: var(--card);
+            border-bottom: 1px solid var(--line);
+            padding: 14px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .topbar-row1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--sub);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .breadcrumb .current {
+            color: var(--pcolor-light);
+        }
+
+        .topbarimgcontainer {
+            display: none;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .topbarimgcontainer .topbarmenu {
+            font-size: 22px;
+            display: none;
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        .topbarimgcontainer .tlogo {
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tlogo img {
+            width: 100px;
+        }
+
+        .topbar-date {
+            font-size: 12px;
+            color: var(--sub);
+            font-weight: 700;
+        }
+
+        .topbar-row2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .topbar h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 23px;
+            color: var(--ink);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-btn {
+            position: relative;
+            color: var(--sub);
+            cursor: pointer;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            width: 38px;
+            height: 38px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn .dot {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--tomato);
+        }
+
+        .topbar-avatar img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--pcolor);
+        }
+
+        .content-scroll {
+            padding: 22px 28px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .view {
+            display: none;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .view.active {
+            display: flex;
+        }
+
+        .d-btn {
+            padding: 10px 20px;
+            background: var(--pcolor);
+            border: 1px solid var(--pcolor);
+            color: #ffffff;
+            cursor: pointer;
+            transition: .3s ease;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .2px;
+            font-family: 'DM Sans', sans-serif;
+            border-radius: 30px;
+            text-wrap: nowrap;
+        }
+
+        .d-btn:hover {
+            background: var(--pcolor-light);
+            border-color: var(--pcolor-light);
+            color: #fff;
+        }
+
+        .d-btn.ghost {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .d-btn.ghost:hover {
+            background: var(--pcolor-dim);
+            color: var(--ink);
+        }
+
+        .d-btn.small {
+            padding: 6px 14px;
+            font-size: 12px;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 22px;
+            overflow-x: auto;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .panel h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 16.5px;
+            color: var(--ink);
+            margin-bottom: 16px;
+        }
+
+        .panel-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .panel-head h3 {
+            margin-bottom: 0;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chips button {
+            padding: 7px 16px;
+            border-radius: 30px;
+            border: 1px solid var(--line);
+            background: var(--bg);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--sub);
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: .2s ease;
+        }
+
+        .filter-chips button.active,
+        .filter-chips button:hover {
+            background: var(--pcolor);
+            border-color: var(--pcolor);
+            color: #fff;
+        }
+
+        /* ---------- ACTION BANNER ---------- */
+        .alert-banner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            border: 1px solid rgba(255, 176, 32, .35);
+            border-left: 3px solid var(--warn);
+            border-radius: 8px;
+            background: rgba(255, 176, 32, .07);
+        }
+
+        .alert-banner .material-symbols-outlined {
+            color: var(--warn);
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+
+        .alert-banner .a-text {
+            flex: 1;
+        }
+
+        .alert-banner h4 {
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .alert-banner p {
+            font-size: 12.5px;
+            color: var(--sub);
+        }
+
+        /* ---------- BENTO GRID ---------- */
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .bento .span-8 {
+            grid-column: span 8;
+        }
+
+        .bento .span-4 {
+            grid-column: span 4;
+        }
+
+        .bento .span-6 {
+            grid-column: span 6;
+        }
+
+        .bento .span-12 {
+            grid-column: span 12;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-left: 3px solid #2a2e38;
+            border-radius: 8px;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: .25s ease;
+        }
+
+        .stat-card:hover {
+            border-left-color: var(--pcolor);
+        }
+
+        .stat-card .material-symbols-outlined {
+            display: none;
+        }
+
+        .stat-card .stat-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .stat-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 30px;
+            color: var(--ink);
+            line-height: 1;
+        }
+
+        .stat-card h2 small {
+            font-size: 15px;
+            color: var(--sub);
+            font-weight: 600;
+        }
+
+        .stat-card p {
+            font-size: 11.5px;
+            color: var(--sub);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .stat-card .delta {
+            font-size: 11.5px;
+            color: var(--good);
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .stat-card .delta.down {
+            color: var(--tomato);
+        }
+
+        .stat-card .delta.warn {
+            color: var(--warn);
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 14px;
+            height: 180px;
+            padding-top: 10px;
+        }
+
+        .bar-chart .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar-chart .bar {
+            width: 60%;
+            background: linear-gradient(180deg, var(--pcolor-light), var(--pcolor));
+            border-radius: 6px 6px 0 0;
+            min-height: 6px;
+        }
+
+        .bar-chart .bar-col span {
+            font-size: 10.5px;
+            color: var(--sub);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .rank-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .rank-row {
+            display: grid;
+            grid-template-columns: 20px 1fr 40px;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .rank-row .rank-num {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            color: var(--sub);
+        }
+
+        .rank-row .rank-main {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .rank-row .rank-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .rank-row .rank-track {
+            width: 100%;
+            height: 4px;
+            background: var(--bg);
+        }
+
+        .rank-row .rank-fill {
+            height: 100%;
+            background: var(--pcolor-light);
+        }
+
+        .rank-row .rank-pct {
+            text-align: right;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            color: var(--ink);
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .timeline .t-item {
+            display: flex;
+            gap: 14px;
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline .t-item:not(:last-child)::before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 32px;
+            bottom: 0;
+            width: 1px;
+            background: var(--line);
+        }
+
+        .timeline .t-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--pcolor-dim);
+            color: var(--pcolor-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .timeline .t-body h5 {
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+
+        .timeline .t-body p {
+            font-size: 12px;
+            color: var(--sub);
+        }
+
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .event-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px;
+            border-radius: 6px;
+            transition: .2s ease;
+        }
+
+        .event-item:hover {
+            background: var(--bg);
+        }
+
+        .event-date {
+            background: var(--dark);
+            color: var(--pcolor-light);
+            width: 46px;
+            height: 46px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid var(--line);
+        }
+
+        .event-date strong {
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1;
+        }
+
+        .event-date span {
+            font-size: 9px;
+            text-transform: uppercase;
+        }
+
+        .event-info h5 {
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .event-info p {
+            font-size: 11.5px;
+            color: var(--sub);
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .quick-actions button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border: none;
+            border-right: 1px solid var(--line);
+            background: transparent;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: .2s ease;
+        }
+
+        .quick-actions button:last-child {
+            border-right: none;
+        }
+
+        .quick-actions button:hover {
+            background: var(--bg);
+        }
+
+        .quick-actions button:hover span {
+            color: var(--pcolor-light);
+        }
+
+        .quick-actions .material-symbols-outlined {
+            color: var(--ink);
+            font-size: 19px;
+        }
+
+        .quick-actions span {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--ink);
+            text-align: left;
+            transition: .2s ease;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            text-align: left;
+            font-size: 11px;
+            color: var(--sub);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--line);
+            font-weight: 800;
+        }
+
+        tbody td {
+            padding: 13px 12px;
+            font-size: 13px;
+            color: var(--ink);
+            border-bottom: 1px solid var(--line);
+            text-wrap: nowrap;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr {
+            transition: .2s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .cell-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .cell-item img {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .badge.delivered {
+            background: rgba(46, 196, 111, 0.16);
+            color: var(--good);
+        }
+
+        .badge.transit {
+            background: var(--pcolor-dim);
+            color: var(--pcolor-light);
+        }
+
+        .badge.pending {
+            background: rgba(255, 176, 32, 0.16);
+            color: var(--warn);
+        }
+
+        .badge.critical {
+            background: rgba(255, 91, 77, 0.16);
+            color: var(--tomato);
+        }
+
+        .badge.active {
+            background: rgba(46, 196, 111, 0.16);
+            color: var(--good);
+        }
+
+        .badge.maintenance {
+            background: rgba(255, 176, 32, 0.16);
+            color: var(--warn);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .pagination button {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 1px solid var(--line);
+            background: var(--bg);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--ink);
+            cursor: pointer;
+            transition: .5s ease;
+        }
+
+        .pagination button:hover {
+            background: var(--pcolor);
+            border-color: var(--pcolor);
+            color: #fff;
+        }
+
+        .pagination button.active {
+            background: var(--pcolor);
+            border-color: var(--pcolor);
+            color: #fff;
+        }
+
+        /* analyst grid */
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .fleet-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px;
+            transition: .3s ease;
+        }
+
+        .fleet-card:hover {
+            border-color: var(--pcolor);
+            box-shadow: 0 8px 20px rgba(1, 94, 251, 0.18);
+        }
+
+        .fleet-card img {
+            width: 76px;
+            height: 76px;
+            border-radius: 8px;
+            object-fit: cover;
+            object-position: top;
+            flex-shrink: 0;
+        }
+
+        .fleet-card-body {
+            flex: 1;
+        }
+
+        .fleet-card-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--ink);
+            margin-bottom: 5px;
+        }
+
+        .fleet-card-body p {
+            font-size: 11.5px;
+            color: var(--sub);
+            margin-bottom: 8px;
+        }
+
+        .fleet-card-body .contact-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .contact-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .contact-row .material-symbols-outlined {
+            font-size: 15px;
+            color: var(--pcolor-light);
+            background: var(--pcolor-dim);
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .contact-row span {
+            cursor: pointer;
+        }
+
+        /* site gallery */
+        .wh-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .wh-card {
+            position: relative;
+            overflow: hidden;
+            height: 170px;
+            border-radius: 10px;
+            border: 1px solid var(--line);
+            background: #0b0c10;
+        }
+
+        .wh-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .6s ease;
+        }
+
+        .wh-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .wh-card .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(3, 5, 7, 0.1) 40%, rgba(3, 5, 7, 0.92) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 16px;
+        }
+
+        .wh-card .overlay h4 {
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .wh-card .overlay span {
+            color: var(--pcolor-light);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .budget-row {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .budget-item h5 {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .budget-item h5 span {
+            color: var(--sub);
+            font-weight: 700;
+        }
+
+        .budget-track {
+            width: 100%;
+            height: 9px;
+            background: var(--bg);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+        }
+
+        .budget-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pcolor), var(--pcolor-light));
+            border-radius: 30px;
+        }
+
+        .student-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .student-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+        }
+
+        .student-row img {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .student-row .s-info {
+            flex: 1;
+        }
+
+        .student-row .s-info h5 {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .student-row .s-info p {
+            font-size: 11.5px;
+            color: var(--sub);
+        }
+
+        /* ---------- service gallery cards ---------- */
+        .listing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .listing-card {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--card);
+            transition: .3s ease;
+            cursor: pointer;
+        }
+
+        .listing-card:hover {
+            border-color: var(--pcolor);
+            box-shadow: 0 8px 20px rgba(1, 94, 251, 0.18);
+        }
+
+        .listing-card .l-img {
+            position: relative;
+            height: 150px;
+            background: #0b0c10;
+        }
+
+        .listing-card .l-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .listing-card .l-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--dark);
+            color: var(--pcolor-light);
+            font-size: 10.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .listing-card .l-body {
+            padding: 14px 16px;
+        }
+
+        .listing-card .l-body h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 15.5px;
+            margin-bottom: 4px;
+        }
+
+        .listing-card .l-body p.loc {
+            font-size: 11.5px;
+            color: var(--sub);
+            margin-bottom: 10px;
+        }
+
+        .listing-card .l-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--line);
+            padding-top: 10px;
+        }
+
+        .listing-card .l-price {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: var(--ink);
+        }
+
+        .listing-card .l-specs {
+            display: flex;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--sub);
+            font-weight: 700;
+        }
+
+        /* ---------- pipeline / kanban ---------- */
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .pipeline-col h4 {
+            font-size: 11.5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--sub);
+            font-weight: 800;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--pcolor);
+        }
+
+        .pipeline-card {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .pipeline-card h5 {
+            font-size: 12.5px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .pipeline-card p {
+            font-size: 11px;
+            color: var(--sub);
+            margin-bottom: 8px;
+        }
+
+        .pipeline-card .p-val {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: var(--ink);
+        }
+
+        /* ---------- message inbox ---------- */
+        .inbox-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inbox-row {
+            display: flex;
+            gap: 14px;
+            padding: 14px 6px;
+            border-bottom: 1px solid var(--line);
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .inbox-row:last-child {
+            border-bottom: none;
+        }
+
+        .inbox-row:hover {
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .inbox-row.unread {
+            border-left: 2px solid var(--pcolor);
+        }
+
+        .inbox-row img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .inbox-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .inbox-body .inbox-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .inbox-body h5 {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .inbox-body .inbox-time {
+            font-size: 11px;
+            color: var(--sub);
+            text-wrap: nowrap;
+        }
+
+        .inbox-body p {
+            font-size: 12px;
+            color: var(--sub);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ---------- calendar ---------- */
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+        }
+
+        .cal-grid .cal-dow {
+            font-size: 10.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--sub);
+            text-align: center;
+            padding-bottom: 8px;
+        }
+
+        .cal-cell {
+            aspect-ratio: 1;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--ink);
+            position: relative;
+        }
+
+        .cal-cell.muted {
+            color: rgba(255, 255, 255, .22);
+        }
+
+        .cal-cell.has-event::after {
+            content: "";
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--pcolor-light);
+        }
+
+        .cal-cell.today {
+            border-color: var(--pcolor);
+            border-width: 2px;
+        }
+
+        /* ---------- service extras ---------- */
+        .ingredient-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .ingredient-tags span {
+            font-size: 10.5px;
+            font-weight: 700;
+            color: var(--sub);
+            background: var(--bg);
+            border: 1px solid var(--line);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        .stars {
+            color: var(--pcolor-light);
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .review-row {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .review-row:last-child {
+            border-bottom: none;
+        }
+
+        .review-row img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .review-body h5 {
+            font-size: 12.5px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .review-body p {
+            font-size: 12px;
+            color: var(--sub);
+        }
+
+        .combo-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .combo-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+        }
+
+        .combo-row img {
+            width: 46px;
+            height: 46px;
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .combo-row .c-info {
+            flex: 1;
+        }
+
+        .combo-row .c-info h5 {
+            font-size: 12.5px;
+            font-weight: 800;
+        }
+
+        .combo-row .c-info p {
+            font-size: 11px;
+            color: var(--sub);
+        }
+
+        .combo-row .c-price {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: var(--ink);
+        }
+
+        @media (max-width: 1250px) {
+            .bento .span-8 {
+                grid-column: span 12;
+            }
+
+            .bento .span-4 {
+                grid-column: span 12;
+            }
+
+            .bento .span-6 {
+                grid-column: span 12;
+            }
+        }
+
+        @media (max-width: 1100px) {
+
+            .stat-row,
+            .wh-grid,
+            .listing-grid,
+            .pipeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                position: fixed;
+                inset: 0px;
+                transform: translateX(-120%);
+                transition: .2s ease;
+                z-index: 9999;
+                width: 280px !important;
+            }
+
+            body.menu-open {
+                overflow: hidden;
+                height: 100vh;
+            }
+
+            .sidebar-logo {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .sidebar.vis {
+                transform: translateX(0);
+            }
+
+            .sidebar.collapsed .nav-group-label,
+            .sidebar.collapsed .side-nav button span.label,
+            .sidebar.collapsed .side-nav button .badge-count,
+            .sidebar.collapsed .sidebar-footer .who,
+            .sidebar.collapsed .sidebar-logo img {
+                display: initial;
+            }
+
+
+            .rail-toggle {
+                display: none;
+            }
+
+            .topbar>h2 {
+                display: none;
+            }
+
+            .topbar {
+                padding: 14px 16px;
+            }
+
+            .topbarimgcontainer {
+                display: flex;
+            }
+
+            .topbarimgcontainer .topbarmenu,
+            .topbarimgcontainer .tlogo {
+                display: flex;
+            }
+
+            .sidebar-top {
+                justify-content: space-between;
+            }
+
+            .sidebar-logo .adminclose {
+                display: block;
+            }
+
+            .content-scroll {
+                padding: 18px 16px 30px;
+            }
+
+            .fleet-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .alert-banner {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 560px) {
+
+            .stat-row,
+            .wh-grid,
+            .quick-actions,
+            .listing-grid,
+            .pipeline {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar-row2 {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            #topbarTitle {
+                display: none;
+            }
+
+            .topbar-date {
+                display: none;
+            }
+
+            .icon-btn {
+                width: 28px;
+                height: 28px;
+            }
+
+            .icon-btn span {
+                font-size: 20px;
+            }
+
+            .icon-btn .dot {
+                top: 2px;
+                right: 2px;
+                height: 6px;
+                width: 6px;
+            }
+
+            .topbar-avatar img {
+                width: 35px;
+                height: 35px;
+                margin-top: 4px;
+            }
+
+            .topbar-right {
+                gap: 10px;
+            }
+
+            .fleet-card img {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+
+        
+/* loading */
+
+.company-logo img {
+    width: clamp(130px,14vw,150px);
+}
+
+
+body.is-loading {
+    overflow: hidden;
+}
+
+#preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    transition: opacity .7s ease, visibility .7s ease;
+}
+
+#preloader.done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.pre-ring {
+    position: relative;
+    height: 110px;
+    width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pre-ring::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-top-color: var(--pcolor);
+    border-right-color: var(--pcolor);
+    animation: preSpin 1s linear infinite;
+}
+
+.pre-ring::after {
+    content: "";
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(1, 94, 251, .45), transparent 70%);
+    filter: blur(12px);
+    animation: prePulse 2s ease-in-out infinite;
+    z-index: -1;
+}
+
+.pre-ring span.material-symbols-outlined {
+    font-size: 42px;
+    color: var(--pcolor);
+    animation: prePulse 2s ease-in-out infinite;
+}
+
+.pre-bar {
+    width: min(260px, 70vw);
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+}
+
+.pre-bar i {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--pcolor);
+    border-radius: 3px;
+    transition: width .25s ease;
+}
+
+.pre-text {
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.pre-text b {
+    color: var(--pcolor);
+    font-weight: 500;
+}
+
+@keyframes preSpin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes prePulse {
+    0%, 100% { opacity: .5; transform: scale(1); }
+    50%      { opacity: 1;  transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pre-ring::before,
+    .pre-ring::after,
+    .pre-ring span.material-symbols-outlined {
+        animation: none;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+            <div id="preloader">
+
+         <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+    <div class="pre-ring">
+        <span class="material-symbols-outlined">shield_lock</span>
+    </div>
+    <div class="pre-bar"><i></i></div>
+    <p class="pre-text">SECURING <b><span id="preCount">0</span>%</b></p>
+</div>
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <div class="sidebar-logo">
+                <a href="index.html"><img src="./src/logo.webp" alt="Stackly Logo"></a>
+                <span class="material-symbols-outlined adminclose">close</span>
+            </div>
+            <button class="rail-toggle" id="railToggle"><span
+                    class="material-symbols-outlined">chevron_left</span></button>
+        </div>
+
+        <div class="sidebar-scroll">
+            <span class="nav-group-label">My Security</span>
+            <nav class="side-nav">
+                <button class="active" onclick="showView('overview', this)"><span
+                        class="material-symbols-outlined">dashboard</span> <span class="label">Overview</span></button>
+                <button onclick="showView('incidents', this)"><span class="material-symbols-outlined">report</span>
+                    <span class="label">My Incidents</span><span class="badge-count">3</span></button>
+                <button onclick="showView('services', this)"><span class="material-symbols-outlined">security</span>
+                    <span class="label">My Services</span></button>
+                <button onclick="showView('team', this)"><span class="material-symbols-outlined">shield_person</span>
+                    <span class="label">Security Team</span></button>
+                <button onclick="showView('assets', this)"><span class="material-symbols-outlined">devices</span>
+                    <span class="label">Protected Assets</span></button>
+                <button onclick="showView('reports', this)"><span class="material-symbols-outlined">summarize</span>
+                    <span class="label">Reports</span></button>
+            </nav>
+
+            <span class="nav-group-label">Account</span>
+            <nav class="side-nav">
+                <button onclick="showView('billing', this)"><span class="material-symbols-outlined">payments</span>
+                    <span class="label">Billing</span></button>
+                <button onclick="showView('messages', this)"><span class="material-symbols-outlined">forum</span>
+                    <span class="label">Messages</span><span class="badge-count">3</span></button>
+                <button onclick="showView('calendar', this)"><span
+                        class="material-symbols-outlined">calendar_month</span>
+                    <span class="label">Schedule</span></button>
+
+                <button class="logoutbtn"><span class="material-symbols-outlined">logout</span>
+                    <span class="label">Logout</span></button>
+            </nav>
+        </div>
+
+        <div class="sidebar-footer">
+            <img src="./src/avartar_3.webp" alt="Client admin">
+            <div class="who">
+                <h4 id="username">Priya Sharma</h4>
+                <span>Client</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main">
+
+        <div class="topbar">
+            <div class="topbar-row1">
+                <div class="breadcrumb">
+                    <span>Client Portal</span> <span class="material-symbols-outlined"
+                        style="font-size:14px;">chevron_right</span>
+                    <span class="current" id="crumbTitle">Overview</span>
+                </div>
+                <span class="topbar-date">Meridian Retail &middot; Mon, 21 Sep 2026</span>
+            </div>
+
+            <div class="topbar-row2">
+                <div class="topbarimgcontainer">
+                    <span class="material-symbols-outlined topbarmenu">menu</span>
+                    <div class="tlogo">
+                        <a href="index.html"><img src="./src/logo.webp" alt="Stackly Logo"></a>
+                    </div>
+                </div>
+                <h2 id="topbarTitle">Overview</h2>
+                <div class="topbar-right">
+                    <div class="icon-btn errorpage"><span class="material-symbols-outlined">notifications</span><span
+                            class="dot"></span></div>
+                    <div class="icon-btn errorpage"><span class="material-symbols-outlined">mail</span></div>
+                    <div class="topbar-avatar"><img src="./src/avartar_3.webp"
+                            alt="Client admin"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-scroll">
+
+            <!-- ========== 1. OVERVIEW VIEW ========== -->
+            <div class="view active" id="overview">
+
+                <div class="alert-banner">
+                    <span class="material-symbols-outlined">warning</span>
+                    <div class="a-text">
+                        <h4>1 item needs your approval</h4>
+                        <p>Our analysts recommend restricting public access on the S3 bucket flagged in #INC-2194.
+                            Please approve the change so we can apply it.</p>
+                    </div>
+                    <button class="d-btn errorpage">Review &amp; Approve</button>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">verified_user</span>
+                        <div class="stat-info">
+                            <h2>87<small>/100</small></h2>
+                            <p>Security Score</p>
+                            <span class="delta">+4 points this month</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">security</span>
+                        <div class="stat-info">
+                            <h2>5</h2>
+                            <p>Active Services</p>
+                            <span class="delta">All services healthy</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">report</span>
+                        <div class="stat-info">
+                            <h2>3</h2>
+                            <p>Open Incidents</p>
+                            <span class="delta warn">1 needs your action</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">devices</span>
+                        <div class="stat-info">
+                            <h2>1,248</h2>
+                            <p>Assets Monitored</p>
+                            <span class="delta">+36 added this month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="errorpage"><span class="material-symbols-outlined">post_add</span><span>Report
+                                an Incident</span></button>
+                        <button class="errorpage"><span class="material-symbols-outlined">add_circle</span><span>Request
+                                a Service</span></button>
+                        <button class="errorpage"><span class="material-symbols-outlined">download</span><span>Download
+                                Latest Report</span></button>
+                        <button class="errorpage"><span class="material-symbols-outlined">support_agent</span><span>Contact
+                                My Analyst</span></button>
+                    </div>
+                </div>
+
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>Incidents Trend</h3>
+                            <span class="topbar-date">Last 6 Months &middot; Down 44%</span>
+                        </div>
+                        <div class="bar-chart">
+                            <div class="bar-col">
+                                <div class="bar" style="height:100%;"></div><span>Apr</span>
+                            </div>
+                            <div class="bar-col">
+                                <div class="bar" style="height:88%;"></div><span>May</span>
+                            </div>
+                            <div class="bar-col">
+                                <div class="bar" style="height:80%;"></div><span>Jun</span>
+                            </div>
+                            <div class="bar-col">
+                                <div class="bar" style="height:66%;"></div><span>Jul</span>
+                            </div>
+                            <div class="bar-col">
+                                <div class="bar" style="height:58%;"></div><span>Aug</span>
+                            </div>
+                            <div class="bar-col">
+                                <div class="bar" style="height:44%;"></div><span>Sep</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel span-4">
+                        <h3>Top Threats Blocked</h3>
+                        <div class="rank-list">
+                            <div class="rank-row">
+                                <span class="rank-num">01</span>
+                                <div class="rank-main">
+                                    <div class="rank-label"><span>Phishing Emails</span></div>
+                                    <div class="rank-track">
+                                        <div class="rank-fill" style="width:46%;"></div>
+                                    </div>
+                                </div>
+                                <span class="rank-pct">46%</span>
+                            </div>
+                            <div class="rank-row">
+                                <span class="rank-num">02</span>
+                                <div class="rank-main">
+                                    <div class="rank-label"><span>Malicious Login Attempts</span></div>
+                                    <div class="rank-track">
+                                        <div class="rank-fill" style="width:27%;"></div>
+                                    </div>
+                                </div>
+                                <span class="rank-pct">27%</span>
+                            </div>
+                            <div class="rank-row">
+                                <span class="rank-num">03</span>
+                                <div class="rank-main">
+                                    <div class="rank-label"><span>Malware on Endpoints</span></div>
+                                    <div class="rank-track">
+                                        <div class="rank-fill" style="width:15%;"></div>
+                                    </div>
+                                </div>
+                                <span class="rank-pct">15%</span>
+                            </div>
+                            <div class="rank-row">
+                                <span class="rank-num">04</span>
+                                <div class="rank-main">
+                                    <div class="rank-label"><span>Cloud Misconfigurations</span></div>
+                                    <div class="rank-track">
+                                        <div class="rank-fill" style="width:12%;"></div>
+                                    </div>
+                                </div>
+                                <span class="rank-pct">12%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>Recent Incident Activity</h3>
+                            <button class="d-btn errorpage">View All</button>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Incident Type</th>
+                                    <th>Latest Update</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td class="cell-item">#INC-2246</td>
+                                    <td>Phishing Campaign Contained</td>
+                                    <td>Root cause report sent</td>
+                                    <td><span class="badge delivered">Resolved</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell-item">#INC-2241</td>
+                                    <td>Suspicious Login Attempts</td>
+                                    <td>Under active investigation</td>
+                                    <td><span class="badge transit">In Progress</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell-item">#INC-2194</td>
+                                    <td>Misconfigured S3 Bucket</td>
+                                    <td>Waiting for your approval</td>
+                                    <td><span class="badge pending">Pending</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="cell-item">#INC-2232</td>
+                                    <td>Ransomware Alert - Endpoint</td>
+                                    <td>Contained, monitoring</td>
+                                    <td><span class="badge delivered">Resolved</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="panel span-4">
+                        <h3>Upcoming Security Events</h3>
+                        <div class="event-list">
+                            <div class="event-item">
+                                <div class="event-date"><strong>22</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Weekly Security Review</h5>
+                                    <p>With your analyst, 11:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>24</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Quarterly Threat Briefing</h5>
+                                    <p>Head Analyst, 10:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>28</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Penetration Test Kickoff</h5>
+                                    <p>OMR Head Office</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>30</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Monthly Report Delivery</h5>
+                                    <p>Sent to your inbox</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel span-6">
+                        <h3>Your Security Posture</h3>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Average Response Time</td>
+                                    <td style="text-align:right;font-weight:800;color:var(--ink);">14 mins</td>
+                                </tr>
+                                <tr>
+                                    <td>Threats Blocked This Month</td>
+                                    <td style="text-align:right;font-weight:800;color:var(--ink);">12,480</td>
+                                </tr>
+                                <tr>
+                                    <td>Open Vulnerabilities (Critical)</td>
+                                    <td style="text-align:right;font-weight:800;color:var(--ink);">23 (2)</td>
+                                </tr>
+                                <tr>
+                                    <td>MFA Coverage</td>
+                                    <td style="text-align:right;font-weight:800;color:var(--ink);">94%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="panel span-6">
+                        <h3>Recent Activity</h3>
+                        <div class="timeline">
+                            <div class="t-item">
+                                <div class="t-dot"><span class="material-symbols-outlined"
+                                        style="font-size:15px;">task_alt</span></div>
+                                <div class="t-body">
+                                    <h5>Incident #INC-2246 marked resolved</h5>
+                                    <p>Divya Krishnan &middot; 10 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <div class="t-dot"><span class="material-symbols-outlined"
+                                        style="font-size:15px;">description</span></div>
+                                <div class="t-body">
+                                    <h5>August security report is ready to download</h5>
+                                    <p>Reporting Desk &middot; 2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <div class="t-dot"><span class="material-symbols-outlined"
+                                        style="font-size:15px;">event</span></div>
+                                <div class="t-body">
+                                    <h5>Pen test kickoff scheduled for Sep 28</h5>
+                                    <p>Red Team &middot; 5 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <div class="t-dot"><span class="material-symbols-outlined"
+                                        style="font-size:15px;">devices</span></div>
+                                <div class="t-body">
+                                    <h5>36 new endpoints added to monitoring</h5>
+                                    <p>SOC Team &middot; Yesterday</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 2. MY INCIDENTS VIEW ========== -->
+            <div class="view" id="incidents">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">report</span>
+                        <div class="stat-info">
+                            <h2>3</h2>
+                            <p>Open Incidents</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">move_to_inbox</span>
+                        <div class="stat-info">
+                            <h2>2</h2>
+                            <p>New This Week</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">task_alt</span>
+                        <div class="stat-info">
+                            <h2>41</h2>
+                            <p>Resolved This Year</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">priority_high</span>
+                        <div class="stat-info">
+                            <h2>1</h2>
+                            <p>Critical Incident</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>Incident Log</h3>
+                        <button class="d-btn errorpage">Report an Incident</button>
+                    </div>
+
+                    <div class="filter-chips" style="margin-bottom:16px;">
+                        <button class="active errorpage">All</button>
+                        <button class="errorpage">Resolved</button>
+                        <button class="errorpage">In Progress</button>
+                        <button class="errorpage">Pending</button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Incident Type</th>
+                                <th>Severity</th>
+                                <th>Assigned Analyst</th>
+                                <th>Date Raised</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>#INC-2246</td>
+                                <td>Phishing Campaign Contained</td>
+                                <td><span class="badge pending">Medium</span></td>
+                                <td>Divya Krishnan</td>
+                                <td>Sep 19</td>
+                                <td><span class="badge delivered">Resolved</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>#INC-2241</td>
+                                <td>Suspicious Login Attempts</td>
+                                <td><span class="badge critical">Critical</span></td>
+                                <td>Aravind Iyer</td>
+                                <td>Sep 18</td>
+                                <td><span class="badge transit">In Progress</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>#INC-2194</td>
+                                <td>Misconfigured S3 Bucket</td>
+                                <td><span class="badge pending">Medium</span></td>
+                                <td>Karthik Raja</td>
+                                <td>Sep 15</td>
+                                <td><span class="badge pending">Pending</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>#INC-2232</td>
+                                <td>Ransomware Alert - Endpoint</td>
+                                <td><span class="badge critical">Critical</span></td>
+                                <td>Meera Nair</td>
+                                <td>Sep 12</td>
+                                <td><span class="badge delivered">Resolved</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>#INC-2219</td>
+                                <td>Outdated VPN Firmware</td>
+                                <td><span class="badge transit">Low</span></td>
+                                <td>Karthik Raja</td>
+                                <td>Sep 08</td>
+                                <td><span class="badge transit">In Progress</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination">
+                        <button class="errorpage">&lt;</button>
+                        <button class="active errorpage">1</button>
+                        <button class="errorpage">2</button>
+                        <button class="errorpage">3</button>
+                        <button class="errorpage">&gt;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 3. MY SERVICES VIEW ========== -->
+            <div class="view" id="services">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">security</span>
+                        <div class="stat-info">
+                            <h2>5</h2>
+                            <p>Subscribed Services</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">verified</span>
+                        <div class="stat-info">
+                            <h2>4</h2>
+                            <p>Active</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">autorenew</span>
+                        <div class="stat-info">
+                            <h2>1</h2>
+                            <p>Renewing Soon</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">add_moderator</span>
+                        <div class="stat-info">
+                            <h2>3</h2>
+                            <p>Recommended Add-ons</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>Your Services &amp; Add-ons</h3>
+                        <div class="filter-chips">
+                            <button class="active errorpage">All</button>
+                            <button class="errorpage">Monitoring</button>
+                            <button class="errorpage">Testing</button>
+                            <button class="errorpage">Response</button>
+                            <button class="errorpage">Compliance</button>
+                        </div>
+                    </div>
+
+                    <div class="listing-grid">
+                        <div class="listing-card errorpage">
+                            <div class="l-img">
+                                <img src="./src/clt1.webp"
+                                    alt="Managed SOC Monitoring">
+                                <span class="l-tag">Active</span>
+                            </div>
+                            <div class="l-body">
+                                <h4>Managed SOC Monitoring</h4>
+                                <p class="loc">Monitoring &middot; 24/7 endpoint, network and cloud coverage</p>
+                                <div class="ingredient-tags">
+                                    <span>Endpoint</span><span>Cloud</span><span>Network</span><span>24/7
+                                        Analyst</span>
+                                </div>
+                                <div class="l-meta">
+                                    <span class="l-price">$1,499/mo</span>
+                                    <span class="l-specs"><span>Renews Oct 01</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="listing-card errorpage">
+                            <div class="l-img">
+                                <img src="./src/clt2.webp"
+                                    alt="Vulnerability Scanning">
+                                <span class="l-tag">Active</span>
+                            </div>
+                            <div class="l-body">
+                                <h4>Vulnerability Scanning</h4>
+                                <p class="loc">Testing &middot; Weekly automated scan and reporting</p>
+                                <div class="ingredient-tags">
+                                    <span>Weekly Scan</span><span>CVE Report</span><span>Remediation Guide</span>
+                                </div>
+                                <div class="l-meta">
+                                    <span class="l-price">$399/mo</span>
+                                    <span class="l-specs"><span>Last scan: Sep 20</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="listing-card errorpage">
+                            <div class="l-img">
+                                <img src="./src/clt3.webp"
+                                    alt="Penetration Testing">
+                                <span class="l-tag">Scheduled</span>
+                            </div>
+                            <div class="l-body">
+                                <h4>Penetration Testing</h4>
+                                <p class="loc">Testing &middot; Manual, attacker-path focused</p>
+                                <div class="ingredient-tags">
+                                    <span>External</span><span>Internal</span><span>Cloud</span>
+                                </div>
+                                <div class="l-meta">
+                                    <span class="l-price">$2,999</span>
+                                    <span class="l-specs"><span>Starts Sep 28</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="listing-card errorpage">
+                            <div class="l-img">
+                                <img src="./src/clt4.webp"
+                                    alt="Incident Response Retainer">
+                                <span class="l-tag">Active</span>
+                            </div>
+                            <div class="l-body">
+                                <h4>Incident Response Retainer</h4>
+                                <p class="loc">Response &middot; Guaranteed join time, on-call</p>
+                                <div class="ingredient-tags">
+                                    <span>1hr SLA</span><span>On-call</span><span>Forensics</span>
+                                </div>
+                                <div class="l-meta">
+                                    <span class="l-price">$4,500/yr</span>
+                                    <span class="l-specs"><span>Renews Mar 2027</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="listing-card errorpage">
+                            <div class="l-img">
+                                <img src="./src/clt5.webp"
+                                    alt="Compliance Audit">
+                                <span class="l-tag">Renewing</span>
+                            </div>
+                            <div class="l-body">
+                                <h4>Compliance Audit</h4>
+                                <p class="loc">Compliance &middot; SOC2, ISO27001 readiness</p>
+                                <div class="ingredient-tags">
+                                    <span>SOC2</span><span>ISO27001</span><span>Gap Report</span>
+                                </div>
+                                <div class="l-meta">
+                                    <span class="l-price">$1,899</span>
+                                    <span class="l-specs"><span>Renews in 12 days</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="listing-card errorpage">
+                            <div class="l-img">
+                                <img src="./src/clt6.webp"
+                                    alt="Cloud Security Review">
+                                <span class="l-tag">Recommended</span>
+                            </div>
+                            <div class="l-body">
+                                <h4>Cloud Security Review</h4>
+                                <p class="loc">Monitoring &middot; Config and identity review</p>
+                                <div class="ingredient-tags">
+                                    <span>AWS</span><span>Azure</span><span>GCP</span>
+                                </div>
+                                <div class="l-meta">
+                                    <span class="l-price">$1,199</span>
+                                    <span class="l-specs"><span>Add to my plan</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento">
+                    <div class="panel span-4">
+                        <h3>Coverage By Category</h3>
+                        <div class="budget-row">
+                            <div class="budget-item">
+                                <h5>Monitoring <span>Fully covered</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:100%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>Testing <span>Covered</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:85%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>Response <span>Fully covered</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:100%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>Compliance <span>Partial</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:60%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel span-4">
+                        <h3>Upgrade Bundles</h3>
+                        <div class="combo-list">
+                            <div class="combo-row">
+                                <img src="./src/clt7.webp"
+                                    alt="Starter Security Bundle">
+                                <div class="c-info">
+                                    <h5>Starter Security Bundle</h5>
+                                    <p>Monitoring + Vulnerability Scan</p>
+                                </div>
+                                <span class="c-price">$1,699/mo</span>
+                            </div>
+                            <div class="combo-row">
+                                <img src="./src/clt8.webp"
+                                    alt="Enterprise Bundle">
+                                <div class="c-info">
+                                    <h5>Enterprise Bundle</h5>
+                                    <p>Pen Test + IR Retainer</p>
+                                </div>
+                                <span class="c-price">$6,999</span>
+                            </div>
+                            <div class="combo-row">
+                                <img src="./src/clt9.webp"
+                                    alt="Compliance Fast-Track">
+                                <div class="c-info">
+                                    <h5>Compliance Fast-Track</h5>
+                                    <p>Audit + Cloud Review</p>
+                                </div>
+                                <span class="c-price">$2,799</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel span-4">
+                        <h3>Analyst Notes</h3>
+                        <div>
+                            <div class="review-row">
+                                <img src="./src/avartar_2.webp" alt="Aravind Iyer">
+                                <div class="review-body">
+                                    <h5>Aravind Iyer <span class="stars">Lead SOC Analyst</span></h5>
+                                    <p>Enable MFA for the remaining 6% of accounts to reach full coverage.</p>
+                                </div>
+                            </div>
+                            <div class="review-row">
+                                <img src="./src/avartar_3.webp"  alt="Meera Nair">
+                                <div class="review-body">
+                                    <h5>Meera Nair <span class="stars">SOC Operations Lead</span></h5>
+                                    <p>Phishing attempts dropped this month after the awareness session.</p>
+                                </div>
+                            </div>
+                            <div class="review-row">
+                                <img src="./src/avartar_4.webp"  alt="Ravi Shankar">
+                                <div class="review-body">
+                                    <h5>Ravi Shankar <span class="stars">Red Team Lead</span></h5>
+                                    <p>Please share the staging network diagram before the pen test.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 4. SECURITY TEAM VIEW ========== -->
+            <div class="view" id="team">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">shield_person</span>
+                        <div class="stat-info">
+                            <h2>6</h2>
+                            <p>Analysts On Your Account</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">support_agent</span>
+                        <div class="stat-info">
+                            <h2>4</h2>
+                            <p>On Shift Now</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">timer</span>
+                        <div class="stat-info">
+                            <h2>14 min</h2>
+                            <p>Avg. Response Time</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">workspace_premium</span>
+                        <div class="stat-info">
+                            <h2>1hr</h2>
+                            <p>IR Retainer SLA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>Your Security Team</h3>
+                            <div class="filter-chips">
+                                <button class="active errorpage">All</button>
+                                <button class="errorpage">SOC Team</button>
+                                <button class="errorpage">Red Team</button>
+                                <button class="errorpage">Account Team</button>
+                            </div>
+                        </div>
+                        <div class="fleet-grid">
+                            <div class="fleet-card">
+                                <img src="./src/avartar_2.webp"  alt="Aravind Iyer">
+                                <div class="fleet-card-body">
+                                    <h4>Aravind Iyer</h4>
+                                    <p>Lead SOC Analyst &middot; Handling #INC-2241</p>
+                                    <span class="badge active">On Shift</span>
+                                </div>
+                                <div class="contact-row">
+                                    <span class="material-symbols-outlined errorpage">mail</span>
+                                    <span class="material-symbols-outlined errorpage">call</span>
+                                </div>
+                            </div>
+                            <div class="fleet-card">
+                                <img src="./src/avartar_4.webp"  alt="Meera Nair">
+                                <div class="fleet-card-body">
+                                    <h4>Meera Nair</h4>
+                                    <p>SOC Operations Lead &middot; Your escalation contact</p>
+                                    <span class="badge active">On Shift</span>
+                                </div>
+                                <div class="contact-row">
+                                    <span class="material-symbols-outlined errorpage">mail</span>
+                                    <span class="material-symbols-outlined errorpage">call</span>
+                                </div>
+                            </div>
+                            <div class="fleet-card">
+                                <img src="./src/avartar_3.webp"  alt="Ravi Shankar">
+                                <div class="fleet-card-body">
+                                    <h4>Ravi Shankar</h4>
+                                    <p>Red Team Lead &middot; Pen test starts Sep 28</p>
+                                    <span class="badge maintenance">Available Soon</span>
+                                </div>
+                                <div class="contact-row">
+                                    <span class="material-symbols-outlined errorpage">mail</span>
+                                    <span class="material-symbols-outlined errorpage">call</span>
+                                </div>
+                            </div>
+                            <div class="fleet-card">
+                                <img src="./src/avartar_1.webp"  alt="Daniel Cho">
+                                <div class="fleet-card-body">
+                                    <h4>Daniel Cho</h4>
+                                    <p>Account Manager &middot; Contracts and billing</p>
+                                    <span class="badge active">On Shift</span>
+                                </div>
+                                <div class="contact-row">
+                                    <span class="material-symbols-outlined errorpage">mail</span>
+                                    <span class="material-symbols-outlined errorpage">call</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel span-4">
+                        <h3>Escalation Path</h3>
+                        <div class="event-list">
+                            <div class="event-item">
+                                <div class="event-date"><strong>L1</strong><span>SOC</span></div>
+                                <div class="event-info">
+                                    <h5>SOC Analyst on Duty</h5>
+                                    <p>Responds within 15 minutes</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>L2</strong><span>Lead</span></div>
+                                <div class="event-info">
+                                    <h5>Meera Nair</h5>
+                                    <p>Critical incidents, within 30 minutes</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>L3</strong><span>IR</span></div>
+                                <div class="event-info">
+                                    <h5>Incident Response Team</h5>
+                                    <p>Joins within 1 hour (retainer SLA)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 5. PROTECTED ASSETS VIEW ========== -->
+            <div class="view" id="assets">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">apartment</span>
+                        <div class="stat-info">
+                            <h2>3</h2>
+                            <p>Protected Sites</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">devices</span>
+                        <div class="stat-info">
+                            <h2>1,248</h2>
+                            <p>Assets Monitored</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">monitor_heart</span>
+                        <div class="stat-info">
+                            <h2>98%</h2>
+                            <p>Agents Healthy</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">gpp_maybe</span>
+                        <div class="stat-info">
+                            <h2>6</h2>
+                            <p>Unprotected Assets</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>Your Sites</h3>
+                    <div class="wh-grid">
+                        <div class="wh-card">
+                            <img src="./src/clt10.webp" 
+                                alt="OMR Head Office">
+                            <div class="overlay">
+                                <h4>OMR Head Office</h4><span>642 assets protected</span>
+                            </div>
+                        </div>
+                        <div class="wh-card">
+                            <img src="./src/clt11.webp" 
+                                alt="Anna Nagar Retail Hub">
+                            <div class="overlay">
+                                <h4>Anna Nagar Retail Hub</h4><span>398 assets protected</span>
+                            </div>
+                        </div>
+                        <div class="wh-card">
+                            <img src="./src/clt12.webp" 
+                                alt="ECR Data Center">
+                            <div class="overlay">
+                                <h4>ECR Data Center</h4><span>208 assets protected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento">
+                    <div class="panel span-8">
+                        <h3>Site Snapshot</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Site</th>
+                                    <th>Main Asset Types</th>
+                                    <th>Assets</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>OMR Head Office</td>
+                                    <td>Laptops, Servers, Network</td>
+                                    <td>642</td>
+                                    <td><span class="badge active">Fully Protected</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Anna Nagar Retail Hub</td>
+                                    <td>POS Systems, Endpoints</td>
+                                    <td>398</td>
+                                    <td><span class="badge maintenance">4 Need Attention</span></td>
+                                </tr>
+                                <tr>
+                                    <td>ECR Data Center</td>
+                                    <td>Servers, Cloud Workloads</td>
+                                    <td>208</td>
+                                    <td><span class="badge maintenance">2 Need Attention</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="panel span-4">
+                        <h3>Coverage By Asset Type</h3>
+                        <div class="budget-row">
+                            <div class="budget-item">
+                                <h5>Servers <span>100%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:100%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>Endpoints <span>98%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:98%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>Cloud Workloads <span>91%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:91%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>Network Devices <span>94%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:94%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 6. REPORTS VIEW ========== -->
+            <div class="view" id="reports">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">summarize</span>
+                        <div class="stat-info">
+                            <h2>24</h2>
+                            <p>Reports Available</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">new_releases</span>
+                        <div class="stat-info">
+                            <h2>3</h2>
+                            <p>New This Month</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">event</span>
+                        <div class="stat-info">
+                            <h2>Sep 30</h2>
+                            <p>Next Scheduled Report</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">fact_check</span>
+                        <div class="stat-info">
+                            <h2>4</h2>
+                            <p>Compliance Frameworks</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>Report Library</h3>
+                            <button class="d-btn errorpage">Request a Report</button>
+                        </div>
+
+                        <div class="filter-chips" style="margin-bottom:16px;">
+                            <button class="active errorpage">All</button>
+                            <button class="errorpage">Monthly</button>
+                            <button class="errorpage">Pen Test</button>
+                            <button class="errorpage">Compliance</button>
+                            <button class="errorpage">Executive</button>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Report</th>
+                                    <th>Type</th>
+                                    <th>Period</th>
+                                    <th>Prepared By</th>
+                                    <th>Download</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cell-item">Monthly Security Report</td>
+                                    <td>Monthly</td>
+                                    <td>August 2026</td>
+                                    <td>Aravind Iyer</td>
+                                    <td><button class="d-btn small errorpage">PDF</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-item">External Pen Test Findings</td>
+                                    <td>Pen Test</td>
+                                    <td>Q2 2026</td>
+                                    <td>Ravi Shankar</td>
+                                    <td><button class="d-btn small errorpage">PDF</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-item">SOC2 Gap Assessment</td>
+                                    <td>Compliance</td>
+                                    <td>Q3 2026</td>
+                                    <td>Sameer Qureshi</td>
+                                    <td><button class="d-btn small errorpage">PDF</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-item">Board Summary</td>
+                                    <td>Executive</td>
+                                    <td>H1 2026</td>
+                                    <td>Meera Nair</td>
+                                    <td><button class="d-btn small errorpage">PDF</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="pagination">
+                            <button class="errorpage">&lt;</button>
+                            <button class="active errorpage">1</button>
+                            <button class="errorpage">2</button>
+                            <button class="errorpage">3</button>
+                            <button class="errorpage">&gt;</button>
+                        </div>
+                    </div>
+
+                    <div class="panel span-4">
+                        <h3>Compliance Status</h3>
+                        <div class="budget-row">
+                            <div class="budget-item">
+                                <h5>SOC 2 <span>92%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:92%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>ISO 27001 <span>84%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:84%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>GDPR <span>90%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:90%;"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <h5>PCI DSS <span>76%</span></h5>
+                                <div class="budget-track">
+                                    <div class="budget-fill" style="width:76%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 7. BILLING VIEW ========== -->
+            <div class="view" id="billing">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">payments</span>
+                        <div class="stat-info">
+                            <h2>$1,898</h2>
+                            <p>Monthly Recurring</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">receipt_long</span>
+                        <div class="stat-info">
+                            <h2>Oct 01</h2>
+                            <p>Next Invoice</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">account_balance_wallet</span>
+                        <div class="stat-info">
+                            <h2>$19,780</h2>
+                            <p>Paid This Year</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">pending_actions</span>
+                        <div class="stat-info">
+                            <h2>1</h2>
+                            <p>Invoice Due</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>Invoices</h3>
+                        <button class="d-btn errorpage">Update Payment Method</button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Invoice</th>
+                                <th>Service</th>
+                                <th>Issued</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#INV-5308</td>
+                                <td>Compliance Audit Renewal</td>
+                                <td>Sep 18</td>
+                                <td>$1,899</td>
+                                <td><span class="badge pending">Due Oct 02</span></td>
+                            </tr>
+                            <tr>
+                                <td>#INV-5271</td>
+                                <td>SOC Monitoring + Vulnerability Scan</td>
+                                <td>Sep 01</td>
+                                <td>$1,898</td>
+                                <td><span class="badge delivered">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>#INV-5203</td>
+                                <td>SOC Monitoring + Vulnerability Scan</td>
+                                <td>Aug 01</td>
+                                <td>$1,898</td>
+                                <td><span class="badge delivered">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>#INV-5144</td>
+                                <td>Penetration Testing (Q2)</td>
+                                <td>Jul 10</td>
+                                <td>$2,999</td>
+                                <td><span class="badge delivered">Paid</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>Service Engagements</h3>
+                        <button class="d-btn errorpage">Request a Service</button>
+                    </div>
+
+                    <div class="pipeline">
+                        <div class="pipeline-col">
+                            <h4>Scheduled</h4>
+                            <div class="pipeline-card">
+                                <h5>Penetration Testing</h5>
+                                <p>Starts Sep 28 &middot; Ravi Shankar</p>
+                                <span class="p-val">$2,999</span>
+                            </div>
+                        </div>
+                        <div class="pipeline-col">
+                            <h4>In Progress</h4>
+                            <div class="pipeline-card">
+                                <h5>Managed SOC Monitoring</h5>
+                                <p>Ongoing &middot; Aravind Iyer</p>
+                                <span class="p-val">$1,499/mo</span>
+                            </div>
+                            <div class="pipeline-card">
+                                <h5>Vulnerability Scanning</h5>
+                                <p>Weekly &middot; Karthik Raja</p>
+                                <span class="p-val">$399/mo</span>
+                            </div>
+                        </div>
+                        <div class="pipeline-col">
+                            <h4>Awaiting Approval</h4>
+                            <div class="pipeline-card">
+                                <h5>Cloud Security Review</h5>
+                                <p>Proposal sent &middot; Daniel Cho</p>
+                                <span class="p-val">$1,199</span>
+                            </div>
+                        </div>
+                        <div class="pipeline-col">
+                            <h4>Completed</h4>
+                            <div class="pipeline-card">
+                                <h5>Compliance Audit</h5>
+                                <p>SOC2 &middot; Sameer Qureshi</p>
+                                <span class="p-val">$1,899</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 8. MESSAGES VIEW ========== -->
+            <div class="view" id="messages">
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">forum</span>
+                        <div class="stat-info">
+                            <h2>3</h2>
+                            <p>Unread Messages</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">chat</span>
+                        <div class="stat-info">
+                            <h2>6</h2>
+                            <p>Active Conversations</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">schedule</span>
+                        <div class="stat-info">
+                            <h2>9 min</h2>
+                            <p>Avg. Analyst Reply</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-symbols-outlined">confirmation_number</span>
+                        <div class="stat-info">
+                            <h2>2</h2>
+                            <p>Open Support Tickets</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>Inbox</h3>
+                            <div class="filter-chips">
+                                <button class="active errorpage">All</button>
+                                <button class="errorpage">Unread</button>
+                                <button class="errorpage">Analysts</button>
+                                <button class="errorpage">Billing</button>
+                            </div>
+                        </div>
+
+                        <div class="inbox-list">
+                            <div class="inbox-row unread errorpage">
+                                <img src="./src/image_4.webp" alt="Aravind Iyer">
+                                <div class="inbox-body">
+                                    <div class="inbox-top">
+                                        <h5>Aravind Iyer (Lead Analyst)</h5>
+                                        <span class="inbox-time">9:42 AM</span>
+                                    </div>
+                                    <p>We blocked the suspicious login source. Please confirm no staff were travelling.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="inbox-row unread errorpage">
+                                <img src="./src/image_6.webp" alt="Ravi Shankar">
+                                <div class="inbox-body">
+                                    <div class="inbox-top">
+                                        <h5>Ravi Shankar (Red Team)</h5>
+                                        <span class="inbox-time">Yesterday</span>
+                                    </div>
+                                    <p>Can you share the list of IP ranges in scope for the pen test?</p>
+                                </div>
+                            </div>
+                            <div class="inbox-row unread errorpage">
+                                <img src="./src/image_45.webp" alt="Daniel Cho">
+                                <div class="inbox-body">
+                                    <div class="inbox-top">
+                                        <h5>Daniel Cho (Account Manager)</h5>
+                                        <span class="inbox-time">Yesterday</span>
+                                    </div>
+                                    <p>Your Compliance Audit renewal quote is ready for review.</p>
+                                </div>
+                            </div>
+                            <div class="inbox-row errorpage">
+                                <img src="./src/image_4.webp" alt="Meera Nair">
+                                <div class="inbox-body">
+                                    <div class="inbox-top">
+                                        <h5>Maran Nair (SOC Lead)</h5>
+                                        <span class="inbox-time">Sat</span>
+                                    </div>
+                                    <p>Ransomware alert closed. Full root cause report is attached.</p>
+                                </div>
+                            </div>
+                            <div class="inbox-row errorpage">
+                                <img src="./src/image_3.webp" alt="Billing Desk">
+                                <div class="inbox-body">
+                                    <div class="inbox-top">
+                                        <h5>Yazhini</h5>
+                                        <span class="inbox-time">Fri</span>
+                                    </div>
+                                    <p>Invoice #INV-5308 has been issued and is due on Oct 02.</p>
+                                </div>
+                            </div>
+                            <div class="inbox-row errorpage">
+                                <img src="./src/image_5.webp" alt="Divya Krishnan">
+                                <div class="inbox-body">
+                                    <div class="inbox-top">
+                                        <h5>Divya Krishnan (Analyst)</h5>
+                                        <span class="inbox-time">Last week</span>
+                                    </div>
+                                    <p>Phishing campaign contained. Sharing tips to help your staff spot similar emails.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel span-4">
+                        <h3>My Support Tickets</h3>
+                        <div class="student-list">
+                            <div class="student-row">
+                                <img src="./src/team-1.webp" alt="You">
+                                <div class="s-info">
+                                    <h5>Contract Renewal Question</h5>
+                                    <p>#TCK-1042</p>
+                                </div>
+                                <span class="badge pending">Open</span>
+                            </div>
+                            <div class="student-row">
+                                <img src="./src/team-2.webp" alt="You">
+                                <div class="s-info">
+                                    <h5>Alert Response Time Concern</h5>
+                                    <p>#TCK-1039</p>
+                                </div>
+                                <span class="badge transit">In Progress</span>
+                            </div>
+                            <div class="student-row">
+                                <img src="./src/team-3.webp" alt="You">
+                                <div class="s-info">
+                                    <h5>Missing Report Attachment</h5>
+                                    <p>#TCK-1035</p>
+                                </div>
+                                <span class="badge delivered">Resolved</span>
+                            </div>
+                        </div>
+                        <button class="d-btn errorpage" style="margin-top:16px;width:100%;">Open a New Ticket</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 9. SCHEDULE VIEW ========== -->
+            <div class="view" id="calendar">
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>September 2026</h3>
+                            <div class="filter-chips">
+                                <button class="errorpage">&lt; Aug</button>
+                                <button class="errorpage">Oct &gt;</button>
+                            </div>
+                        </div>
+                        <div class="cal-grid">
+                            <div class="cal-dow">Sun</div>
+                            <div class="cal-dow">Mon</div>
+                            <div class="cal-dow">Tue</div>
+                            <div class="cal-dow">Wed</div>
+                            <div class="cal-dow">Thu</div>
+                            <div class="cal-dow">Fri</div>
+                            <div class="cal-dow">Sat</div>
+
+                            <div class="cal-cell muted">30</div>
+                            <div class="cal-cell muted">31</div>
+                            <div class="cal-cell">1</div>
+                            <div class="cal-cell">2</div>
+                            <div class="cal-cell">3</div>
+                            <div class="cal-cell">4</div>
+                            <div class="cal-cell">5</div>
+
+                            <div class="cal-cell">6</div>
+                            <div class="cal-cell">7</div>
+                            <div class="cal-cell">8</div>
+                            <div class="cal-cell">9</div>
+                            <div class="cal-cell">10</div>
+                            <div class="cal-cell">11</div>
+                            <div class="cal-cell">12</div>
+
+                            <div class="cal-cell">13</div>
+                            <div class="cal-cell">14</div>
+                            <div class="cal-cell">15</div>
+                            <div class="cal-cell">16</div>
+                            <div class="cal-cell">17</div>
+                            <div class="cal-cell">18</div>
+                            <div class="cal-cell">19</div>
+
+                            <div class="cal-cell">20</div>
+                            <div class="cal-cell today">21</div>
+                            <div class="cal-cell has-event">22</div>
+                            <div class="cal-cell">23</div>
+                            <div class="cal-cell has-event">24</div>
+                            <div class="cal-cell">25</div>
+                            <div class="cal-cell">26</div>
+
+                            <div class="cal-cell">27</div>
+                            <div class="cal-cell has-event">28</div>
+                            <div class="cal-cell">29</div>
+                            <div class="cal-cell has-event">30</div>
+                            <div class="cal-cell muted">1</div>
+                            <div class="cal-cell muted">2</div>
+                            <div class="cal-cell muted">3</div>
+                        </div>
+                    </div>
+
+                    <div class="panel span-4">
+                        <h3>Coming Up</h3>
+                        <div class="event-list">
+                            <div class="event-item">
+                                <div class="event-date"><strong>22</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Weekly Security Review</h5>
+                                    <p>11:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>24</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Quarterly Threat Briefing</h5>
+                                    <p>10:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>28</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Penetration Test Kickoff</h5>
+                                    <p>2:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date"><strong>30</strong><span>Sep</span></div>
+                                <div class="event-info">
+                                    <h5>Monthly Report Delivery</h5>
+                                    <p>All Day</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+
+        const topbarmenu = document.querySelector(".topbarmenu")
+        const adminclose = document.querySelector(".adminclose")
+        const sidebar = document.querySelector(".sidebar")
+        const railToggle = document.querySelector("#railToggle")
+
+        topbarmenu.addEventListener("click", () => {
+            sidebar.classList.toggle('vis')
+            document.body.classList.add("menu-open");
+        })
+
+        adminclose.addEventListener("click", () => {
+            sidebar.classList.remove('vis')
+            document.body.classList.remove("menu-open");
+        })
+
+        railToggle.addEventListener("click", () => {
+            sidebar.classList.toggle('collapsed')
+            const icon = railToggle.querySelector('.material-symbols-outlined')
+            icon.textContent = sidebar.classList.contains('collapsed') ? 'chevron_right' : 'chevron_left'
+        })
+
+        const logoutbtn = document.querySelector(".logoutbtn")
+        logoutbtn.addEventListener("click", () => {
+            window.location.href = "index.html"
+        })
+
+        const username = document.querySelector("#username");
+
+        let email = null;
+        try {
+            email = localStorage.getItem("useremail")
+        } catch (e) { /* storage not available */ }
+
+        if (email) {
+            username.textContent = email.split("@")[0];
+        }
+
+        let errorpage = document.querySelectorAll(".errorpage")
+        errorpage.forEach((error) => {
+            error.addEventListener("click", () => {
+                window.location.href = "404.html";
+            })
+        })
+
+        const titles = {
+            overview: "Overview",
+            incidents: "My Incidents",
+            services: "My Services",
+            team: "Security Team",
+            assets: "Protected Assets",
+            reports: "Reports",
+            billing: "Billing",
+            messages: "Messages",
+            calendar: "Schedule"
+        };
+
+        function showView(id, btn) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            })
+
+            document.querySelectorAll('.side-nav button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.getElementById('topbarTitle').innerText = titles[id];
+            document.getElementById('crumbTitle').innerText = titles[id];
+            sidebar.classList.remove('vis')
+            document.body.classList.remove("menu-open");
+        }
+
+        /* If any online image fails to load, show a blue gradient placeholder instead of a broken icon */
+        const FALLBACK_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">' +
+            '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+            '<stop offset="0" stop-color="#0b1f4d"/><stop offset="1" stop-color="#015EFB"/>' +
+            '</linearGradient></defs><rect width="400" height="300" fill="url(#g)"/></svg>'
+        );
+
+        document.querySelectorAll('img').forEach((img) => {
+            img.addEventListener('error', () => {
+                if (img.dataset.fallback) return;
+                img.dataset.fallback = "1";
+                img.src = FALLBACK_IMG;
+            })
+        })
+
+
+        // loading
+
+(function () {
+    document.body.classList.add('is-loading');
+
+    var pre   = document.getElementById('preloader');
+    var bar   = pre.querySelector('.pre-bar i');
+    var count = document.getElementById('preCount');
+    var pct = 0, finished = false, timer;
+
+    timer = setInterval(function () {
+        if (pct < 90) {
+            pct += Math.random() * 8;
+            if (pct > 90) pct = 90;
+            bar.style.width = pct + '%';
+            count.textContent = Math.round(pct);
+        }
+    }, 150);
+
+    function finish() {
+        if (finished) return;
+        finished = true;
+        clearInterval(timer);
+        pct = 100;
+        bar.style.width = '100%';
+        count.textContent = '100';
+
+        setTimeout(function () {
+            pre.classList.add('done');
+            document.body.classList.remove('is-loading');
+            if (window.__heroTl) window.__heroTl.play();
+            if (window.ScrollTrigger) ScrollTrigger.refresh();
+        }, 350);
+    }
+
+    window.addEventListener('load', finish);
+    setTimeout(finish, 6000); // safety fallback
+})();
+    </script>
+
+</body>
+
+</html>

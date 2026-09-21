@@ -12,6 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <style>
@@ -34,12 +38,11 @@
 
     :root {
         --pcolor: #015EFB;
+        --pcolor-light: #4C8CFF;
     }
 
-    /* ===== GSAP-driven animation system =====
-       Base "hidden" states only — GSAP (ScrollTrigger for sections,
-       a page-load timeline for the hero) does all the tweening below. */
     @media (prefers-reduced-motion: no-preference) {
+
         .reveal,
         .reveal-scale,
         .reveal-fade,
@@ -69,245 +72,7 @@
         }
     }
 
-    .header {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        position: fixed;
-        align-items: center;
-        margin: auto 50px;
-        margin-top: 20px;
-        width: calc(100% - 100px);
-        border: 2px solid rgba(146, 145, 145, 0.336);
-        padding: 7px 20px;
-        border-radius: 50px;
-        gap: 20px;
-        backdrop-filter: blur(20px);
-        background: rgba(99, 99, 99, 0.397);
-        z-index: 99;
-    }
 
-    .company-logo img {
-        width: 150px;
-    }
-
-    .menus {
-        display: flex;
-        justify-content: space-around;
-        gap: 10px;
-    }
-
-    .menus li {
-        list-style: none;
-    }
-
-
-    .menus li a {
-        text-decoration: none;
-        font-size: 15px;
-        color: white;
-        padding: 5px 20px;
-        border-radius: 20px;
-        transition: background .3s ease;
-    }
-
-    .menus li a:hover {
-        background: var(--pcolor);
-    }
-
-
-    .menus li .active {
-        background: var(--pcolor);
-    }
-
-    .login-buttons {
-        display: flex;
-        justify-content: flex-end;
-        gap: 20px;
-        align-items: center;
-    }
-
-    .login-buttons a {
-        text-decoration: none;
-        color: white;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 30px;
-        transition: .5s ease;
-        font-size: 15px;
-    }
-
-    .loginBtn {
-        background: var(--pcolor);
-    }
-
-    .signupBtn:hover {
-        background: var(--pcolor);
-    }
-
-    .menuBtn {
-        display: none;
-    }
-
-    /* sidebar */
-
-    .sidebar {
-        display: none;
-    }
-
-
-    @media (max-width:1060px) {
-
-        .menus {
-            display: none;
-        }
-
-        .login-buttons {
-            display: none;
-        }
-
-        .header {
-            grid-template-columns: 1fr 1fr;
-            margin: auto 30px;
-            margin-top: 20px;
-            width: calc(100% - 60px);
-        }
-
-        .menuBtn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: fit-content;
-            justify-self: flex-end;
-            background: var(--pcolor);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            height: 30px;
-            width: 30px;
-            cursor: pointer;
-
-        }
-
-        .menuBtn span {
-            font-size: 20px;
-        }
-
-        .sidebar {
-            display: block;
-            position: fixed;
-            left: 0px;
-            top: 0px;
-            width: 320px;
-            min-height: 100vh;
-            background: black;
-            padding: 20px 20px;
-            transition: .5s ease;
-            transform: translateX(-100%);
-            z-index: 9999;
-        }
-
-
-        .sidebar.active {
-            transform: translateX(0%);
-        }
-
-        .side-logo img {
-            width: 150px;
-        }
-
-
-        .closeBtn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: fit-content;
-            justify-self: flex-end;
-            background: var(--pcolor);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            height: 25px;
-            width: 25px;
-            cursor: pointer;
-        }
-
-        .closeBtn span {
-            font-size: 18px;
-        }
-
-        .side-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-
-        .sideMenus {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 40px;
-        }
-
-
-        .sideMenus a {
-            text-decoration: none;
-            color: white;
-            width: 100%;
-            padding-left: 10px;
-            padding-block: 10px;
-            transition: .5s ease;
-            font-size: 14px;
-        }
-
-        .sideMenus a:hover {
-            background: var(--pcolor);
-        }
-
-        .sideMenus .active {
-
-            background: var(--pcolor);
-        }
-
-        .side-login-buttons {
-            display: flex;
-            gap: 20px;
-        }
-
-        .side-login-buttons a {
-            text-decoration: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: .5s ease;
-            font-size: 14px;
-        }
-
-        .side-loginBtn {
-            background: var(--pcolor);
-        }
-
-        .side-signupBtn {
-            border: 1px solid var(--pcolor);
-        }
-
-
-    }
-
-
-
-    @media (max-width:500px) {
-        .company-logo img {
-            width: 130px;
-        }
-
-        .header {
-            margin: auto 10px;
-            margin-top: 10px;
-            width: calc(100% - 20px);
-            padding: 5px 20px;
-        }
-    }
 
     /* hero section*/
     .hero-Section {
@@ -365,23 +130,53 @@
         color: white;
         font-size: 14px;
         transition: transform .3s ease, background .3s ease;
+                overflow: hidden;
+    }
+    .hero-outline {
+        background: transparent;
+        position: relative;
     }
 
-    .hero-buttions button:hover {
+    .hero-buttions .hero-outline::before {
+        content: "";
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 0;
+        height: 100%;
+
+        background: var(--pcolor);
+
+        transition: width .5s ease;
+
+        z-index: -1;
+    }
+
+    .hero-buttions  .hero-outline:hover::before{
+        width: 100%;
+    }
+
+    .hero-buttions  .hero-outline:hover {
         transform: translateY(-3px);
     }
 
     .hero-fill {
         background: var(--pcolor);
+        overflow: hidden !important;
     }
 
-    .hero-outline {
-        background: transparent;
+    .hero-fill:hover{
+        transform: translateY(-5px);
+        background: var(--pcolor-light);
     }
+
+    
 
     .hero-image {
         position: relative;
-        height: 400px;
+        height: 550px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -391,9 +186,9 @@
     .hero-image::before {
         content: "";
         position: absolute;
-        width: clamp(320px, 45vw, 520px);
-        height: clamp(320px, 45vw, 520px);
-        background: radial-gradient(circle, rgba(1, 93, 251, 0.932), transparent 70%);
+        width: clamp(320px, 45vw, 620px);
+        height: clamp(320px, 45vw, 620px);
+        background: radial-gradient(circle, rgb(1, 93, 251), transparent 80%);
         filter: blur(10px);
         z-index: -1;
 
@@ -594,6 +389,7 @@
 
     .stats-head div button:hover {
         transform: translateY(-3px);
+        background: var(--pcolor-light);
     }
 
     .stat-block div {
@@ -952,8 +748,8 @@
     }
 
     .why-btn:hover {
-        opacity: 0.85;
-        transform: translateY(-3px);
+        transform: translateY(-5px) !important;
+        background: var(--pcolor-light);
     }
 
     .why-grid {
@@ -972,6 +768,7 @@
         flex-direction: column;
         gap: 15px;
         transition: transform .4s ease, border-color .4s ease;
+        will-change: filter, transform;
     }
 
     .why-card:hover {
@@ -1246,12 +1043,27 @@
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 15px;
         padding: 25px;
-        transition: transform .4s ease, border-color .4s ease;
+        transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .testi-card::before {
+        content: "\201C";
+        position: absolute;
+        top: -15px;
+        right: 15px;
+        font-size: 90px;
+        color: rgba(1, 94, 251, 0.08);
+        font-family: Georgia, serif;
+        line-height: 1;
+        pointer-events: none;
     }
 
     .testi-card:hover {
-        transform: translateY(-6px);
+        transform: translateY(-8px) scale(1.02);
         border-color: var(--pcolor);
+        box-shadow: 0 10px 30px rgba(1, 94, 251, 0.18);
     }
 
     .testi-icon {
@@ -1265,6 +1077,11 @@
         color: var(--pcolor);
         font-size: 20px;
         margin-bottom: 20px;
+        transition: transform .5s ease;
+    }
+
+    .testi-card:hover .testi-icon {
+        transform: rotate(360deg) scale(1.1);
     }
 
     .testi-card p {
@@ -1372,7 +1189,8 @@
 
     .cta-btn:hover {
         opacity: 0.85;
-        transform: translateY(-3px);
+        transform: translateY(-3px) !important;
+        background: var(--pcolor-light);
     }
 
     @media (max-width:800px) {
@@ -1387,159 +1205,39 @@
     }
 
 
-    /* footer */
-
-    .footer {
-        background: var(--pcolor);
-        padding-block: 100px;
-        padding-inline: 100px;
-        display: grid;
-        grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
-        gap: 30px;
-        color: white;
-    }
-
-    .footer-brand h3 {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 20px;
-        margin-bottom: 25px;
-    }
-
-    .footer-brand .footer-des {
-        font-size: 14px;
-        margin-bottom: 15px;
-        line-height: 1.5;
-    }
-
-    .footer-form {
-        display: flex;
-        gap: 10px;
-    }
-
-    .footer-form input {
-        flex: 1;
-        padding: 10px 15px;
-        border-radius: 20px;
-        border: none;
-        outline: none;
-        font-size: 13px;
-    }
-
-    .footer-form button {
-        padding: 10px 20px;
-        border-radius: 20px;
-        border: none;
-        background: black;
-        color: white;
-        font-size: 13px;
-        cursor: pointer;
-        transition: transform .3s ease;
-    }
-
-    .footer-form button:hover {
-        transform: translateY(-3px);
-    }
-
-    .footer h4 {
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
-    .footer-links {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .footer-links a {
-        color: rgba(255, 255, 255, 0.85);
-        text-decoration: none;
-        font-size: 14px;
-    }
-
-    .footer-links a:hover {
-        text-decoration: underline;
-    }
-
-    .footer-social {
-        display: flex;
-        gap: 12px;
-        margin-top: 5px;
-    }
-
-    .footer-social a {
-        height: 32px;
-        width: 32px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.15);
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        font-size: 15px;
-        transition: transform .3s ease, background .3s ease;
-    }
-
-    .footer-social a:hover {
-        transform: translateY(-4px);
-        background: black;
-    }
-
-    .footer-contact p {
-        font-size: 14px;
-        margin-bottom: 12px;
-        line-height: 1.5;
-    }
-
-    @media (max-width:950px) {
-        .footer {
-            grid-template-columns: 1fr 1fr;
-        }
-    }
-
-    @media (max-width:600px) {
-        .footer {
-            grid-template-columns: 1fr;
-            padding: 20px;
-            padding-block: 40px;
-        }
-
-        .footer-form {
-            flex-direction: column;
-        }
-    }
-
     .how-step-text p {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.4s ease;
-}
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.4s ease;
+    }
 
-.how-step.active .how-step-text p {
-    max-height: 150px;
-    opacity: 1;
-}
+    .how-step.active .how-step-text p {
+        max-height: 150px;
+        opacity: 1;
+    }
 
-.how-step-icon {
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
+    .how-step-icon {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
 
-.how-step.active .how-step-icon {
-    transform: rotate(180deg);
-}
-
-.ferror{
-    color: red;
-    margin-top: 10px;
-}
+    .how-step.active .how-step-icon {
+        transform: rotate(180deg);
+    }
 </style>
 
 <body>
+
+    <div id="preloader">
+
+         <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+    <div class="pre-ring">
+        <span class="material-symbols-outlined">shield_lock</span>
+    </div>
+    <div class="pre-bar"><i></i></div>
+    <p class="pre-text">SECURING <b><span id="preCount">0</span>%</b></p>
+</div>
 
     <header class="header">
 
@@ -1911,7 +1609,7 @@
     <footer class="footer">
 
         <div class="footer-brand reveal" style="--i:0">
-            <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+            <a href="index.html" class="company-logo"><img src="./src/logo1.webp" alt="company Logo"></a>
             <p>Got Event in Mind? Let's collaborate.</p>
             <div class="footer-form">
                 <input type="email" placeholder="Enter your email" id="femail">
@@ -1934,19 +1632,19 @@
         <div class="footer-follow reveal" style="--i:2">
             <h4>Follow us</h4>
             <div class="footer-social">
-                <a href="#"><span class="material-symbols-outlined">photo_camera</span></a>
-                <a href="#">X</a>
-                <a href="#"><span class="material-symbols-outlined">alternate_email</span></a>
-                <a href="#"><span class="material-symbols-outlined">smart_display</span></a>
+                <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
 
         <div class="footer-contact reveal" style="--i:3">
             <h4>Contact us</h4>
-            <p>Evolve Studio, 4th Floor, Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha Nagar,
-                Yelenahalli, Begur, Bengaluru, Karnataka -560068</p>
-            <p>info@stackly.com</p>
-            <p>+91 98765 43210</p>
+            <p><span class="material-symbols-outlined">location_on</span><a href="404.html">Evolve Studio, 4th Floor, Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha Nagar,
+                Yelenahalli, Begur, Bengaluru, Karnataka -560068</a></p>
+            <p><span class="material-symbols-outlined">mail</span><a href="404.html">info@stackly.com</a></p>
+            <p><span class="material-symbols-outlined">call</span><a href="404.html">+91 98765 43210</a></p>
         </div>
 
     </footer>
@@ -2067,16 +1765,38 @@
                 }
             });
 
-            /* ================= WHY-CHOOSE — bookend heading + 3D flip-in cards ================= */
+            /* ================= WHY-CHOOSE — bookend heading + blur/scale reveal cards ================= */
             gsap.set('.why-head h2', { x: -70 });
             gsap.set('.why-btn', { x: 70 });
             gsap.to('.why-head h2', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.why-head') });
             gsap.to('.why-btn', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.why-head') });
 
-            gsap.set('.why-card', { rotateY: -85, transformPerspective: 800, transformOrigin: 'left center' });
+            /* Blur + scale reveal for the cards */
+            gsap.set('.why-card', { y: 60, scale: 0.9, filter: 'blur(10px)' });
             gsap.to('.why-card', {
-                opacity: 1, rotateY: 0, duration: 0.8, ease: EASE, stagger: 0.15,
+                opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
+                duration: 0.9, ease: 'expo.out', stagger: 0.15,
                 scrollTrigger: trig('.why-grid')
+            });
+
+            /* Icons pop-bounce separately */
+            gsap.utils.toArray('.why-card span.material-symbols-outlined').forEach(function (icon) {
+                gsap.from(icon, {
+                    scale: 0, rotate: 180, duration: 0.6, ease: 'back.out(3)',
+                    scrollTrigger: trig(icon, 'top 90%')
+                });
+            });
+
+            /* Right side image card - fade/scale in + glowing pulse border */
+            gsap.set('.why-image-card', { scale: 0.95 });
+            gsap.to('.why-image-card', {
+                opacity: 1, scale: 1, duration: 0.9, ease: EASE,
+                scrollTrigger: trig('.why-image-card')
+            });
+            gsap.to('.why-image-card', {
+                boxShadow: '0 0 35px rgba(1,94,251,0.4)',
+                duration: 1.8, ease: 'sine.inOut', yoyo: true, repeat: -1,
+                scrollTrigger: trig('.why-image-card')
             });
 
             /* ================= HOW IT WORKS — steps swap sides like a slider ================= */
@@ -2100,19 +1820,32 @@
                 }
             });
 
-            /* ================= TESTIMONIALS — carousel-style cascade from the right ================= */
+            /* ================= TESTIMONIALS — 3D flip-in cards + breathing rating ================= */
             gsap.set('.testi-title', { y: -30 });
             gsap.to('.testi-title', { opacity: 1, y: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.testimonials') });
 
-            gsap.set('.testi-card', { x: 130 });
+            gsap.set('.testi-card', {
+                rotateX: -60, y: 40, transformPerspective: 900, transformOrigin: 'top center'
+            });
             gsap.to('.testi-card', {
-                opacity: 1, x: 0, duration: 0.8, ease: EASE, stagger: 0.18,
+                opacity: 1, rotateX: 0, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.15,
                 scrollTrigger: trig('.testi-grid')
             });
 
+            gsap.from('.testi-see-more', {
+                opacity: 0, y: 15, duration: 0.6, ease: EASE,
+                scrollTrigger: trig('.testi-see-more', 'top 92%')
+            });
+
+            /* Rating stars pop in, then gentle breathing pulse */
             gsap.from('.testi-rating', {
                 opacity: 0, scale: 0.7, duration: 0.6, ease: 'back.out(2)',
-                scrollTrigger: trig('.testi-rating', 'top 92%')
+                scrollTrigger: trig('.testi-rating', 'top 92%'),
+                onComplete: function () {
+                    gsap.to('.testi-rating', {
+                        scale: 1.05, duration: 1.4, ease: 'sine.inOut', yoyo: true, repeat: -1
+                    });
+                }
             });
 
             /* ================= CTA — zoom-in punch ================= */
@@ -2184,33 +1917,32 @@
 
         const howSteps = document.querySelectorAll(".how-step");
 
-howSteps.forEach(step => {
+        howSteps.forEach(step => {
 
-    const icon = step.querySelector(".how-step-icon");
+            const icon = step.querySelector(".how-step-icon");
 
-    icon.addEventListener("click", () => {
+            icon.addEventListener("click", () => {
 
-        // மற்ற steps எல்லாம் close
-        howSteps.forEach(item => {
-            if (item !== step) {
-                item.classList.remove("active");
-                item.querySelector(".how-step-icon").textContent = "add";
-            }
+                howSteps.forEach(item => {
+                    if (item !== step) {
+                        item.classList.remove("active");
+                        item.querySelector(".how-step-icon").textContent = "add";
+                    }
+                });
+
+                // current step toggle
+                step.classList.toggle("active");
+
+                // icon change
+                if (step.classList.contains("active")) {
+                    icon.textContent = "remove";
+                } else {
+                    icon.textContent = "add";
+                }
+
+            });
+
         });
-
-        // current step toggle
-        step.classList.toggle("active");
-
-        // icon change
-        if (step.classList.contains("active")) {
-            icon.textContent = "remove";
-        } else {
-            icon.textContent = "add";
-        }
-
-    });
-
-});
     </script>
 </body>
 

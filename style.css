@@ -17,7 +17,11 @@ body {
 
 :root {
     --pcolor: #015EFB;
+    --pcolor-light: #4C8CFF;
+    --muted: rgba(255, 255, 255, 0.55);
 }
+
+
 
 .header {
     display: grid;
@@ -76,26 +80,61 @@ body {
 }
 
 .login-buttons a {
-    text-decoration: none;
-    color: white;
-    color: white;
-    padding: 10px 20px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 22px;
     border-radius: 30px;
-    transition: .5s ease;
-    font-size: 15px;
+
+    color: white;
+    text-decoration: none;
+
+
+
+    transition: transform .3s ease;
 }
 
 .loginBtn {
     background: var(--pcolor);
 }
 
-.signupBtn:hover {
+/* Slider */
+.login-buttons a::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 100%;
+
     background: var(--pcolor);
+
+    transition: width .5s ease;
+
+    z-index: -1;
+}
+
+/* Hover → LEFT to RIGHT */
+.login-buttons a:hover::before {
+    width: 100%;
+}
+
+.login-buttons a:hover {
+    transform: translateY(-2px);
 }
 
 .menuBtn {
     display: none;
 }
+
+
 
 /* sidebar */
 
@@ -198,18 +237,18 @@ body {
         margin-bottom: 40px;
     }
 
-    
+
     .sideMenus a {
         text-decoration: none;
         color: white;
-           width: 100%;
+        width: 100%;
         padding-left: 10px;
         padding-block: 10px;
         transition: .5s ease;
-              font-size: 14px;
+        font-size: 14px;
     }
 
-    .sideMenus a:hover{
+    .sideMenus a:hover {
         background: var(--pcolor);
     }
 
@@ -241,7 +280,7 @@ body {
     }
 
 
-    }
+}
 
 
 
@@ -259,116 +298,269 @@ body {
 }
 
 
- /* footer */
+/* footer */
 
+.footer {
+    background: var(--pcolor);
+    padding-block: 100px;
+    padding-inline: 80px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
+    gap: 30px;
+    color: white;
+}
+
+.footer-brand h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.footer-brand p {
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.footer-form {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-form input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+}
+
+.footer-form button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: black;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: .5s ease;
+}
+
+.footer-form button:hover {
+    transform: translateY(-5px);
+}
+
+.footer h4 {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 14px;
+    transition: .5s ease;
+}
+
+.footer-links a:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.footer-social a {
+    height: 37px;
+    width: 37px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 20px;
+    transition: .5s ease;
+}
+
+.footer-social a:hover {
+    transform: rotate(360deg) scale(1.2);
+    background: white;
+    color: var(--pcolor);
+}
+
+.footer-contact p {
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    transition: .5s ease;
+    cursor: pointer;
+
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.footer-contact p span {
+    font-size: 18px;
+}
+
+.footer-contact p a {
+    text-decoration: none;
+    color: white;
+
+}
+
+.footer-contact p:hover {
+    transform: translateX(5px) !important;
+}
+
+.ferror {
+    color: red;
+    margin-top: 10px;
+}
+
+@media (max-width:1100px) {
     .footer {
-        background: var(--pcolor);
-        padding-block: 100px;
-        padding-inline: 100px;
-        display: grid;
-        grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
-        gap: 30px;
-        color: white;
+        grid-template-columns: 1fr 1fr;
+        padding-inline: 60px;
     }
+}
 
-    .footer-brand h3 {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 20px;
-        margin-bottom: 25px;
-    }
-
-    .footer-brand p {
-        font-size: 14px;
-        margin-bottom: 15px;
-        line-height: 1.5;
+@media (max-width:600px) {
+    .footer {
+        grid-template-columns: 1fr;
+        padding: 30px;
+        padding-block: 40px;
     }
 
     .footer-form {
-        display: flex;
-        gap: 10px;
-    }
-
-    .footer-form input {
-        flex: 1;
-        padding: 10px 15px;
-        border-radius: 20px;
-        border: none;
-        outline: none;
-        font-size: 13px;
-    }
-
-    .footer-form button {
-        padding: 10px 20px;
-        border-radius: 20px;
-        border: none;
-        background: black;
-        color: white;
-        font-size: 13px;
-        cursor: pointer;
-    }
-
-    .footer h4 {
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
-    .footer-links {
-        display: flex;
         flex-direction: column;
-        gap: 12px;
     }
+}
 
-    .footer-links a {
-        color: rgba(255, 255, 255, 0.85);
-        text-decoration: none;
-        font-size: 14px;
+/* loading */
+
+.company-logo img {
+    width: clamp(130px,14vw,150px);
+}
+
+
+body.is-loading {
+    overflow: hidden;
+}
+
+#preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    transition: opacity .7s ease, visibility .7s ease;
+}
+
+#preloader.done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.pre-ring {
+    position: relative;
+    height: 110px;
+    width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pre-ring::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-top-color: var(--pcolor);
+    border-right-color: var(--pcolor);
+    animation: preSpin 1s linear infinite;
+}
+
+.pre-ring::after {
+    content: "";
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(1, 94, 251, .45), transparent 70%);
+    filter: blur(12px);
+    animation: prePulse 2s ease-in-out infinite;
+    z-index: -1;
+}
+
+.pre-ring span.material-symbols-outlined {
+    font-size: 42px;
+    color: var(--pcolor);
+    animation: prePulse 2s ease-in-out infinite;
+}
+
+.pre-bar {
+    width: min(260px, 70vw);
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+}
+
+.pre-bar i {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--pcolor);
+    border-radius: 3px;
+    transition: width .25s ease;
+}
+
+.pre-text {
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.pre-text b {
+    color: var(--pcolor);
+    font-weight: 500;
+}
+
+@keyframes preSpin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes prePulse {
+    0%, 100% { opacity: .5; transform: scale(1); }
+    50%      { opacity: 1;  transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pre-ring::before,
+    .pre-ring::after,
+    .pre-ring span.material-symbols-outlined {
+        animation: none;
     }
-
-    .footer-links a:hover {
-        text-decoration: underline;
-    }
-
-    .footer-social {
-        display: flex;
-        gap: 12px;
-        margin-top: 5px;
-    }
-
-    .footer-social a {
-        height: 32px;
-        width: 32px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.15);
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        font-size: 15px;
-    }
-
-    .footer-contact p {
-        font-size: 14px;
-        margin-bottom: 12px;
-        line-height: 1.5;
-    }
-
-    @media (max-width:950px) {
-        .footer {
-            grid-template-columns: 1fr 1fr;
-        }
-    }
-
-    @media (max-width:600px) {
-        .footer {
-            grid-template-columns: 1fr;
-            padding: 20px;
-            padding-block: 40px;
-        }
-
-        .footer-form {
-            flex-direction: column;
-        }
-    }
+}

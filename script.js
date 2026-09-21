@@ -57,3 +57,43 @@ footSubBtn.addEventListener("click", (e) => {
 
     femail.value = "";
 });
+
+
+// loading
+
+(function () {
+    document.body.classList.add('is-loading');
+
+    var pre   = document.getElementById('preloader');
+    var bar   = pre.querySelector('.pre-bar i');
+    var count = document.getElementById('preCount');
+    var pct = 0, finished = false, timer;
+
+    timer = setInterval(function () {
+        if (pct < 90) {
+            pct += Math.random() * 8;
+            if (pct > 90) pct = 90;
+            bar.style.width = pct + '%';
+            count.textContent = Math.round(pct);
+        }
+    }, 150);
+
+    function finish() {
+        if (finished) return;
+        finished = true;
+        clearInterval(timer);
+        pct = 100;
+        bar.style.width = '100%';
+        count.textContent = '100';
+
+        setTimeout(function () {
+            pre.classList.add('done');
+            document.body.classList.remove('is-loading');
+            if (window.__heroTl) window.__heroTl.play();
+            if (window.ScrollTrigger) ScrollTrigger.refresh();
+        }, 350);
+    }
+
+    window.addEventListener('load', finish);
+    setTimeout(finish, 6000); // safety fallback
+})();

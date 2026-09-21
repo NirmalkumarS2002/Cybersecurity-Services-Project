@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Services — Securing Connection</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        rel="stylesheet">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Google Sans", sans-serif;
+    }
+
+    html,
+    body {
+        height: 100%;
+        overflow: hidden;
+        background: #030507;
+    }
+
+    :root {
+        --pcolor: #015EFB;
+        --pcolor-light: #4C8CFF;
+        --muted: rgba(255, 255, 255, 0.55);
+    }
+
+    .loader-screen {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        overflow: hidden;
+    }
+
+    /* faint grid backdrop, cybersecurity "network" feel */
+    .grid-backdrop {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(1, 94, 251, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(1, 94, 251, 0.08) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: radial-gradient(circle at center, black 0%, transparent 75%);
+        -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 75%);
+    }
+
+    .glow {
+        position: absolute;
+        width: clamp(320px, 45vw, 620px);
+        height: clamp(320px, 45vw, 620px);
+        background: radial-gradient(circle, rgba(1, 94, 251, 0.45), transparent 70%);
+        filter: blur(20px);
+        animation: pulseGlow 3.4s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+
+        0%,
+        100% {
+            opacity: 0.4;
+            transform: scale(1);
+        }
+
+        50% {
+            opacity: 0.7;
+            transform: scale(1.12);
+        }
+    }
+
+    /* ============ the lock — single orchestrated moment ============ */
+    .lock-wrap {
+        position: relative;
+        width: 108px;
+        height: 108px;
+        margin-bottom: 46px;
+        z-index: 2;
+    }
+
+    .lock-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 1.5px solid rgba(76, 140, 255, 0.25);
+    }
+
+    .lock-ring.scan {
+        border-top-color: var(--pcolor-light);
+        border-right-color: var(--pcolor-light);
+        animation: spin 1.6s linear infinite;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .lock-body {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 46px;
+        height: 38px;
+        background: linear-gradient(160deg, var(--pcolor-light), var(--pcolor));
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(1, 94, 251, 0.65);
+    }
+
+    .lock-shackle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -140%);
+        width: 26px;
+        height: 26px;
+        border: 5px solid var(--pcolor-light);
+        border-bottom: none;
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 0 14px rgba(76, 140, 255, 0.5);
+        transform-origin: 50% 100%;
+        animation: unlock 2.6s ease-in-out infinite;
+    }
+
+    @keyframes unlock {
+
+        0%,
+        60% {
+            transform: translate(-50%, -140%) rotate(0deg);
+        }
+
+        75% {
+            transform: translate(-50%, -140%) rotate(-18deg);
+        }
+
+        100% {
+            transform: translate(-50%, -140%) rotate(0deg);
+        }
+    }
+
+    .lock-dot {
+        position: absolute;
+        top: 62%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: white;
+    }
+
+    /* ============ wordmark + status text ============ */
+    .loader-brand {
+        font-size: 15px;
+        letter-spacing: .4px;
+        color: white;
+        margin-bottom: 10px;
+        z-index: 2;
+    }
+
+    .loader-brand span {
+        color: var(--pcolor-light);
+    }
+
+    .loader-status {
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-bottom: 34px;
+        min-height: 16px;
+        z-index: 2;
+    }
+
+    /* ============ progress bar ============ */
+    .progress-track {
+        position: relative;
+        width: min(320px, 70vw);
+        height: 3px;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+        z-index: 2;
+    }
+
+    .progress-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0%;
+        border-radius: 3px;
+        background: linear-gradient(90deg, var(--pcolor), var(--pcolor-light));
+        box-shadow: 0 0 12px rgba(76, 140, 255, 0.7);
+        transition: width .25s ease;
+    }
+
+    .progress-percent {
+        margin-top: 14px;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: .5px;
+        z-index: 2;
+    }
+
+    .progress-percent b {
+        color: white;
+        font-weight: 500;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        .lock-ring.scan,
+        .lock-shackle,
+        .glow {
+            animation: none;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .lock-wrap {
+            width: 88px;
+            height: 88px;
+        }
+
+        .loader-brand {
+            font-size: 13px;
+        }
+    }
+</style>
+
+<body>
+
+    <div class="loader-screen">
+
+        <div class="grid-backdrop"></div>
+        <div class="glow"></div>
+
+        <div class="lock-wrap">
+            <div class="lock-ring"></div>
+            <div class="lock-ring scan"></div>
+            <div class="lock-shackle"></div>
+            <div class="lock-body"></div>
+            <div class="lock-dot"></div>
+        </div>
+
+        <p class="loader-brand">Cyber<span>Shield</span></p>
+        <p class="loader-status" id="statusText">Establishing secure connection…</p>
+
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="progress-percent"><b id="progressNum">0</b>%</p>
+
+    </div>
+
+    <script>
+        (function () {
+            var fill = document.getElementById('progressFill');
+            var num = document.getElementById('progressNum');
+            var status = document.getElementById('statusText');
+
+            var messages = [
+                'Establishing secure connection…',
+                'Verifying endpoint integrity…',
+                'Loading threat intelligence…',
+                'Almost there…'
+            ];
+
+            var progress = 0;
+            var msgIndex = 0;
+            status.textContent = messages[0];
+
+            var interval = setInterval(function () {
+                // uneven increments feel more like a real scan than a linear bar
+                progress += Math.random() * 9 + 3;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    status.textContent = 'Connection secured.';
+                    setTimeout(function () {
+                        window.location.href = 'index.html';
+                    }, 500);
+                }
+
+                fill.style.width = progress + '%';
+                num.textContent = Math.floor(progress);
+
+                var nextMsg = Math.min(messages.length - 1, Math.floor((progress / 100) * messages.length));
+                if (nextMsg !== msgIndex && progress < 100) {
+                    msgIndex = nextMsg;
+                    status.textContent = messages[msgIndex];
+                }
+            }, 220);
+        })();
+    </script>
+
+</body>
+
+</html>
