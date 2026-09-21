@@ -292,6 +292,16 @@ body {
         height: 340px;
         margin-top: 40px;
     }
+
+    .hero-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    
 }
 
 @media (max-width: 500px) {
@@ -301,6 +311,13 @@ body {
 
     .hero-content h1 {
         font-size: 34px;
+    }
+
+    .hero-tags .last{
+        display: none;
+    }
+     .hero-tags span:last-child{
+        display: none;
     }
 }
 
@@ -1037,7 +1054,7 @@ body {
                 <span>Tailored solutions</span>
                 <div class="divider"></div>
                 <span>24/7 Support</span>
-                <div class="divider"></div>
+                <div class="divider last"></div>
                 <span>Expert analysis</span>
             </div>
         </div>

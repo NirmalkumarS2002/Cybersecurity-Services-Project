@@ -273,11 +273,19 @@ body {
 
     .side-loginBtn {
         background: var(--pcolor);
+       
+    }
+    .side-loginBtn:hover{
+ transform: translateY(-5px);
     }
 
     .side-signupBtn {
         border: 1px solid var(--pcolor);
     }
+     .side-signupBtn:hover{
+        background: var(--pcolor);
+        transform: translateY(-5px);
+     }
 
 
 }
