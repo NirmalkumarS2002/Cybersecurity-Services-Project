@@ -5,10 +5,12 @@ let menubtn=document.querySelector(".menuBtn")
 let closebtn=document.querySelector(".closeBtn")
 
 menubtn.addEventListener("click",()=>{
+        document.body.classList.add("menu-open");
     sidebar.classList.add("active")
 })
 
 closebtn.addEventListener("click",()=>{
+    document.body.classList.remove("menu-open");
     sidebar.classList.remove("active")
 })
 
@@ -50,9 +52,11 @@ footSubBtn.addEventListener("click", (e) => {
     // Valid email
     ferror.textContent = "Subscribed successfully!";
 
-    setTimeout(()=>{
-       ferror.textContent =""  
-    },3000)
+       setTimeout(()=>{
+        ferror.textContent =""  
+       window.location.href="404.html" 
+    },1000)
+
     ferror.style.color = "white";
 
     femail.value = "";

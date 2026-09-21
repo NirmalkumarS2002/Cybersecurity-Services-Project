@@ -564,3 +564,8 @@ body.is-loading {
         animation: none;
     }
 }
+
+body.menu-open {
+    overflow: hidden;
+        height: 100vh;
+}

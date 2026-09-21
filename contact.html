@@ -889,8 +889,23 @@ cSubBtn.addEventListener("click", (e) => {
 
     // SUCCESS
 
+    cName.value=""
+    cmail.value=""
+    cNo.value=""
+    cType.value=""
+    cCompany.value=""
+    cLocation.value=""
+    Ctext.value=""
+    Cbox.value=""
+    Cbox.checked = false;
+
     submitError.textContent = "Form submitted successfully!";
     submitError.style.color = "green";
+
+    setTimeout(()=>{
+               submitError.textContent =""  
+        window.location.href="404.html"
+    },1000)
 
 });
 
