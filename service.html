@@ -199,15 +199,35 @@
         gap: 24px;
     }
 
-    .os-card {
-        background: linear-gradient(160deg, #16181d, #0b0c10);
-        border: 1px solid rgba(76, 140, 255, 0.35);
-        border-radius: 18px;
-        padding: 34px 26px;
-        min-height: 210px;
-        display: flex;
-        flex-direction: column;
-    }
+  .os-card {
+    background: linear-gradient(160deg, #16181d, #0b0c10);
+    border: 1px solid rgba(76, 140, 255, 0.35);
+    border-radius: 18px;
+    padding: 34px 26px;
+    min-height: 210px;
+    display: flex;
+    flex-direction: column;
+
+    /* 3D Effect */
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+
+    will-change: transform;
+}
+
+.os-card:hover {
+    transform: translateY(-12px) rotateX(4deg) rotateY(-4deg);
+
+    border-color: #4c8cff;
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(76, 140, 255, 0.2);
+}
 
     .os-icon {
         margin-bottom: 30px;
@@ -536,13 +556,34 @@
     }
 
     .pricing-card {
-        background: linear-gradient(160deg, #16181d, #0b0c10);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 36px 30px;
-        display: flex;
-        flex-direction: column;
-    }
+    background: linear-gradient(160deg, #16181d, #0b0c10);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 36px 30px;
+    display: flex;
+    flex-direction: column;
+
+    /* 3D Effect */
+    transform-style: preserve-3d;
+    perspective: 1000px;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+
+    will-change: transform;
+}
+
+.pricing-card:hover {
+    transform: translateY(-12px) rotateX(4deg) rotateY(-4deg);
+
+    border-color: rgba(76, 140, 255, 0.8);
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(76, 140, 255, 0.2);
+}
 
     .pricing-card.featured {
         border: 1px solid var(--pcolor-light);
@@ -623,10 +664,7 @@
         transition: transform .3s ease, background .3s ease;
     }
 
-    .pricing-card a:hover {
-        background: var(--pcolor-light);
-        transform: translateY(-3px);
-    }
+    
 
     @media (max-width: 900px) {
         .pricing-section {
@@ -806,63 +844,130 @@
             <img src="./src/s5.webp" alt="team working together">
         </div>
 
-        <div class="how-content reveal" style="--i:1">
+       <div class="how-content reveal" style="--i:1">
 
-            <h2 class="how-title">How it <span>work</span></h2>
+    <h2 class="how-title">How it <span>works</span></h2>
 
-            <div class="how-steps">
+    <div class="how-steps">
 
-                <div class="how-step">
-                    <div class="how-step-left">
-                        <p class="how-step-num">01</p>
-                        <div class="how-step-text">
-                            <h3>Understand your needs</h3>
-                            <p>We begin with a detailed consultation to understand your business, assess your current
-                                security posture, and identify potential vulnerabilities.</p>
-                        </div>
-                    </div>
-                    <span class="how-step-icon material-symbols-outlined">add</span>
-                </div>
+        <!-- Step 01 -->
+        <div class="how-step">
 
-                <div class="how-step">
-                    <div class="how-step-left">
-                        <p class="how-step-num">02</p>
-                        <div class="how-step-text">
-                            <h3>Understand your needs</h3>
-                            <p>Based on our assessment, we design a comprehensive cybersecurity strategy tailored to
-                                your specific needs.</p>
-                        </div>
-                    </div>
-                    <span class="how-step-icon material-symbols-outlined">add</span>
-                </div>
+            <div class="how-step-left">
 
-                <div class="how-step">
-                    <div class="how-step-left">
-                        <p class="how-step-num">03</p>
-                        <div class="how-step-text">
-                            <h3>Deploy and monitor</h3>
-                            <p>Our team implements the security plan, ensuring that all systems are fully integrated
-                                and operational.</p>
-                        </div>
-                    </div>
-                    <span class="how-step-icon material-symbols-outlined">add</span>
-                </div>
+                <p class="how-step-num">01</p>
 
-                <div class="how-step">
-                    <div class="how-step-left">
-                        <p class="how-step-num">04</p>
-                        <div class="how-step-text">
-                            <h3>Review and optimize</h3>
-                            <p>Cybersecurity is an ongoing process. We regularly review and refine your security
-                                measures to adapt to new threats and technological advancement.</p>
-                        </div>
-                    </div>
-                    <span class="how-step-icon material-symbols-outlined">add</span>
+                <div class="how-step-text">
+
+                    <h3>Assess Your Security</h3>
+
+                    <p>
+                        We begin by understanding your business,
+                        reviewing your existing security infrastructure,
+                        and identifying potential vulnerabilities
+                        across your systems and networks.
+                    </p>
+
                 </div>
 
             </div>
 
+            <span class="how-step-icon material-symbols-outlined">
+                add
+            </span>
+
         </div>
+
+
+        <!-- Step 02 -->
+        <div class="how-step">
+
+            <div class="how-step-left">
+
+                <p class="how-step-num">02</p>
+
+                <div class="how-step-text">
+
+                    <h3>Build Your Security Strategy</h3>
+
+                    <p>
+                        Based on our assessment, we develop a
+                        tailored cybersecurity strategy focused on
+                        reducing risks, strengthening defenses,
+                        and protecting your critical digital assets.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span class="how-step-icon material-symbols-outlined">
+                add
+            </span>
+
+        </div>
+
+
+        <!-- Step 03 -->
+        <div class="how-step">
+
+            <div class="how-step-left">
+
+                <p class="how-step-num">03</p>
+
+                <div class="how-step-text">
+
+                    <h3>Monitor and Detect Threats</h3>
+
+                    <p>
+                        Our security team continuously monitors
+                        your environment, investigates suspicious
+                        activity, and identifies potential threats
+                        before they can cause significant damage.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span class="how-step-icon material-symbols-outlined">
+                add
+            </span>
+
+        </div>
+
+
+        <!-- Step 04 -->
+        <div class="how-step">
+
+            <div class="how-step-left">
+
+                <p class="how-step-num">04</p>
+
+                <div class="how-step-text">
+
+                    <h3>Respond and Strengthen Protection</h3>
+
+                    <p>
+                        We respond to security incidents, review
+                        system performance, and continuously improve
+                        your security measures to help your business
+                        stay prepared for evolving cyber threats.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span class="how-step-icon material-symbols-outlined">
+                add
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
 
     </section>
 
@@ -1159,7 +1264,6 @@ howSteps.forEach(step => {
 
     icon.addEventListener("click", () => {
 
-        // மற்ற steps எல்லாம் close
         howSteps.forEach(item => {
             if (item !== step) {
                 item.classList.remove("active");
@@ -1176,6 +1280,88 @@ howSteps.forEach(step => {
         } else {
             icon.textContent = "add";
         }
+
+    });
+
+});
+
+//hover
+
+const cards = document.querySelectorAll(".os-card");
+
+cards.forEach((card) => {
+
+    card.addEventListener("mousemove", (e) => {
+
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+
+        card.style.transform = `
+            perspective(1000px)
+            translateY(-12px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+        `;
+
+    });
+
+    card.addEventListener("mouseleave", () => {
+
+        card.style.transform = `
+            perspective(1000px)
+            translateY(0)
+            rotateX(0deg)
+            rotateY(0deg)
+        `;
+
+    });
+
+});
+
+//prizing
+
+const pricingCards = document.querySelectorAll(".pricing-card");
+
+pricingCards.forEach((card) => {
+
+    card.addEventListener("mousemove", (e) => {
+
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+
+        card.style.transform = `
+            perspective(1000px)
+            translateY(-12px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+        `;
+
+    });
+
+    card.addEventListener("mouseleave", () => {
+
+        card.style.transform = `
+            perspective(1000px)
+            translateY(0)
+            rotateX(0deg)
+            rotateY(0deg)
+        `;
 
     });
 

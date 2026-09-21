@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -130,8 +130,9 @@
         color: white;
         font-size: 14px;
         transition: transform .3s ease, background .3s ease;
-                overflow: hidden;
+        overflow: hidden;
     }
+
     .hero-outline {
         background: transparent;
         position: relative;
@@ -154,11 +155,11 @@
         z-index: -1;
     }
 
-    .hero-buttions  .hero-outline:hover::before{
+    .hero-buttions .hero-outline:hover::before {
         width: 100%;
     }
 
-    .hero-buttions  .hero-outline:hover {
+    .hero-buttions .hero-outline:hover {
         transform: translateY(-3px);
     }
 
@@ -167,12 +168,12 @@
         overflow: hidden !important;
     }
 
-    .hero-fill:hover{
+    .hero-fill:hover {
         transform: translateY(-5px);
         background: var(--pcolor-light);
     }
 
-    
+
 
     .hero-image {
         position: relative;
@@ -1231,13 +1232,13 @@
 
     <div id="preloader">
 
-         <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
-    <div class="pre-ring">
-        <span class="material-symbols-outlined">shield_lock</span>
+        <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+        <div class="pre-ring">
+            <span class="material-symbols-outlined">shield_lock</span>
+        </div>
+        <div class="pre-bar"><i></i></div>
+        <p class="pre-text">SECURING <b><span id="preCount">0</span>%</b></p>
     </div>
-    <div class="pre-bar"><i></i></div>
-    <p class="pre-text">SECURING <b><span id="preCount">0</span>%</b></p>
-</div>
 
     <header class="header">
 
@@ -1410,10 +1411,11 @@
 
 
                 <div class="expertise-block">
-                    <span class="material-symbols-outlined">hourglass</span>
+                    <span class="material-symbols-outlined">security</span>
                     <div>
-                        <h3>24/7 Monitoring</h3>
-                        <p>Around the clock vigilance to keep your business safe.</p>
+                        <h3>Proactive Cyber Defense</h3>
+
+                       <p>Round-the-clock monitoring to detect threats early.</p>
                     </div>
                 </div>
 
@@ -1436,6 +1438,11 @@
                 <h3>Enhanced data protection</h3>
                 <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am
                     page means something happened.</p>
+                <p>
+                    When a security incident occurs, our response-focused
+                    approach helps investigate threats, contain potential damage,
+                    and support a faster recovery for your business.
+                </p>
             </div>
 
             <div class="why-card reveal" style="--i:1">
@@ -1443,6 +1450,11 @@
                 <h3>Expert risk management</h3>
                 <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am
                     page means something happened.</p>
+                <p>
+                    We identify vulnerabilities and security weaknesses early,
+                    helping your business strengthen its defenses and reduce
+                    exposure to evolving cyber threats.
+                </p>
             </div>
 
             <div class="why-image-card wipe-reveal" data-wipe="ttb">
@@ -1454,6 +1466,11 @@
                 <h3>Proactive security measures</h3>
                 <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am
                     page means something happened.</p>
+                <p>
+                    We continuously monitor your digital environment to detect
+                    unusual behavior, emerging threats, and potential security
+                    gaps before they disrupt your business operations.
+                </p>
             </div>
 
             <div class="why-card reveal" style="--i:1">
@@ -1461,6 +1478,11 @@
                 <h3>Reliable incident response</h3>
                 <p>We don't alert on noise. Every signal gets reviewed by an analyst before it reaches you, so a 2am
                     page means something happened.</p>
+                <p>
+                    Our advanced threat detection helps identify suspicious
+                    activity across your systems, allowing your team to respond
+                    quickly before security risks become serious incidents.
+                </p>
             </div>
 
         </div>
@@ -1633,16 +1655,17 @@
             <h4>Follow us</h4>
             <div class="footer-social">
                 <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
 
         <div class="footer-contact reveal" style="--i:3">
             <h4>Contact us</h4>
-            <p><span class="material-symbols-outlined">location_on</span><a href="404.html">Evolve Studio, 4th Floor, Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha Nagar,
-                Yelenahalli, Begur, Bengaluru, Karnataka -560068</a></p>
+            <p><span class="material-symbols-outlined">location_on</span><a href="404.html">Evolve Studio, 4th Floor,
+                    Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha Nagar,
+                    Yelenahalli, Begur, Bengaluru, Karnataka -560068</a></p>
             <p><span class="material-symbols-outlined">mail</span><a href="404.html">info@stackly.com</a></p>
             <p><span class="material-symbols-outlined">call</span><a href="404.html">+91 98765 43210</a></p>
         </div>
