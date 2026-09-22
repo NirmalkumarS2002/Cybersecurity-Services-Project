@@ -778,6 +778,9 @@
     }
 
     .testimonial-card {
+
+        display: flex;
+        flex-direction: column;
         background: #0b0c10;
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 18px;
@@ -804,6 +807,7 @@
         color: rgba(255, 255, 255, 0.8);
         margin-bottom: 24px;
         min-height: 110px;
+        flex: 1;
     }
 
     .t-person {
@@ -1342,7 +1346,6 @@
         (function () {
             var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            // gsap illa, reduced-motion iruntha - already default opacity 1 dhaan, so simply skip.
             if (reduceMotion || typeof gsap === 'undefined') {
                 return;
             }
