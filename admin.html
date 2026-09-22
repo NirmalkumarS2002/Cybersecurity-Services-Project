@@ -175,6 +175,7 @@
             position: relative;
         }
 
+    
         .side-nav button .material-symbols-outlined {
             font-size: 19px;
             flex-shrink: 0;
@@ -200,6 +201,15 @@
             border-left-color: #3a4050;
         }
 
+        .logout{
+ padding-block: 15px !important;
+        }
+
+        .logout:hover{
+            color: red !important;
+           
+        }
+
         .side-nav button.active {
             background: transparent;
             color: var(--pcolor-light);
@@ -211,7 +221,7 @@
             align-items: center;
             gap: 12px;
             padding: 14px 16px;
-            border-top: 1px solid #1c1f26;
+            border-block: 1px solid #1c1f26;
         }
 
         .sidebar-footer img {
@@ -1843,8 +1853,6 @@ body.is-loading {
                 <button onclick="showView('messages', this)"><span class="material-symbols-outlined">forum</span>
                     <span class="label">Messages</span><span class="badge-count">5</span></button>
 
-                <button class="logoutbtn"><span class="material-symbols-outlined">logout</span>
-                    <span class="label">Logout</span></button>
             </nav>
 
         </div>
@@ -1856,6 +1864,13 @@ body.is-loading {
                 <span>administrator</span>
             </div>
         </div>
+
+        <nav class="side-nav">
+               <button class="logoutbtn logout"><span class="material-symbols-outlined">logout</span>
+                    <span class="label">Logout</span></button>
+        </nav>
+        
+             
     </aside>
 
     <!-- ================= MAIN CONTENT ================= -->
@@ -1893,6 +1908,27 @@ body.is-loading {
 
             <!-- ========== 1. OVERVIEW VIEW ========== -->
             <div class="view active" id="overview">
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>Security Intelligence</h3>
+                        <span class="badge active">Live Overview</span>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-card"><h2>94%</h2><p>Security Score</p><span class="delta">+4.8% this month</span></div>
+                        <div class="stat-card"><h2>126</h2><p>Threats Blocked</p><span class="delta">Last 24 hours</span></div>
+                        <div class="stat-card"><h2>08</h2><p>Critical Alerts</p><span class="delta down">Requires review</span></div>
+                        <div class="stat-card"><h2>99.9%</h2><p>System Uptime</p><span class="delta">All systems stable</span></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head"><h3>Recent Security Activity</h3><span class="badge transit">Updated now</span></div>
+                    <div class="timeline">
+                        <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">shield</span></div><div class="t-body"><h5>Suspicious login blocked</h5><p>Multiple failed login attempts were prevented.</p></div></div>
+                        <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">verified_user</span></div><div class="t-body"><h5>Endpoint protection updated</h5><p>Security policies were synchronized across devices.</p></div></div>
+                        <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">monitoring</span></div><div class="t-body"><h5>Threat monitoring completed</h5><p>All monitored environments were scanned successfully.</p></div></div>
+                    </div>
+                </div>
+
 
                 <div class="stat-row">
                     <div class="stat-card">
@@ -2169,6 +2205,24 @@ body.is-loading {
 
             <!-- ========== 2. INCIDENTS VIEW ========== -->
             <div class="view" id="orders">
+                <div class="panel">
+                    <div class="panel-head"><h3>Incident Intelligence</h3><span class="badge pending">Needs Review</span></div>
+                    <div class="stat-row">
+                        <div class="stat-card"><h2>27</h2><p>Open Incidents</p><span class="delta down">Requires triage</span></div>
+                        <div class="stat-card"><h2>09</h2><p>Critical</p><span class="delta down">High priority</span></div>
+                        <div class="stat-card"><h2>14</h2><p>Investigating</p><span class="delta">In progress</span></div>
+                        <div class="stat-card"><h2>42</h2><p>Resolved</p><span class="delta">This month</span></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head"><h3>Response Workflow</h3><span class="badge transit">Incident Process</span></div>
+                    <div class="timeline">
+                        <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">notification_important</span></div><div class="t-body"><h5>Alert Detection</h5><p>Signals are collected from monitored systems.</p></div></div>
+                        <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">manage_search</span></div><div class="t-body"><h5>Analyst Investigation</h5><p>The security team reviews and validates the alert.</p></div></div>
+                        <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">task_alt</span></div><div class="t-body"><h5>Resolution and Reporting</h5><p>Actions are recorded and the incident is closed.</p></div></div>
+                    </div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">report</span>
@@ -2285,6 +2339,24 @@ body.is-loading {
 
             <!-- ========== 3. SERVICES VIEW ========== -->
             <div class="view" id="listings">
+                <div class="panel">
+                    <div class="panel-head"><h3>Service Health</h3><span class="badge active">Monitoring Active</span></div>
+                    <div class="stat-row">
+                        <div class="stat-card"><h2>18</h2><p>Active Services</p><span class="delta">All services monitored</span></div>
+                        <div class="stat-card"><h2>16</h2><p>Healthy Services</p><span class="delta">89% healthy</span></div>
+                        <div class="stat-card"><h2>02</h2><p>Under Review</p><span class="delta down">Action required</span></div>
+                        <div class="stat-card"><h2>24/7</h2><p>Coverage</p><span class="delta">Continuous monitoring</span></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head"><h3>Protection Coverage</h3><span class="badge transit">Service Summary</span></div>
+                    <div class="budget-row">
+                        <div class="budget-item"><h5>Endpoint Security <span>92%</span></h5><div class="budget-track"><div class="budget-fill" style="width:92%"></div></div></div>
+                        <div class="budget-item"><h5>Network Monitoring <span>86%</span></h5><div class="budget-track"><div class="budget-fill" style="width:86%"></div></div></div>
+                        <div class="budget-item"><h5>Cloud Protection <span>78%</span></h5><div class="budget-track"><div class="budget-fill" style="width:78%"></div></div></div>
+                    </div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">security</span>
@@ -2540,6 +2612,24 @@ body.is-loading {
 
             <!-- ========== 4. ANALYSTS VIEW ========== -->
             <div class="view" id="staff">
+                <div class="panel">
+                    <div class="panel-head"><h3>Analyst Operations</h3><span class="badge active">Team Online</span></div>
+                    <div class="stat-row">
+                        <div class="stat-card"><h2>42</h2><p>Active Analysts</p><span class="delta">Across all shifts</span></div>
+                        <div class="stat-card"><h2>18</h2><p>On Duty</p><span class="delta">Current shift</span></div>
+                        <div class="stat-card"><h2>07</h2><p>Investigations</p><span class="delta">In progress</span></div>
+                        <div class="stat-card"><h2>96%</h2><p>Response Rate</p><span class="delta">This week</span></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head"><h3>Shift Management</h3><span class="badge transit">Schedule</span></div>
+                    <div class="event-list">
+                        <div class="event-item"><div class="event-date"><strong>AM</strong><span>Shift</span></div><div class="event-info"><h5>Morning Security Team</h5><p>06:00 AM – 02:00 PM</p></div></div>
+                        <div class="event-item"><div class="event-date"><strong>PM</strong><span>Shift</span></div><div class="event-info"><h5>Evening Security Team</h5><p>02:00 PM – 10:00 PM</p></div></div>
+                        <div class="event-item"><div class="event-date"><strong>NT</strong><span>Shift</span></div><div class="event-info"><h5>Night Security Team</h5><p>10:00 PM – 06:00 AM</p></div></div>
+                    </div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">shield_person</span>
@@ -2665,6 +2755,24 @@ body.is-loading {
 
             <!-- ========== 5. LOCATIONS VIEW ========== -->
             <div class="view" id="branches">
+                <div class="panel">
+                    <div class="panel-head"><h3>SOC Location Status</h3><span class="badge active">Locations Online</span></div>
+                    <div class="stat-row">
+                        <div class="stat-card"><h2>03</h2><p>SOC Locations</p><span class="delta">All regions connected</span></div>
+                        <div class="stat-card"><h2>99.8%</h2><p>Connectivity</p><span class="delta">Stable network</span></div>
+                        <div class="stat-card"><h2>24/7</h2><p>Coverage</p><span class="delta">Continuous operations</span></div>
+                        <div class="stat-card"><h2>02</h2><p>Regions</p><span class="delta">Active coverage</span></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head"><h3>Location Operations</h3><span class="badge transit">Regional Summary</span></div>
+                    <div class="event-list">
+                        <div class="event-item"><div class="event-date"><strong>01</strong><span>SOC</span></div><div class="event-info"><h5>Chennai Security Operations</h5><p>Primary monitoring and incident response</p></div></div>
+                        <div class="event-item"><div class="event-date"><strong>02</strong><span>SOC</span></div><div class="event-info"><h5>Bengaluru Security Operations</h5><p>Threat analysis and response support</p></div></div>
+                        <div class="event-item"><div class="event-date"><strong>03</strong><span>SOC</span></div><div class="event-info"><h5>Regional Backup Center</h5><p>Business continuity and recovery</p></div></div>
+                    </div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">apartment</span>
@@ -2789,6 +2897,24 @@ body.is-loading {
 
             <!-- ========== 6. CLIENTS VIEW ========== -->
             <div class="view" id="clients">
+                <div class="panel">
+                    <div class="panel-head"><h3>Client Security Summary</h3><span class="badge active">Client Monitoring</span></div>
+                    <div class="stat-row">
+                        <div class="stat-card"><h2>128</h2><p>Total Clients</p><span class="delta">Across all services</span></div>
+                        <div class="stat-card"><h2>104</h2><p>Protected</p><span class="delta">81% coverage</span></div>
+                        <div class="stat-card"><h2>16</h2><p>Under Review</p><span class="delta down">Follow-up needed</span></div>
+                        <div class="stat-card"><h2>08</h2><p>High Risk</p><span class="delta down">Priority monitoring</span></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head"><h3>Client Service Activity</h3><span class="badge transit">Account Updates</span></div>
+                    <div class="timeline">
+                        <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">person_add</span></div><div class="t-body"><h5>New client onboarded</h5><p>Security policies and access controls configured.</p></div></div>
+                        <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">description</span></div><div class="t-body"><h5>Security report generated</h5><p>Monthly security performance report is available.</p></div></div>
+                        <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">support_agent</span></div><div class="t-body"><h5>Client review scheduled</h5><p>Risk and compliance discussion is planned.</p></div></div>
+                    </div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">groups</span>
@@ -2922,6 +3048,24 @@ body.is-loading {
 
             <!-- ========== 7. BILLING VIEW ========== -->
             <div class="view" id="deals">
+                <div class="panel">
+                    <div class="panel-head"><h3>Billing Overview</h3><span class="badge active">Finance Summary</span></div>
+                    <div class="stat-row">
+                        <div class="stat-card"><h2>$48.2K</h2><p>Monthly Revenue</p><span class="delta">+8.4% this month</span></div>
+                        <div class="stat-card"><h2>$12.6K</h2><p>Pending Payments</p><span class="delta down">Follow-up required</span></div>
+                        <div class="stat-card"><h2>86</h2><p>Active Plans</p><span class="delta">Across all clients</span></div>
+                        <div class="stat-card"><h2>94%</h2><p>Collection Rate</p><span class="delta">Current cycle</span></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head"><h3>Payment Activity</h3><span class="badge transit">Recent Transactions</span></div>
+                    <div class="event-list">
+                        <div class="event-item"><div class="event-date"><strong>01</strong><span>Paid</span></div><div class="event-info"><h5>Annual Security Plan</h5><p>Payment received and invoice generated</p></div></div>
+                        <div class="event-item"><div class="event-date"><strong>02</strong><span>Due</span></div><div class="event-info"><h5>Enterprise Monitoring Plan</h5><p>Payment due for the current billing cycle</p></div></div>
+                        <div class="event-item"><div class="event-date"><strong>03</strong><span>Paid</span></div><div class="event-info"><h5>Endpoint Protection Plan</h5><p>Subscription renewed successfully</p></div></div>
+                    </div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">payments</span>
@@ -3008,6 +3152,24 @@ body.is-loading {
 
             <!-- ========== 8. MESSAGES VIEW ========== -->
             <div class="view" id="messages">
+                <div class="panel">
+                    <div class="panel-head"><h3>Communication Summary</h3><span class="badge pending">5 Unread</span></div>
+                    <div class="stat-row">
+                        <div class="stat-card"><h2>05</h2><p>Unread Messages</p><span class="delta down">Requires response</span></div>
+                        <div class="stat-card"><h2>18</h2><p>Support Tickets</p><span class="delta">This month</span></div>
+                        <div class="stat-card"><h2>12</h2><p>Client Requests</p><span class="delta">Open requests</span></div>
+                        <div class="stat-card"><h2>96%</h2><p>Response Rate</p><span class="delta">Team performance</span></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head"><h3>Message Categories</h3><span class="badge transit">Inbox Insights</span></div>
+                    <div class="budget-row">
+                        <div class="budget-item"><h5>Client Support <span>72%</span></h5><div class="budget-track"><div class="budget-fill" style="width:72%"></div></div></div>
+                        <div class="budget-item"><h5>Incident Updates <span>58%</span></h5><div class="budget-track"><div class="budget-fill" style="width:58%"></div></div></div>
+                        <div class="budget-item"><h5>Billing Queries <span>36%</span></h5><div class="budget-track"><div class="budget-fill" style="width:36%"></div></div></div>
+                    </div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">forum</span>

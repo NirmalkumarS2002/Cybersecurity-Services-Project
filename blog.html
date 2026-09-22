@@ -316,6 +316,8 @@
         display: flex;
         align-items: flex-end;
         text-decoration: none;
+        transition: transform .5s ease, box-shadow .5s ease, border-color .4s ease, background-size .7s ease;
+        will-change: transform;
     }
 
 
@@ -328,6 +330,7 @@
         position: absolute;
         inset: 0;
         background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.92) 100%);
+        transition: background .4s ease;
     }
 
     .blog-card-body {
@@ -342,6 +345,7 @@
         color: rgba(255, 255, 255, 0.75);
         margin-bottom: 12px;
         display: block;
+        transition: color .35s ease;
     }
 
     .blog-card h4 {
@@ -350,6 +354,7 @@
         line-height: 1.35;
         margin-bottom: 10px;
         max-width: 320px;
+        transition: color .35s ease;
     }
 
     .blog-card p {
@@ -357,12 +362,51 @@
         color: rgba(255, 255, 255, 0.75);
         line-height: 1.6;
         max-width: 320px;
-        margin-bottom: 16px;
+        margin-bottom: 0;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(10px);
+        transition: opacity .4s ease, transform .4s ease, max-height .4s ease, margin-bottom .4s ease;
     }
 
     .blog-byline {
-        font-size: 11px;
+        font-size: 13px;
         color: rgba(255, 255, 255, 0.55);
+        display: block;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transform: translateY(10px);
+        transition: opacity .4s ease .05s, transform .4s ease .05s, max-height .4s ease .05s;
+    }
+
+    .blog-byline:hover{
+        color: var(--pcolor);
+    }
+
+    /* ---- blog-card hover effect ---- */
+   
+
+    .blog-card:hover::before {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 45%, rgba(1, 6, 20, 0.95) 100%);
+    }
+
+
+ 
+
+    /* text (description + byline) revealed only on hover */
+    .blog-card:hover p {
+        opacity: 1;
+        max-height: 160px;
+        margin-bottom: 16px;
+        transform: translateY(0);
+    }
+
+    .blog-card:hover .blog-byline {
+        opacity: 1;
+        max-height: 40px;
+        transform: translateY(0);
     }
 
     @media (max-width: 900px) {
@@ -372,6 +416,80 @@
 
         .blogs-top,
         .blogs-bottom {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ============ by the numbers (NEW SECTION) ============ */
+
+    .stats-section {
+        margin: 0 100px 130px;
+        color: white;
+    }
+
+    .stats-card {
+        background: linear-gradient(160deg, #111318, #08090c);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 50px 60px;
+    }
+
+    .stats-eyebrow {
+        font-size: 11px;
+        letter-spacing: .8px;
+        color: var(--muted);
+        margin-bottom: 10px;
+    }
+
+    .stats-card h3 {
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 40px;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    .stat-item {
+        text-align: left;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        padding-left: 20px;
+    }
+
+    .stat-num {
+        font-size: 38px;
+        font-weight: 600;
+        color: var(--pcolor-light);
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+        .stats-section {
+            margin: 0 30px 90px;
+        }
+
+        .stats-card {
+            padding: 36px 24px;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 26px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .stats-grid {
             grid-template-columns: 1fr;
         }
     }
@@ -413,10 +531,13 @@
         grid-template-columns: 50px 1fr auto;
         align-items: center;
         gap: 24px;
-        padding: 22px 0;
+        padding: 22px 14px;
+        margin: 0 -14px;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         text-decoration: none;
         color: white;
+        border-radius: 10px;
+        transition: background .35s ease, transform .35s ease, border-color .35s ease;
     }
 
     .popular-item:last-child {
@@ -426,17 +547,39 @@
     .popular-num {
         font-size: 14px;
         color: var(--muted);
+        transition: color .35s ease;
     }
 
     .popular-title {
         font-size: 16px;
         font-weight: 400;
+        transition: color .35s ease;
     }
 
     .popular-cat {
         font-size: 11px;
         letter-spacing: .5px;
         color: var(--muted);
+        transition: color .35s ease;
+    }
+
+    /* ---- popular-item hover effect ---- */
+    .popular-item:hover {
+        background: rgba(1, 94, 251, 0.09);
+        transform: translateX(6px);
+        border-top-color: rgba(76, 140, 255, 0.4);
+    }
+
+    .popular-item:hover .popular-num {
+        color: var(--pcolor-light);
+    }
+
+    .popular-item:hover .popular-title {
+        color: var(--pcolor-light);
+    }
+
+    .popular-item:hover .popular-cat {
+        color: rgba(255, 255, 255, 0.85);
     }
 
     @media (max-width: 900px) {
@@ -607,6 +750,87 @@
         .team-heading {
             font-size: 28px;
             margin-bottom: 40px;
+        }
+    }
+
+    /* ============ testimonials (NEW SECTION) ============ */
+
+    .testimonial-section {
+        margin: 0 100px 120px;
+        color: white;
+    }
+
+    .testimonial-heading {
+        font-size: 34px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .testimonial-heading span {
+        color: var(--pcolor-light);
+    }
+
+    .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+    }
+
+    .testimonial-card {
+        background: #0b0c10;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        padding: 34px 28px;
+        transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(76, 140, 255, 0.5);
+        box-shadow: 0 16px 40px rgba(1, 94, 251, 0.3);
+    }
+
+    .t-quote-icon {
+        color: var(--pcolor-light);
+        font-size: 22px;
+        margin-bottom: 16px;
+        display: block;
+    }
+
+    .t-quote {
+        font-size: 13.5px;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 24px;
+        min-height: 110px;
+    }
+
+    .t-person {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 16px;
+    }
+
+    .t-name {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .t-role {
+        font-size: 11.5px;
+        color: var(--muted);
+        margin-top: 3px;
+    }
+
+    @media (max-width: 900px) {
+        .testimonial-section {
+            margin: 0 30px 90px;
+        }
+
+        .testimonial-grid {
+            grid-template-columns: 1fr;
         }
     }
 
@@ -817,7 +1041,8 @@
                     <p>Insurers are seeing a new pattern: organizations that pay still spend weeks rebuilding trust
                         in their own systems. We walk through why decryption isn't recovery, and what actually
                         shortens the tail.</p>
-                    <span class="blog-byline">Julius Nakamura · Sept 12</span>
+                    <span class="blog-byline">Read More</span>
+                        
                 </div>
             </a>
 
@@ -827,7 +1052,7 @@
                     <h4>The misconfigured bucket, six months later</h4>
                     <p>A follow-up on the exposure we flagged in March — what the client changed, and what they
                         didn't.</p>
-                    <span class="blog-byline">Sana Bhatt · Sept 9</span>
+                    <span class="blog-byline">Read More</span>
                 </div>
             </a>
 
@@ -837,7 +1062,7 @@
                     <h4>Reading an auditor's findings like an analyst</h4>
                     <p>Most remediation plans treat every finding as equally urgent. They aren't. Here's how to
                         triage.</p>
-                    <span class="blog-byline">Devon Kessler · Sept 5</span>
+                    <span class="blog-byline">Read More</span>
                 </div>
             </a>
 
@@ -852,7 +1077,7 @@
                     <p>Insurers are seeing a new pattern: organizations that pay still spend weeks rebuilding trust
                         in their own systems. We walk through why decryption isn't recovery, and what actually
                         shortens the tail.</p>
-                    <span class="blog-byline">Julius Nakamura · Sept 12</span>
+                    <span class="blog-byline">Read More</span>
                 </div>
             </a>
 
@@ -863,10 +1088,37 @@
                     <p>Insurers are seeing a new pattern: organizations that pay still spend weeks rebuilding trust
                         in their own systems. We walk through why decryption isn't recovery, and what actually
                         shortens the tail.</p>
-                    <span class="blog-byline">Julius Nakamura · Sept 12</span>
+                    <span class="blog-byline">Read More</span>
                 </div>
             </a>
 
+        </div>
+    </section>
+
+    <!-- ============ by the numbers (NEW SECTION) ============ -->
+    <section class="stats-section">
+        <div class="stats-card">
+            <span class="stats-eyebrow">TRACK RECORD</span>
+            <h3>By the numbers</h3>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-num">1,200+</span>
+                    <span class="stat-label">Incidents investigated</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">40+</span>
+                    <span class="stat-label">Security analysts on call</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">24/7</span>
+                    <span class="stat-label">SOC monitoring coverage</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">98%</span>
+                    <span class="stat-label">Client retention rate</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -878,25 +1130,25 @@
 
             <div class="popular-list">
 
-                <a href="#" class="popular-item">
+                <a href="404.html" class="popular-item">
                     <span class="popular-num">01</span>
                     <span class="popular-title">Why paying the ransom rarely ends the incident</span>
                     <span class="popular-cat">RANSOMWARE</span>
                 </a>
 
-                <a href="#" class="popular-item">
+                <a href="404.html" class="popular-item">
                     <span class="popular-num">02</span>
                     <span class="popular-title">What a decade of clinic breaches actually taught us</span>
                     <span class="popular-cat">LONG READ</span>
                 </a>
 
-                <a href="#" class="popular-item">
+                <a href="404.html" class="popular-item">
                     <span class="popular-num">03</span>
                     <span class="popular-title">The invoice email that fooled three finance teams</span>
                     <span class="popular-cat">PHISHING</span>
                 </a>
 
-                <a href="#" class="popular-item">
+                <a href="404.html" class="popular-item">
                     <span class="popular-num">04</span>
                     <span class="popular-title">Zero trust without the two-year rollout</span>
                     <span class="popular-cat">ZERO TRUST</span>
@@ -954,6 +1206,46 @@
         </div>
     </section>
 
+    <!-- ============ testimonials (NEW SECTION) ============ -->
+    <section class="testimonial-section">
+        <h2 class="testimonial-heading">What <span>clients</span> say</h2>
+
+        <div class="testimonial-grid">
+
+            <div class="testimonial-card">
+                <span class="t-quote-icon"><i class="fa-solid fa-quote-left"></i></span>
+                <p class="t-quote">Stackly's SOC caught a lateral-movement attempt at 2 AM and had it contained
+                    before our own team even saw the alert. That response time changed how we think about
+                    coverage.</p>
+                <div class="t-person">
+                    <span class="t-name">Meera Iyer</span>
+                    <span class="t-role">Head of IT, Finlayne Systems</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <span class="t-quote-icon"><i class="fa-solid fa-quote-left"></i></span>
+                <p class="t-quote">We came to them after an audit finding, expecting a checklist exercise. Instead
+                    we got a real risk conversation, prioritized by what could actually hurt us.</p>
+                <div class="t-person">
+                    <span class="t-name">Rahul Verma</span>
+                    <span class="t-role">CTO, Northbridge Logistics</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <span class="t-quote-icon"><i class="fa-solid fa-quote-left"></i></span>
+                <p class="t-quote">The onboarding was fast, the reporting is readable by non-technical execs, and
+                    renewals have been an easy yes every year since.</p>
+                <div class="t-person">
+                    <span class="t-name">Claire Dubois</span>
+                    <span class="t-role">COO,Verdant Health Group</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- ============ weekly briefing newsletter ============ -->
     <section class="briefing-section">
         <div class="briefing-card">
@@ -976,49 +1268,75 @@
         </div>
     </section>
 
+
     <footer class="footer">
 
-        <div class="footer-brand reveal" style="--i:0">
-            <a href="index.html" class="company-logo"><img src="./src/logo1.webp" alt="company Logo"></a>
-            <p>Got Event in Mind? Let's collaborate.</p>
-            <div class="footer-form">
-                <input type="email" placeholder="Enter your email" id="femail">
-                <button class="foot-subBtn">Submit</button>
+
+        <div class="footertop">
+
+            <div class="footer-brand reveal" style="--i:0">
+                <a href="index.html" class="company-logo"><img src="./src/logo1.webp" alt="company Logo"></a>
+                <p>Empowering businesses with trusted cybersecurity solutions to protect data, secure systems, and stay ahead of evolving digital threats.</p>
+               
+                  <div class="footer-social">
+                    <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+
             </div>
-            <p class="ferror"></p>
+
+            <div class="footer-links-wrap reveal" style="--i:1">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="service.html">Services</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+
+
+            <div class="footer-contact reveal" style="--i:3">
+                <h4>Contact us</h4>
+                <p><span class="material-symbols-outlined">location_on</span><a href="404.html">Chennai ,Tamilnadu
+                        </a></p>
+                <p><span class="material-symbols-outlined">mail</span><a href="404.html">info@stackly.com</a></p>
+                <p><span class="material-symbols-outlined">call</span><a href="404.html">+91 98765 43210</a></p>
+
+              
+            </div>
+
+            
+            <div class="footer-links-wrap lastfoot">
+                <h4>NewsLetter</h4>
+
+                <p>Stay connected with the latest news, events, and updates from our Stackly.</p>
+                 <div class="footer-form">
+                    <input type="email" placeholder="Enter your email" id="femail">
+                    <button class="foot-subBtn">Submit</button>
+                </div>
+
+                               <p class="ferror"></p>
+            </div>
+
+
+
         </div>
 
-        <div class="footer-links-wrap reveal" style="--i:1">
-            <h4>Links</h4>
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="service.html">Services</a>
-                <a href="blog.html">Blog</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
+        <div class="footerbottom">
+            <p>Copy Rights @ 2026 By Stackly</p>
+
+            <div>
+                <a href="404.html">Terms & Conditions </a> | <a href="404.html">Privacy Policy</a>
             </div>
         </div>
 
-        <div class="footer-follow reveal" style="--i:2">
-            <h4>Follow us</h4>
-            <div class="footer-social">
-                <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
-                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-        </div>
-
-        <div class="footer-contact reveal" style="--i:3">
-            <h4>Contact us</h4>
-            <p><span class="material-symbols-outlined">location_on</span><a href="404.html">Evolve Studio, 4th Floor,
-                    Khata No 10, Begur - Koppa Rd, In front of SNN Raj Serenity, Suraksha Nagar,
-                    Yelenahalli, Begur, Bengaluru, Karnataka -560068</a></p>
-            <p><span class="material-symbols-outlined">mail</span><a href="404.html">info@stackly.com</a></p>
-            <p><span class="material-symbols-outlined">call</span><a href="404.html">+91 98765 43210</a></p>
-        </div>
 
     </footer>
+
     <script src="script.js"></script>
     <script>
         (function () {
@@ -1073,6 +1391,45 @@
                 });
             });
 
+            /* ================= BY THE NUMBERS — eyebrow/heading fade + count-up (NEW) ================= */
+            gsap.set('.stats-eyebrow, .stats-card h3', { opacity: 0, y: 20 });
+            gsap.to('.stats-eyebrow', { opacity: 1, y: 0, duration: 0.6, ease: EASE, scrollTrigger: trig('.stats-card') });
+            gsap.to('.stats-card h3', { opacity: 1, y: 0, duration: 0.7, ease: EASE, delay: 0.1, scrollTrigger: trig('.stats-card') });
+
+            gsap.utils.toArray('.stat-item').forEach(function (item, i) {
+                gsap.set(item, { opacity: 0, y: 30 });
+                gsap.to(item, {
+                    opacity: 1, y: 0, duration: 0.7, ease: EASE, delay: i * 0.12,
+                    scrollTrigger: trig('.stats-grid', 'top 88%')
+                });
+
+                // number count-up
+                var numEl = item.querySelector('.stat-num');
+                var raw = numEl.textContent.trim();
+                var match = raw.match(/[\d.]+/);
+                if (!match) return;
+                var target = parseFloat(match[0]);
+                var suffix = raw.replace(match[0], '');
+                var counter = { val: 0 };
+                ScrollTrigger.create({
+                    trigger: item,
+                    start: 'top 88%',
+                    once: true,
+                    onEnter: function () {
+                        gsap.to(counter, {
+                            val: target,
+                            duration: 1.6,
+                            ease: 'power2.out',
+                            delay: i * 0.12,
+                            onUpdate: function () {
+                                var isInt = target % 1 === 0;
+                                numEl.textContent = (isInt ? Math.round(counter.val) : counter.val.toFixed(1)) + suffix;
+                            }
+                        });
+                    }
+                });
+            });
+
             /* ================= POPULAR THIS MONTH — fade heading + row-by-row slide ================= */
             gsap.set('.popular-eyebrow, .popular-card h3', { opacity: 0, y: 20 });
             gsap.to('.popular-eyebrow', { opacity: 1, y: 0, duration: 0.6, ease: EASE, scrollTrigger: trig('.popular-card') });
@@ -1110,6 +1467,16 @@
                         });
                     }
                 });
+            });
+
+            /* ================= TESTIMONIALS — heading fade + card cascade with tilt (NEW) ================= */
+            gsap.set('.testimonial-heading', { opacity: 0, y: 30 });
+            gsap.to('.testimonial-heading', { opacity: 1, y: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.testimonial-section') });
+
+            gsap.set('.testimonial-card', { opacity: 0, y: 60, rotate: -2 });
+            gsap.to('.testimonial-card', {
+                opacity: 1, y: 0, rotate: 0, duration: 0.8, ease: 'power3.out', stagger: 0.15,
+                scrollTrigger: trig('.testimonial-grid', 'top 88%')
             });
 
             /* ================= WEEKLY BRIEFING — bookend slide ================= */

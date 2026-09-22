@@ -310,8 +310,11 @@ body {
 
 .footer {
     background: var(--pcolor);
-    padding-block: 100px;
     padding-inline: 80px;
+}
+
+.footertop{
+    padding-block: 50px;
     display: grid;
     grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
     gap: 30px;
@@ -330,6 +333,7 @@ body {
     font-size: 14px;
     margin-bottom: 15px;
     line-height: 1.5;
+    max-width: 300px;
 }
 
 .footer-form {
@@ -339,7 +343,7 @@ body {
 
 .footer-form input {
     flex: 1;
-    padding: 10px 15px;
+    padding: 13px 15px;
     border-radius: 20px;
     border: none;
     outline: none;
@@ -347,7 +351,7 @@ body {
 }
 
 .footer-form button {
-    padding: 10px 20px;
+    padding: 13px 20px;
     border-radius: 20px;
     border: none;
     background: black;
@@ -362,7 +366,7 @@ body {
 }
 
 .footer h4 {
-    font-size: 16px;
+    font-size: 25px;
     margin-bottom: 20px;
 }
 
@@ -380,14 +384,14 @@ body {
 }
 
 .footer-links a:hover {
-    color: white;
+    color: black;
     transform: translateX(5px);
 }
 
 .footer-social {
     display: flex;
     gap: 12px;
-    margin-top: 5px;
+    margin-top: 20px;
 }
 
 .footer-social a {
@@ -406,8 +410,8 @@ body {
 
 .footer-social a:hover {
     transform: rotate(360deg) scale(1.2);
-    background: white;
-    color: var(--pcolor);
+    background: black;
+    color: white
 }
 
 .footer-contact p {
@@ -434,6 +438,10 @@ body {
 
 .footer-contact p:hover {
     transform: translateX(5px) !important;
+   color: black;
+}
+.footer-contact p:hover a{
+    color: black;
 }
 
 .ferror {
@@ -441,22 +449,63 @@ body {
     margin-top: 10px;
 }
 
+.footerbottom{
+    display: flex;
+    justify-content: space-between;
+    padding-block: 50px;
+    color: white;
+    border-top: 1px solid var(--muted);
+}
+
+.footerbottom p{
+    font-size: 15px;
+}
+.footerbottom a{
+    text-decoration: none;
+    color: white;
+    transition: .5s ease;
+    font-size: 15px;
+}
+
+.footerbottom a:hover{
+    color: black;
+}
+
+.lastfoot p{
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
 @media (max-width:1100px) {
-    .footer {
+    .footertop {
         grid-template-columns: 1fr 1fr;
-        padding-inline: 60px;
+        
+    }
+
+    .footer{
+padding-inline: 60px;
     }
 }
 
 @media (max-width:600px) {
-    .footer {
+    .footertop {
         grid-template-columns: 1fr;
+        
+    }
+
+    .footer{
         padding: 30px;
-        padding-block: 40px;
     }
 
     .footer-form {
         flex-direction: column;
+    }
+
+    .footerbottom{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }
 }
 

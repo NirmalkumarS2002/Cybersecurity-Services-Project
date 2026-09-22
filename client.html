@@ -176,6 +176,16 @@
             position: relative;
         }
 
+        
+              .logout{
+ padding-block: 15px !important;
+        }
+
+        .logout:hover{
+            color: red !important;
+           
+        }
+
         .side-nav button .material-symbols-outlined {
             font-size: 19px;
             flex-shrink: 0;
@@ -201,6 +211,7 @@
             border-left-color: #3a4050;
         }
 
+
         .side-nav button.active {
             background: transparent;
             color: var(--pcolor-light);
@@ -212,7 +223,7 @@
             align-items: center;
             gap: 12px;
             padding: 14px 16px;
-            border-top: 1px solid #1c1f26;
+            border-block: 1px solid #1c1f26;
         }
 
         .sidebar-footer img {
@@ -298,12 +309,6 @@
 
         .tlogo img {
             width: 100px;
-        }
-
-        .topbar-date {
-            font-size: 12px;
-            color: var(--sub);
-            font-weight: 700;
         }
 
         .topbar-row2 {
@@ -505,6 +510,20 @@
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 20px;
+        }
+
+
+        .bento {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .bento > .panel {
+            min-width: 0;
+        }
+
+        .panel {
+            min-width: 0;
         }
 
         .bento .span-8 {
@@ -1757,7 +1776,35 @@ body.is-loading {
     }
 }
 
-    </style>
+    
+        .extra-content {
+            margin-top: 22px;
+        }
+
+        .extra-content .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .extra-content .activity-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .extra-content .activity-item .material-symbols-outlined {
+            color: var(--accent, #3b82f6);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 900px) {
+            .extra-content .span-6 {
+                grid-column: span 12;
+            }
+        }
+
+</style>
 </head>
 
 <body>
@@ -1810,8 +1857,7 @@ body.is-loading {
                         class="material-symbols-outlined">calendar_month</span>
                     <span class="label">Schedule</span></button>
 
-                <button class="logoutbtn"><span class="material-symbols-outlined">logout</span>
-                    <span class="label">Logout</span></button>
+                
             </nav>
         </div>
 
@@ -1822,6 +1868,9 @@ body.is-loading {
                 <span>Client</span>
             </div>
         </div>
+       <nav class="side-nav"> <button class="logoutbtn logout"><span class="material-symbols-outlined">logout</span>
+                    <span class="label">Logout</span></button></nav>
+       
     </aside>
 
     <!-- ================= MAIN CONTENT ================= -->
@@ -1834,7 +1883,6 @@ body.is-loading {
                         style="font-size:14px;">chevron_right</span>
                     <span class="current" id="crumbTitle">Overview</span>
                 </div>
-                <span class="topbar-date">Meridian Retail &middot; Mon, 21 Sep 2026</span>
             </div>
 
             <div class="topbar-row2">
@@ -2144,6 +2192,30 @@ body.is-loading {
 
             <!-- ========== 2. MY INCIDENTS VIEW ========== -->
             <div class="view" id="incidents">
+
+                <!-- Additional Incident Insights -->
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head">
+                            <h3>Incident Response Progress</h3>
+                            <span class="badge transit">Live Tracking</span>
+                        </div>
+                        <div class="timeline">
+                            <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">flag</span></div><div class="t-body"><h5>Incident detected</h5><p>Suspicious activity was identified by the monitoring engine.</p></div></div>
+                            <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">manage_search</span></div><div class="t-body"><h5>Investigation in progress</h5><p>Security analysts are reviewing logs, access history, and affected assets.</p></div></div>
+                            <div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">verified</span></div><div class="t-body"><h5>Containment review</h5><p>Recommended containment actions are waiting for client approval.</p></div></div>
+                        </div>
+                    </div>
+                    <div class="panel span-4">
+                        <h3>Recommended Actions</h3>
+                        <div class="budget-row">
+                            <div class="budget-item"><h5>Access review <span>High</span></h5><div class="budget-track"><div class="budget-fill" style="width:82%"></div></div></div>
+                            <div class="budget-item"><h5>Endpoint scan <span>Medium</span></h5><div class="budget-track"><div class="budget-fill" style="width:58%"></div></div></div>
+                            <div class="budget-item"><h5>Policy confirmation <span>Low</span></h5><div class="budget-track"><div class="budget-fill" style="width:35%"></div></div></div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">report</span>
@@ -2256,10 +2328,50 @@ body.is-loading {
                         <button class="errorpage">&gt;</button>
                     </div>
                 </div>
-            </div>
+            
 
-            <!-- ========== 3. MY SERVICES VIEW ========== -->
+                <!-- Extended Incident Details -->
+                <div class="bento extra-content">
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Threat Activity Summary</h3><span class="badge pending">Monitoring</span></div>
+                        <div class="rank-list">
+                            <div class="rank-row"><span class="rank-num">01</span><div class="rank-main"><div class="rank-label"><span>Suspicious sign-ins</span><span>18</span></div><div class="rank-track"><div class="rank-fill" style="width:72%"></div></div></div></div>
+                            <div class="rank-row"><span class="rank-num">02</span><div class="rank-main"><div class="rank-label"><span>Blocked connections</span><span>34</span></div><div class="rank-track"><div class="rank-fill" style="width:86%"></div></div></div></div>
+                            <div class="rank-row"><span class="rank-num">03</span><div class="rank-main"><div class="rank-label"><span>Policy violations</span><span>9</span></div><div class="rank-track"><div class="rank-fill" style="width:42%"></div></div></div></div>
+                        </div>
+                    </div>
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Investigation Checklist</h3><span class="badge transit">In Review</span></div>
+                        <div class="activity-list">
+                            <div class="activity-item"><span class="material-symbols-outlined">check_circle</span><div><h5>Collect endpoint logs</h5><p>Recent device activity has been collected for analyst review.</p></div></div>
+                            <div class="activity-item"><span class="material-symbols-outlined">pending_actions</span><div><h5>Validate access history</h5><p>Privileged login events are being checked against approved users.</p></div></div>
+                            <div class="activity-item"><span class="material-symbols-outlined">assignment_turned_in</span><div><h5>Prepare closure notes</h5><p>Final findings will be documented after client confirmation.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            
+                <!-- ========== 3. MY SERVICES VIEW ========== -->
             <div class="view" id="services">
+
+                <!-- Additional Service Insights -->
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head"><h3>Service Health Overview</h3><span class="badge active">All Systems Operational</span></div>
+                        <div class="rank-list">
+                            <div class="rank-row"><span class="rank-num">01</span><div class="rank-main"><div class="rank-label"><span>Threat Monitoring</span><span>96%</span></div><div class="rank-track"><div class="rank-fill" style="width:96%"></div></div></div><span class="rank-pct">96</span></div>
+                            <div class="rank-row"><span class="rank-num">02</span><div class="rank-main"><div class="rank-label"><span>Endpoint Protection</span><span>91%</span></div><div class="rank-track"><div class="rank-fill" style="width:91%"></div></div></div><span class="rank-pct">91</span></div>
+                            <div class="rank-row"><span class="rank-num">03</span><div class="rank-main"><div class="rank-label"><span>Cloud Security</span><span>88%</span></div><div class="rank-track"><div class="rank-fill" style="width:88%"></div></div></div><span class="rank-pct">88</span></div>
+                        </div>
+                    </div>
+                    <div class="panel span-4">
+                        <h3>Service Notes</h3>
+                        <div class="timeline"><div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">check_circle</span></div><div class="t-body"><h5>Daily monitoring</h5><p>Continuous monitoring is enabled for enrolled assets.</p></div></div><div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">schedule</span></div><div class="t-body"><h5>Next review</h5><p>Service performance review is scheduled this week.</p></div></div></div>
+                    </div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">security</span>
@@ -2512,10 +2624,46 @@ body.is-loading {
                         </div>
                     </div>
                 </div>
-            </div>
+            
 
-            <!-- ========== 4. SECURITY TEAM VIEW ========== -->
+                <!-- Extended Service Details -->
+                <div class="bento extra-content">
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Service Coverage</h3><span class="badge active">Protected</span></div>
+                        <div class="stat-row">
+                            <div class="stat-card"><span class="material-symbols-outlined">shield</span><div class="stat-info"><h2>24/7</h2><p>Threat Monitoring</p></div></div>
+                            <div class="stat-card"><span class="material-symbols-outlined">devices</span><div class="stat-info"><h2>128</h2><p>Endpoints Covered</p></div></div>
+                        </div>
+                        <p style="margin-top:10px">Monitoring rules are active across registered endpoints, cloud workloads, and approved network assets.</p>
+                    </div>
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Maintenance Updates</h3><span class="badge transit">Scheduled</span></div>
+                        <div class="activity-list">
+                            <div class="activity-item"><span class="material-symbols-outlined">update</span><div><h5>Detection rules refresh</h5><p>New threat signatures will be applied during the next maintenance window.</p></div></div>
+                            <div class="activity-item"><span class="material-symbols-outlined">dns</span><div><h5>Sensor health validation</h5><p>Security sensors are being checked for connectivity and reporting accuracy.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            
+                <!-- ========== 4. SECURITY TEAM VIEW ========== -->
             <div class="view" id="team">
+
+                <!-- Additional Security Team Insights -->
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head"><h3>Assigned Security Specialists</h3><span class="badge active">Available</span></div>
+                        <div class="student-list">
+                            <div class="student-row"><span class="material-symbols-outlined">person</span><div class="s-info"><h5>Threat Monitoring Analyst</h5><p>Reviews alerts, suspicious activity, and detection events.</p></div><span class="badge active">Online</span></div>
+                            <div class="student-row"><span class="material-symbols-outlined">person</span><div class="s-info"><h5>Incident Response Lead</h5><p>Coordinates containment, investigation, and recovery activities.</p></div><span class="badge active">Online</span></div>
+                            <div class="student-row"><span class="material-symbols-outlined">person</span><div class="s-info"><h5>Compliance Specialist</h5><p>Supports audit preparation and security documentation.</p></div><span class="badge maintenance">Busy</span></div>
+                        </div>
+                    </div>
+                    <div class="panel span-4"><h3>Team Availability</h3><div class="stat-card"><h2>24/7</h2><p>Monitoring Coverage</p><span class="delta">Escalation support enabled</span></div><div class="stat-card" style="margin-top:12px"><h2>15m</h2><p>Target Response</p><span class="delta">Priority alerts</span></div></div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">shield_person</span>
@@ -2637,10 +2785,46 @@ body.is-loading {
                         </div>
                     </div>
                 </div>
-            </div>
+            
 
-            <!-- ========== 5. PROTECTED ASSETS VIEW ========== -->
+                <!-- Extended Team Details -->
+                <div class="bento extra-content">
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Analyst Workload</h3><span class="badge active">Updated Today</span></div>
+                        <div class="rank-list">
+                            <div class="rank-row"><span class="rank-num">01</span><div class="rank-main"><div class="rank-label"><span>Incident investigation</span><span>6</span></div><div class="rank-track"><div class="rank-fill" style="width:64%"></div></div></div></div>
+                            <div class="rank-row"><span class="rank-num">02</span><div class="rank-main"><div class="rank-label"><span>Security assessments</span><span>4</span></div><div class="rank-track"><div class="rank-fill" style="width:46%"></div></div></div></div>
+                            <div class="rank-row"><span class="rank-num">03</span><div class="rank-main"><div class="rank-label"><span>Client requests</span><span>8</span></div><div class="rank-track"><div class="rank-fill" style="width:78%"></div></div></div></div>
+                        </div>
+                    </div>
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Escalation Contacts</h3><span class="badge pending">Available</span></div>
+                        <div class="activity-list">
+                            <div class="activity-item"><span class="material-symbols-outlined">support_agent</span><div><h5>Primary security analyst</h5><p>Handles active alerts, investigation updates, and response coordination.</p></div></div>
+                            <div class="activity-item"><span class="material-symbols-outlined">admin_panel_settings</span><div><h5>Security lead</h5><p>Reviews critical incidents and approves high-impact response actions.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            
+                <!-- ========== 5. PROTECTED ASSETS VIEW ========== -->
             <div class="view" id="assets">
+
+                <!-- Additional Protected Asset Insights -->
+                <div class="bento">
+                    <div class="panel span-8">
+                        <div class="panel-head"><h3>Asset Protection Summary</h3><span class="badge transit">Monitoring Enabled</span></div>
+                        <div class="rank-list">
+                            <div class="rank-row"><span class="rank-num">01</span><div class="rank-main"><div class="rank-label"><span>Endpoints</span><span>94%</span></div><div class="rank-track"><div class="rank-fill" style="width:94%"></div></div></div><span class="rank-pct">94</span></div>
+                            <div class="rank-row"><span class="rank-num">02</span><div class="rank-main"><div class="rank-label"><span>Cloud Resources</span><span>86%</span></div><div class="rank-track"><div class="rank-fill" style="width:86%"></div></div></div><span class="rank-pct">86</span></div>
+                            <div class="rank-row"><span class="rank-num">03</span><div class="rank-main"><div class="rank-label"><span>Network Devices</span><span>79%</span></div><div class="rank-track"><div class="rank-fill" style="width:79%"></div></div></div><span class="rank-pct">79</span></div>
+                        </div>
+                    </div>
+                    <div class="panel span-4"><h3>Asset Review Queue</h3><div class="event-list"><div class="event-item"><span class="material-symbols-outlined">computer</span><div class="event-info"><h5>Endpoint review</h5><p>12 assets require policy validation.</p></div></div><div class="event-item"><span class="material-symbols-outlined">cloud</span><div class="event-info"><h5>Cloud configuration</h5><p>4 resources need configuration checks.</p></div></div></div></div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">apartment</span>
@@ -2764,10 +2948,39 @@ body.is-loading {
                         </div>
                     </div>
                 </div>
-            </div>
+            
 
-            <!-- ========== 6. REPORTS VIEW ========== -->
+                <!-- Extended Asset Details -->
+                <div class="bento extra-content">
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Asset Risk Distribution</h3><span class="badge pending">Needs Review</span></div>
+                        <div class="rank-list">
+                            <div class="rank-row"><span class="rank-num">01</span><div class="rank-main"><div class="rank-label"><span>Low risk assets</span><span>76</span></div><div class="rank-track"><div class="rank-fill" style="width:76%"></div></div></div></div>
+                            <div class="rank-row"><span class="rank-num">02</span><div class="rank-main"><div class="rank-label"><span>Medium risk assets</span><span>34</span></div><div class="rank-track"><div class="rank-fill" style="width:44%"></div></div></div></div>
+                            <div class="rank-row"><span class="rank-num">03</span><div class="rank-main"><div class="rank-label"><span>High risk assets</span><span>8</span></div><div class="rank-track"><div class="rank-fill" style="width:18%"></div></div></div></div>
+                        </div>
+                    </div>
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Asset Review Notes</h3><span class="badge transit">Queued</span></div>
+                        <div class="activity-list">
+                            <div class="activity-item"><span class="material-symbols-outlined">computer</span><div><h5>Endpoint inventory</h5><p>Recently added devices require ownership and protection validation.</p></div></div>
+                            <div class="activity-item"><span class="material-symbols-outlined">cloud</span><div><h5>Cloud configuration</h5><p>Storage permissions and public exposure settings are scheduled for review.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            
+                <!-- ========== 6. REPORTS VIEW ========== -->
             <div class="view" id="reports">
+
+                <!-- Additional Report Insights -->
+                <div class="bento">
+                    <div class="panel span-8"><div class="panel-head"><h3>Security Trend Summary</h3><span class="badge active">Monthly View</span></div><div class="bar-chart"><div class="bar-col"><div class="bar" style="height:62%"></div><span>Jun</span></div><div class="bar-col"><div class="bar" style="height:78%"></div><span>Jul</span></div><div class="bar-col"><div class="bar" style="height:54%"></div><span>Aug</span></div><div class="bar-col"><div class="bar" style="height:88%"></div><span>Sep</span></div></div></div>
+                    <div class="panel span-4"><h3>Report Checklist</h3><div class="timeline"><div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">done</span></div><div class="t-body"><h5>Executive summary</h5><p>Prepared for client review.</p></div></div><div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">pending</span></div><div class="t-body"><h5>Compliance appendix</h5><p>Awaiting final validation.</p></div></div></div></div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">summarize</span>
@@ -2895,10 +3108,38 @@ body.is-loading {
                         </div>
                     </div>
                 </div>
-            </div>
+            
 
-            <!-- ========== 7. BILLING VIEW ========== -->
+                <!-- Extended Report Details -->
+                <div class="bento extra-content">
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Report Delivery Status</h3><span class="badge active">On Track</span></div>
+                        <div class="activity-list">
+                            <div class="activity-item"><span class="material-symbols-outlined">description</span><div><h5>Monthly security summary</h5><p>Incident counts, response activity, and asset coverage are being consolidated.</p></div></div>
+                            <div class="activity-item"><span class="material-symbols-outlined">analytics</span><div><h5>Risk trend report</h5><p>Risk changes are being compared with the previous reporting period.</p></div></div>
+                        </div>
+                    </div>
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Report Metrics</h3><span class="badge transit">Drafting</span></div>
+                        <div class="stat-row">
+                            <div class="stat-card"><span class="material-symbols-outlined">summarize</span><div class="stat-info"><h2>12</h2><p>Reports Generated</p></div></div>
+                            <div class="stat-card"><span class="material-symbols-outlined">visibility</span><div class="stat-info"><h2>5</h2><p>Pending Reviews</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            
+                <!-- ========== 7. BILLING VIEW ========== -->
             <div class="view" id="billing">
+
+                <!-- Additional Billing Insights -->
+                <div class="bento">
+                    <div class="panel span-8"><div class="panel-head"><h3>Subscription Usage</h3><span class="badge active">Within Plan</span></div><div class="budget-row"><div class="budget-item"><h5>Monitored assets <span>78%</span></h5><div class="budget-track"><div class="budget-fill" style="width:78%"></div></div></div><div class="budget-item"><h5>Incident response hours <span>46%</span></h5><div class="budget-track"><div class="budget-fill" style="width:46%"></div></div></div><div class="budget-item"><h5>Report allowance <span>64%</span></h5><div class="budget-track"><div class="budget-fill" style="width:64%"></div></div></div></div></div>
+                    <div class="panel span-4"><h3>Payment Status</h3><div class="stat-card"><h2>Paid</h2><p>Current Invoice</p><span class="delta">No payment action required</span></div><div class="stat-card" style="margin-top:12px"><h2>30 Days</h2><p>Billing Cycle</p><span class="delta">Auto-renewal enabled</span></div></div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">payments</span>
@@ -3025,10 +3266,39 @@ body.is-loading {
                         </div>
                     </div>
                 </div>
-            </div>
+            
 
-            <!-- ========== 8. MESSAGES VIEW ========== -->
+                <!-- Extended Billing Details -->
+                <div class="bento extra-content">
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Plan Utilization</h3><span class="badge active">Within Limit</span></div>
+                        <div class="rank-list">
+                            <div class="rank-row"><span class="rank-num">01</span><div class="rank-main"><div class="rank-label"><span>Endpoint allowance</span><span>82%</span></div><div class="rank-track"><div class="rank-fill" style="width:82%"></div></div></div></div>
+                            <div class="rank-row"><span class="rank-num">02</span><div class="rank-main"><div class="rank-label"><span>Storage usage</span><span>64%</span></div><div class="rank-track"><div class="rank-fill" style="width:64%"></div></div></div></div>
+                            <div class="rank-row"><span class="rank-num">03</span><div class="rank-main"><div class="rank-label"><span>Report quota</span><span>48%</span></div><div class="rank-track"><div class="rank-fill" style="width:48%"></div></div></div></div>
+                        </div>
+                    </div>
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Account Notes</h3><span class="badge pending">Review</span></div>
+                        <div class="activity-list">
+                            <div class="activity-item"><span class="material-symbols-outlined">receipt_long</span><div><h5>Invoice history</h5><p>Previous invoices and payment confirmations are available for reference.</p></div></div>
+                            <div class="activity-item"><span class="material-symbols-outlined">verified_user</span><div><h5>Billing contact</h5><p>Confirm the authorized billing contact before making subscription changes.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            
+                <!-- ========== 8. MESSAGES VIEW ========== -->
             <div class="view" id="messages">
+
+                <!-- Additional Message Insights -->
+                <div class="bento">
+                    <div class="panel span-8"><div class="panel-head"><h3>Support Conversation Summary</h3><span class="badge transit">3 Unread</span></div><div class="inbox-list"><div class="inbox-row unread"><span class="material-symbols-outlined">security</span><div class="inbox-body"><div class="inbox-top"><h5>Incident response update</h5><span class="inbox-time">Today</span></div><p>Analyst shared the latest containment recommendation.</p></div></div><div class="inbox-row"><span class="material-symbols-outlined">support_agent</span><div class="inbox-body"><div class="inbox-top"><h5>Service desk follow-up</h5><span class="inbox-time">Yesterday</span></div><p>Your service request is being reviewed by the support team.</p></div></div></div></div>
+                    <div class="panel span-4"><h3>Support Status</h3><div class="stat-card"><h2>2h</h2><p>Average Reply Time</p><span class="delta">Priority support active</span></div><div class="stat-card" style="margin-top:12px"><h2>Open</h2><p>Support Ticket</p><span class="delta warn">Awaiting response</span></div></div>
+                </div>
+
                 <div class="stat-row">
                     <div class="stat-card">
                         <span class="material-symbols-outlined">forum</span>
@@ -3169,10 +3439,39 @@ body.is-loading {
                         <button class="d-btn errorpage" style="margin-top:16px;width:100%;">Open a New Ticket</button>
                     </div>
                 </div>
-            </div>
+            
 
-            <!-- ========== 9. SCHEDULE VIEW ========== -->
+                <!-- Extended Message Details -->
+                <div class="bento extra-content">
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Support Queue</h3><span class="badge transit">Active</span></div>
+                        <div class="activity-list">
+                            <div class="activity-item"><span class="material-symbols-outlined">mail</span><div><h5>Unread support updates</h5><p>Three messages contain recent status updates from the security operations team.</p></div></div>
+                            <div class="activity-item"><span class="material-symbols-outlined">priority_high</span><div><h5>Priority conversation</h5><p>A response is pending for the endpoint protection clarification request.</p></div></div>
+                        </div>
+                    </div>
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Communication Preferences</h3><span class="badge active">Enabled</span></div>
+                        <div class="rank-list">
+                            <div class="rank-row"><span class="rank-num">01</span><div class="rank-main"><div class="rank-label"><span>Incident alerts</span><span>On</span></div><div class="rank-track"><div class="rank-fill" style="width:100%"></div></div></div></div>
+                            <div class="rank-row"><span class="rank-num">02</span><div class="rank-main"><div class="rank-label"><span>Weekly summaries</span><span>On</span></div><div class="rank-track"><div class="rank-fill" style="width:100%"></div></div></div></div>
+                            <div class="rank-row"><span class="rank-num">03</span><div class="rank-main"><div class="rank-label"><span>Marketing updates</span><span>Off</span></div><div class="rank-track"><div class="rank-fill" style="width:22%"></div></div></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            
+                <!-- ========== 9. SCHEDULE VIEW ========== -->
             <div class="view" id="calendar">
+
+                <!-- Additional Schedule Insights -->
+                <div class="bento">
+                    <div class="panel span-8"><div class="panel-head"><h3>Upcoming Security Activities</h3><span class="badge transit">Planned</span></div><div class="event-list"><div class="event-item"><div class="event-date"><strong>24</strong><span>SEP</span></div><div class="event-info"><h5>Quarterly security review</h5><p>Review security score, incidents, and open recommendations.</p></div></div><div class="event-item"><div class="event-date"><strong>26</strong><span>SEP</span></div><div class="event-info"><h5>Vulnerability assessment</h5><p>Scheduled assessment for selected protected assets.</p></div></div><div class="event-item"><div class="event-date"><strong>30</strong><span>SEP</span></div><div class="event-info"><h5>Compliance report delivery</h5><p>Monthly security and compliance report preparation.</p></div></div></div></div>
+                    <div class="panel span-4"><h3>Schedule Reminders</h3><div class="timeline"><div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">notifications_active</span></div><div class="t-body"><h5>Review reminders</h5><p>Notifications are enabled for upcoming assessments.</p></div></div><div class="t-item"><div class="t-dot"><span class="material-symbols-outlined">event_available</span></div><div class="t-body"><h5>Calendar synced</h5><p>Client security activities are available in this schedule.</p></div></div></div></div>
+                </div>
+
                 <div class="bento">
                     <div class="panel span-8">
                         <div class="panel-head">
@@ -3269,10 +3568,32 @@ body.is-loading {
                 </div>
             </div>
 
-        </div>
+        
+
+                <!-- Extended Schedule Details -->
+                <div class="bento extra-content">
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Assessment Preparation</h3><span class="badge pending">Upcoming</span></div>
+                        <div class="activity-list">
+                            <div class="activity-item"><span class="material-symbols-outlined">checklist</span><div><h5>Confirm asset scope</h5><p>Review the protected asset list before the scheduled vulnerability assessment.</p></div></div>
+                            <div class="activity-item"><span class="material-symbols-outlined">groups</span><div><h5>Assign participants</h5><p>Confirm the client contact, security analyst, and technical stakeholders.</p></div></div>
+                            <div class="activity-item"><span class="material-symbols-outlined">event_available</span><div><h5>Approve review window</h5><p>Finalize the assessment timing and expected service impact.</p></div></div>
+                        </div>
+                    </div>
+                    <div class="panel span-6">
+                        <div class="panel-head"><h3>Calendar Overview</h3><span class="badge active">Synced</span></div>
+                        <div class="stat-row">
+                            <div class="stat-card"><span class="material-symbols-outlined">event</span><div class="stat-info"><h2>3</h2><p>Upcoming Activities</p></div></div>
+                            <div class="stat-card"><span class="material-symbols-outlined">notifications_active</span><div class="stat-info"><h2>2</h2><p>Reminders Enabled</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
     </main>
 
-    <script>
+    
+                <script>
 
         const topbarmenu = document.querySelector(".topbarmenu")
         const adminclose = document.querySelector(".adminclose")
@@ -3348,7 +3669,7 @@ body.is-loading {
             document.body.classList.remove("menu-open");
         }
 
-        /* If any online image fails to load, show a blue gradient placeholder instead of a broken icon */
+       // /* If any online image fails to load, show a blue gradient placeholder instead of a broken icon */
        // const FALLBACK_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(
        //     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">' +
        //     '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +

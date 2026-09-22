@@ -34,6 +34,9 @@
             --white: #ffffff;
             --muted: #b9c2d0;
             --error: #ff6b6b;
+            --pcolor: #015EFB;
+            --pcolor-light: #4C8CFF;
+            --muted: rgba(255, 255, 255, 0.55);
         }
 
         html {
@@ -164,7 +167,7 @@
 
         .role-btn:hover {
             color: var(--white);
-             background: var(--blue);
+            background: var(--blue);
         }
 
         .role-btn.active {
@@ -472,135 +475,146 @@
         }
 
 
-        
-/* loading */
 
-.company-logo img {
-    width: clamp(130px,14vw,150px);
-}
+        /* loading */
+
+        .company-logo img {
+            width: clamp(130px, 14vw, 150px);
+        }
 
 
-body.is-loading {
-    overflow: hidden;
-}
+        body.is-loading {
+            overflow: hidden;
+        }
 
-#preloader {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    background: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
-    transition: opacity .7s ease, visibility .7s ease;
-}
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            transition: opacity .7s ease, visibility .7s ease;
+        }
 
-#preloader.done {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
+        #preloader.done {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
-.pre-ring {
-    position: relative;
-    height: 110px;
-    width: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .pre-ring {
+            position: relative;
+            height: 110px;
+            width: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.pre-ring::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.08);
-    border-top-color: var(--pcolor);
-    border-right-color: var(--pcolor);
-    animation: preSpin 1s linear infinite;
-}
+        .pre-ring::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-top-color: var(--pcolor);
+            border-right-color: var(--pcolor);
+            animation: preSpin 1s linear infinite;
+        }
 
-.pre-ring::after {
-    content: "";
-    position: absolute;
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(1, 94, 251, .45), transparent 70%);
-    filter: blur(12px);
-    animation: prePulse 2s ease-in-out infinite;
-    z-index: -1;
-}
+        .pre-ring::after {
+            content: "";
+            position: absolute;
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(1, 94, 251, .45), transparent 70%);
+            filter: blur(12px);
+            animation: prePulse 2s ease-in-out infinite;
+            z-index: -1;
+        }
 
-.pre-ring span.material-symbols-outlined {
-    font-size: 42px;
-    color: var(--pcolor);
-    animation: prePulse 2s ease-in-out infinite;
-}
+        .pre-ring span.material-symbols-outlined {
+            font-size: 42px;
+            color: var(--pcolor);
+            animation: prePulse 2s ease-in-out infinite;
+        }
 
-.pre-bar {
-    width: min(260px, 70vw);
-    height: 3px;
-    border-radius: 3px;
-    background: rgba(255, 255, 255, 0.12);
-    overflow: hidden;
-}
+        .pre-bar {
+            width: min(260px, 70vw);
+            height: 3px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+        }
 
-.pre-bar i {
-    display: block;
-    height: 100%;
-    width: 0%;
-    background: var(--pcolor);
-    border-radius: 3px;
-    transition: width .25s ease;
-}
+        .pre-bar i {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: var(--pcolor);
+            border-radius: 3px;
+            transition: width .25s ease;
+        }
 
-.pre-text {
-    color: white;
-    font-size: 14px;
-    letter-spacing: 2px;
-}
+        .pre-text {
+            color: white;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
 
-.pre-text b {
-    color: var(--pcolor);
-    font-weight: 500;
-}
+        .pre-text b {
+            color: var(--pcolor);
+            font-weight: 500;
+        }
 
-@keyframes preSpin {
-    to { transform: rotate(360deg); }
-}
+        @keyframes preSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
-@keyframes prePulse {
-    0%, 100% { opacity: .5; transform: scale(1); }
-    50%      { opacity: 1;  transform: scale(1.08); }
-}
+        @keyframes prePulse {
 
-@media (prefers-reduced-motion: reduce) {
-    .pre-ring::before,
-    .pre-ring::after,
-    .pre-ring span.material-symbols-outlined {
-        animation: none;
-    }
-}
+            0%,
+            100% {
+                opacity: .5;
+                transform: scale(1);
+            }
 
+            50% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .pre-ring::before,
+            .pre-ring::after,
+            .pre-ring span.material-symbols-outlined {
+                animation: none;
+            }
+        }
     </style>
 </head>
 
 <body>
 
- 
-<div id="preloader">
 
-         <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
-    <div class="pre-ring">
-        <span class="material-symbols-outlined">shield_lock</span>
+    <div id="preloader">
+
+        <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="company Logo"></a>
+        <div class="pre-ring">
+            <span class="material-symbols-outlined">shield_lock</span>
+        </div>
+        <div class="pre-bar"><i></i></div>
+        <p class="pre-text">SECURING <b><span id="preCount">0</span>%</b></p>
     </div>
-    <div class="pre-bar"><i></i></div>
-    <p class="pre-text">SECURING <b><span id="preCount">0</span>%</b></p>
-</div>
 
     <!-- logo -->
     <a href="index.html" class="brand"><img src="./src/logo.webp" alt="Blush & Bloom logo"></a>
@@ -764,42 +778,42 @@ body.is-loading {
 
         // loading
 
-(function () {
-    document.body.classList.add('is-loading');
+        (function () {
+            document.body.classList.add('is-loading');
 
-    var pre   = document.getElementById('preloader');
-    var bar   = pre.querySelector('.pre-bar i');
-    var count = document.getElementById('preCount');
-    var pct = 0, finished = false, timer;
+            var pre = document.getElementById('preloader');
+            var bar = pre.querySelector('.pre-bar i');
+            var count = document.getElementById('preCount');
+            var pct = 0, finished = false, timer;
 
-    timer = setInterval(function () {
-        if (pct < 90) {
-            pct += Math.random() * 8;
-            if (pct > 90) pct = 90;
-            bar.style.width = pct + '%';
-            count.textContent = Math.round(pct);
-        }
-    }, 150);
+            timer = setInterval(function () {
+                if (pct < 90) {
+                    pct += Math.random() * 8;
+                    if (pct > 90) pct = 90;
+                    bar.style.width = pct + '%';
+                    count.textContent = Math.round(pct);
+                }
+            }, 150);
 
-    function finish() {
-        if (finished) return;
-        finished = true;
-        clearInterval(timer);
-        pct = 100;
-        bar.style.width = '100%';
-        count.textContent = '100';
+            function finish() {
+                if (finished) return;
+                finished = true;
+                clearInterval(timer);
+                pct = 100;
+                bar.style.width = '100%';
+                count.textContent = '100';
 
-        setTimeout(function () {
-            pre.classList.add('done');
-            document.body.classList.remove('is-loading');
-            if (window.__heroTl) window.__heroTl.play();
-            if (window.ScrollTrigger) ScrollTrigger.refresh();
-        }, 350);
-    }
+                setTimeout(function () {
+                    pre.classList.add('done');
+                    document.body.classList.remove('is-loading');
+                    if (window.__heroTl) window.__heroTl.play();
+                    if (window.ScrollTrigger) ScrollTrigger.refresh();
+                }, 350);
+            }
 
-    window.addEventListener('load', finish);
-    setTimeout(finish, 6000); // safety fallback
-})();
+            window.addEventListener('load', finish);
+            setTimeout(finish, 6000); // safety fallback
+        })();
 
 
     </script>
