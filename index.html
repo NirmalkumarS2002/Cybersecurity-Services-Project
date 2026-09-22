@@ -32,17 +32,20 @@
         scroll-behavior: smooth;
     }
 
-    body {
-        overflow-x: hidden;
-    }
-
-    :root {
+     :root {
         --pcolor: #015EFB;
         --pcolor-light: #4C8CFF;
            --lite:rgb(22, 22, 22);
         --dark:rgb(0, 0, 0);
-         --footerbg:#055cf2fd;
+         --footerbg:#055df282;
     }
+
+    body {
+        overflow-x: hidden;
+        background: var(--lite);
+    }
+
+   
 
     @media (prefers-reduced-motion: no-preference) {
 
@@ -1240,9 +1243,11 @@
         transform: rotate(180deg);
     }
 
+   /*
+   
     .footer{
          background: var(--footerbg) !important;
-    }
+    }*/
 </style>
 
 <body>

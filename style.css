@@ -19,7 +19,7 @@ body {
     --pcolor: #015EFB;
     --pcolor-light: #4C8CFF;
     --muted: rgba(255, 255, 255, 0.55);
-    --footerbg:#055cf2b0;
+    --footerbg:#0e58d8cb;
 }
 
 
@@ -310,7 +310,7 @@ body {
 /* footer */
 
 .footer {
-    background: var(--footerbg) !important;
+    background: var(--footerbg);
     padding-inline: 80px;
 }
 
