@@ -39,6 +39,9 @@
     :root {
         --pcolor: #015EFB;
         --pcolor-light: #4C8CFF;
+           --lite:rgb(22, 22, 22);
+        --dark:rgb(0, 0, 0);
+         --footerbg:#055cf2fd;
     }
 
     @media (prefers-reduced-motion: no-preference) {
@@ -315,7 +318,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background: black;
+        background: var(--lite);
         gap: 50px;
         position: relative;
     }
@@ -476,8 +479,7 @@
         }
 
         .stats {
-            padding: 20px;
-            padding-bottom: 60px;
+            padding:60px 20px;
         }
 
         .stat-block div h1 {
@@ -493,7 +495,7 @@
     /*our Services */
 
     .our-services {
-        padding-block: 60px;
+        padding-block: 100px;
         padding-inline: 100px;
         background: black;
     }
@@ -643,8 +645,8 @@
 
     @media (max-width:800px) {
         .our-services {
-            padding-bottom: 60px;
-            padding: 20px;
+         padding-block: 60px;
+        padding-inline: 20px;
         }
 
         .our-title {
@@ -725,7 +727,7 @@
     .why-choose {
         padding-block: 80px;
         padding-inline: 100px;
-        background: black;
+        background: var(--lite);
     }
 
     .why-head {
@@ -878,7 +880,7 @@
     .how-it-works {
         padding-block: 80px;
         padding-inline: 100px;
-        background: black;
+        background: var(--dark);
         display: flex;
         gap: 60px;
         align-items: center;
@@ -1029,7 +1031,7 @@
     .testimonials {
         padding-block: 80px;
         padding-inline: 100px;
-        background: black;
+        background: var(--lite);
     }
 
     .testi-title {
@@ -1160,7 +1162,7 @@
     /* cta section */
 
     .cta-section {
-        background: #161616;
+        background: var(--dark);
         padding-block: 80px;
         padding-inline: 100px;
         text-align: center;
@@ -1236,6 +1238,10 @@
 
     .how-step.active .how-step-icon {
         transform: rotate(180deg);
+    }
+
+    .footer{
+         background: var(--footerbg) !important;
     }
 </style>
 
@@ -1706,9 +1712,6 @@
 
 
     </footer>
-
-
-
 
 
     <script src="script.js"></script>

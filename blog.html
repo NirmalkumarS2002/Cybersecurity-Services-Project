@@ -31,17 +31,21 @@
         scroll-behavior: smooth;
     }
 
-    body {
-        overflow-x: hidden;
-        background: #030507;
-    }
-
-    :root {
+        :root {
         --pcolor: #015EFB;
         --pcolor-light: #4C8CFF;
         --ink: #05070c;
+                 --lite:rgb(22, 22, 22);
+        --dark:rgb(0, 0, 0);
         --muted: rgba(255, 255, 255, 0.65);
     }
+
+    body {
+        overflow-x: hidden;
+        background: var(--dark);
+    }
+
+
 
 
 
@@ -277,9 +281,15 @@
 
     /* ============ latest blogs ============ */
 
+    .blogs-section-wrap{
+             background: var(--lite);
+        padding-block: 100px;
+    }
+
     .blogs-section {
-        margin: 0 100px 130px;
+         margin-inline:130px;
         color: white;
+        background: var(--lite);
     }
 
     .blogs-heading {
@@ -410,8 +420,11 @@
     }
 
     @media (max-width: 900px) {
+         .blogs-section-wrap{
+            padding-block: 60px;
+         }
         .blogs-section {
-            margin: 0 30px 90px;
+             margin-inline:30px;
         }
 
         .blogs-top,
@@ -423,7 +436,7 @@
     /* ============ by the numbers (NEW SECTION) ============ */
 
     .stats-section {
-        margin: 0 100px 130px;
+        margin: 100px 130px;
         color: white;
     }
 
@@ -475,7 +488,7 @@
 
     @media (max-width: 900px) {
         .stats-section {
-            margin: 0 30px 90px;
+            margin: 60px 30px 90px;
         }
 
         .stats-card {
@@ -603,9 +616,12 @@
 
     /* ============ team ============ */
 
+
+
     .team-section {
-        margin: 0 100px 60px;
+        padding:100px 100px;
         color: white;
+        background: var(--lite);
     }
 
     .team-heading {
@@ -730,8 +746,10 @@
     }
 
     @media (max-width: 900px) {
+
+ 
         .team-section {
-            margin: 0 30px 40px;
+              padding:60px 30px;
         }
 
         .team-grid {
@@ -756,7 +774,7 @@
     /* ============ testimonials (NEW SECTION) ============ */
 
     .testimonial-section {
-        margin: 0 100px 120px;
+        margin: 100px 100px;
         color: white;
     }
 
@@ -830,7 +848,7 @@
 
     @media (max-width: 900px) {
         .testimonial-section {
-            margin: 0 30px 90px;
+            margin: 60px 30px;
         }
 
         .testimonial-grid {
@@ -841,7 +859,8 @@
     /* ============ weekly briefing newsletter ============ */
 
     .briefing-section {
-        margin: 0 100px 120px;
+        padding: 100px 100px;
+        background: var(--lite);
     }
 
     .briefing-card {
@@ -919,7 +938,7 @@
 
     @media (max-width: 900px) {
         .briefing-section {
-            margin: 0 30px 90px;
+             padding: 60px 30px;
         }
 
         .briefing-card {
@@ -940,6 +959,111 @@
         margin-top: 15px;
         font-size: 12px;
     }
+
+    /* ============ cta section ============ */
+
+    .cta-section {
+        margin: 0px 100px 0px;
+    }
+
+    .cta-inner {
+        padding-block: 90px;
+        border-radius: 24px;
+        background: #000000;
+    }
+
+    .cta-card {
+        max-width: 780px;
+        margin: 0 auto;
+        text-align: center;
+        background: linear-gradient(160deg, #101216, #05070a);
+        border: 1px solid rgba(76, 140, 255, 0.35);
+        border-radius: 28px;
+        padding: 70px 50px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-card::before {
+        content: "";
+        position: absolute;
+        top: -60%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(1, 94, 251, 0.35), transparent 70%);
+        filter: blur(20px);
+        pointer-events: none;
+    }
+
+    .cta-heading {
+        font-size: 34px;
+        font-weight: 500;
+        color: white;
+        line-height: 1.3;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .cta-heading span {
+        color: var(--pcolor-light);
+    }
+
+    .cta-text {
+        font-size: 15px;
+        line-height: 1.7;
+        color: var(--muted);
+        max-width: 560px;
+        margin: 0 auto 34px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        background: var(--pcolor);
+        padding: 15px 36px;
+        border-radius: 30px;
+        font-size: 14px;
+        position: relative;
+        z-index: 2;
+        transition: transform .3s ease, background .3s ease, box-shadow .3s ease;
+    }
+
+    .cta-btn:hover {
+        background: var(--pcolor-light);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(1, 94, 251, 0.45);
+    }
+
+    @media (max-width: 900px) {
+        .cta-section {
+            margin: 0 30px 0px;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .cta-inner {
+            padding-block: 60px;
+            border-radius: 18px;
+        }
+
+        .cta-card {
+            padding: 50px 26px;
+            border-radius: 20px;
+        }
+
+        .cta-heading {
+            font-size: 26px;
+        }
+    }
+
 </style>
 
 <body>
@@ -1033,7 +1157,9 @@
     </section>
 
     <!-- ============ latest field blogs ============ -->
-    <section class="blogs-section">
+    
+    <section class="blogs-section-wrap"> 
+        <section class="blogs-section">
         <h2 class="blogs-heading">Latest field <span>Blogs</span></h2>
 
         <div class="blogs-top">
@@ -1097,6 +1223,7 @@
             </a>
 
         </div>
+    </section>
     </section>
 
     <!-- ============ by the numbers (NEW SECTION) ============ -->
@@ -1163,7 +1290,8 @@
     </section>
 
     <!-- ============ team section ============ -->
-    <section class="team-section">
+    
+          <section class="team-section">
         <h2 class="team-heading">Meet our <span>team</span></h2>
 
         <div class="team-grid">
@@ -1209,6 +1337,7 @@
 
         </div>
     </section>
+
 
     <!-- ============ testimonials (NEW SECTION) ============ -->
     <section class="testimonial-section">
@@ -1268,6 +1397,17 @@
                 </div>
                 <p class="Berror"></p>
                 <p class="briefing-note briefing-para">Sent weekly. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ cta section ============ -->
+    <section class="cta-section">
+        <div class="cta-inner">
+            <div class="cta-card">
+                <h2 class="cta-heading">Ready to secure your <span>digital future?</span></h2>
+                <p class="cta-text">Talk to our security experts today and discover how Warden can protect your business from evolving cyber threats — around the clock, every day of the year.</p>
+                <a href="404.html" class="cta-btn">Get a free consultation</a>
             </div>
         </div>
     </section>
@@ -1487,6 +1627,31 @@
             gsap.set('.briefing-card > div:last-child', { opacity: 0, x: 50 });
             gsap.to('.briefing-card > div:first-child', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.briefing-card') });
             gsap.to('.briefing-card > div:last-child', { opacity: 1, x: 0, duration: 0.8, ease: EASE, scrollTrigger: trig('.briefing-card') });
+
+            /* ================= CTA — glowing card, staggered content reveal + pulse ================= */
+            gsap.set('.cta-heading', { opacity: 0, y: 30 });
+            gsap.set('.cta-text', { opacity: 0, y: 24 });
+            gsap.set('.cta-btn', { opacity: 0, scale: 0.7 });
+
+            gsap.to('.cta-heading', {
+                opacity: 1, y: 0, duration: 0.8, ease: EASE,
+                scrollTrigger: trig('.cta-card')
+            });
+            gsap.to('.cta-text', {
+                opacity: 1, y: 0, duration: 0.8, ease: EASE, delay: 0.15,
+                scrollTrigger: trig('.cta-card')
+            });
+            gsap.to('.cta-btn', {
+                opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(1.8)', delay: 0.3,
+                scrollTrigger: trig('.cta-card')
+            });
+
+            /* soft breathing glow on the card once it's in view */
+            gsap.to('.cta-card', {
+                boxShadow: '0 0 45px rgba(1,94,251,0.35)',
+                duration: 2, ease: 'sine.inOut', yoyo: true, repeat: -1,
+                scrollTrigger: trig('.cta-card')
+            });
 
             /* ================= FOOTER — bookend slide with center fade-up ================= */
             gsap.set('.footer-brand', { opacity: 0, x: -60 });

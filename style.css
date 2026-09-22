@@ -19,6 +19,7 @@ body {
     --pcolor: #015EFB;
     --pcolor-light: #4C8CFF;
     --muted: rgba(255, 255, 255, 0.55);
+    --footerbg:#055cf2b0;
 }
 
 
@@ -309,7 +310,7 @@ body {
 /* footer */
 
 .footer {
-    background: var(--pcolor);
+    background: var(--footerbg) !important;
     padding-inline: 80px;
 }
 
