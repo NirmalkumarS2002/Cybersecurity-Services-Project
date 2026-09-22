@@ -718,6 +718,20 @@ body {
     border: 1px solid rgba(76, 140, 255, 0.35);
     border-radius: 20px;
     padding: 34px 26px;
+    transition: .5s ease;
+}
+
+.benefit-card:hover{
+        transform: scale(1.1) rotate(-8deg);
+        box-shadow: 0 0 22px rgba(1, 94, 251, 0.55);
+}
+
+.benefit-card:hover .benefit-icon{
+    background: var(--pcolor);
+}
+
+.benefit-card:hover .benefit-icon .material-symbols-outlined{
+    color: white;
 }
 
 .benefit-icon {
@@ -729,11 +743,13 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 46px;
+    transition: .5s ease;
 }
 
 .benefit-icon .material-symbols-outlined {
     color: var(--pcolor-light);
     font-size: 24px;
+    transition: .5s ease;
 }
 
 .benefit-card h4 {
